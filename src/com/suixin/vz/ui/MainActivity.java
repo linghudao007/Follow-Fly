@@ -5,39 +5,50 @@ import java.util.List;
 
 import com.suixin.vy.ui.R;
 import com.suixin.vz.ui.adapter.ViewPagerAdapter;
-import com.suixin.vz.ui.view.View1;
-import com.suixin.vz.ui.view.View2;
-import com.suixin.vz.ui.view.View3;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 // 实现引导界面
-public class MainActivity extends Activity implements OnPageChangeListener{
+public class MainActivity extends Activity
+        implements OnPageChangeListener, OnClickListener {
+    private static final Intent HomeActivity = null;
+
     private ViewPager pager;// 控件
+
     private List<View> data = new ArrayList<View>();// 数据
+
     private ViewPagerAdapter adapter;
+
     private LinearLayout layout;// 装小圆点的布局
+
     private List<View> viewPoints = new ArrayList<View>();// 保存小圆点
-    
+
+    private Button btn_open;// 进入主界面
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pager = (ViewPager) findViewById(R.id.vp_view_pager);
         layout = (LinearLayout) findViewById(R.id.ll_points);
+
         initData();
         adapter = new ViewPagerAdapter(this, data);
         pager.setAdapter(adapter);
         initPoint();
         // viewPager的滑动监听
         pager.setOnPageChangeListener(this);
-
     }
 
     /**
@@ -67,9 +78,24 @@ public class MainActivity extends Activity implements OnPageChangeListener{
      * 初始化数据
      */
     private void initData() {
-        data.add(new View1(this).v);
-        data.add(new View2(this).v);
-        data.add(new View3(this).v);
+        View view = LayoutInflater.from(this)
+                .inflate(R.layout.activity_view3_vz, null);
+        view.findViewById(R.id.btn_open)
+                .setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this,
+                                com.suixin.vy.ui.HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        data.add(LayoutInflater.from(this).inflate(R.layout.activity_view1_vz,
+                null));
+        data.add(LayoutInflater.from(this).inflate(R.layout.activity_view2_vz,
+                null));
+        data.add(view);
 
     }
 
@@ -93,5 +119,11 @@ public class MainActivity extends Activity implements OnPageChangeListener{
                 viewPoints.get(i).setBackgroundResource(R.drawable.unicon_like);
             }
         }
+    }
+
+    @Override
+    public void onClick(View arg0) {
+        // TODO Auto-generated method stub
+
     }
 }

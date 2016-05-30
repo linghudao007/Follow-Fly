@@ -6,6 +6,15 @@
     tools:context=".TopActivity"
     android:background="@drawable/view3"
     >
-    
+
+    <Button
+        android:id="@+id/btn_open"
+        android:layout_width="165dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/shape_open"
+        android:text="@string/open" />
 
 </RelativeLayout>
