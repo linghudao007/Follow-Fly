@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:horizontalSpacing="0dp"
-        android:listSelector="@null"
+        android:listSelector="@drawable/btn_selector"
         android:numColumns="5"
         android:scrollbars="none"
         android:stretchMode="columnWidth"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/gv_bottom"
-        android:background="#fff000"
+        
         android:orientation="vertical" >
     </LinearLayout>
 
@@ -45,10 +45,11 @@
     <LinearLayout
         android:id="@+id/ll_addshow"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@id/ll_fragmentshow"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:visibility="gone" >
+        android:visibility="gone"
+       >
 
         <RelativeLayout
             android:id="@+id/rl_invite"
@@ -57,8 +58,8 @@
             <ImageView
                 android:id="@+id/iv_invite"
                 style="@style/style_iv_ll_addshow"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 android:src="@drawable/home_menu_sametown" />
 
             <TextView
@@ -75,8 +76,8 @@
             <ImageView
                 android:id="@+id/iv_showtrip"
                 style="@style/style_iv_ll_addshow"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 android:src="@drawable/home_menu_tourpic" />
 
             <TextView
@@ -92,14 +93,15 @@
             <ImageView
                 android:id="@+id/iv_video"
                 style="@style/style_iv_ll_addshow"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 android:src="@drawable/home_menu_video" />
 
             <TextView
                 android:id="@+id/tv_video"
                 style="@style/style_tv_ll_addshow"
                 android:layout_below="@id/iv_video"
+                
                 android:text="@string/tv_video" />
         </RelativeLayout>
     </LinearLayout>

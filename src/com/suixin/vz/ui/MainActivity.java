@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements OnPageChangeListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main1);
+        setContentView(R.layout.activity_main);
         pager = (ViewPager) findViewById(R.id.vp_view_pager);
         layout = (LinearLayout) findViewById(R.id.ll_points);
         initData();

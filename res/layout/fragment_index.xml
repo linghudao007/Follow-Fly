@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/ll_home_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/color_theme"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_currentcity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:drawablePadding="6dp"
+            android:drawableRight="@drawable/home_search_switch"
+            android:gravity="right"
+            android:text="@string/tv_beijing"
+            android:textColor="@color/color_city"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_home_select"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/shape_btn_home_select"
+            android:gravity="center" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/color_select_bg"
+                android:drawableLeft="@drawable/home_search_1"
+                android:drawablePadding="6dp"
+                android:text="@string/select_hint"
+                android:textColor="@color/color_select_hint"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_order"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/ll_home_top"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:scaleType="center"
+        android:src="@drawable/filtericon" />
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="1px"
+        android:layout_height="26dp"
+        android:layout_alignLeft="@+id/iv_order"
+        android:layout_below="@id/ll_home_top"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_home_classify"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_below="@id/ll_home_top"
+        android:layout_toLeftOf="@id/v_line"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_hot"
+            style="@style/style_tv_ll_home_classify"
+            android:text="@string/hot" />
+
+        <TextView
+            android:id="@+id/tv_local"
+            style="@style/style_tv_ll_home_classify"
+            android:text="@string/local" />
+
+        <TextView
+            android:id="@+id/tv_carpooling"
+            style="@style/style_tv_ll_home_classify"
+            android:text="@string/carpooling" />
+
+        <TextView
+            android:id="@+id/tv_samecity"
+            style="@style/style_tv_ll_home_classify"
+            android:text="@string/samecity" />
+    </LinearLayout>
+    <ImageView 
+        android:id="@+id/iv_flag"
+        android:src="@drawable/home_tab_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ll_home_classify"/>
+    <View 
+        android:layout_height="1px"
+        android:layout_width="match_parent"
+        android:background="@color/color_line_iv"
+        android:layout_below="@id/iv_flag"/>
+
+</RelativeLayout>

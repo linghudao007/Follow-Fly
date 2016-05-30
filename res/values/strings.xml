@@ -31,5 +31,10 @@
     <string name="tv_invite">发约伴</string>
     <string name="tv_showtrip">晒旅途</string>
     <string name="tv_video">拍视频</string>
-
+ <string name="tv_beijing">北京</string>
+    <string name="select_hint">搜索目的地</string>
+	<string name="hot">热门</string>
+	<string name="local">本地</string>
+	<string name="carpooling">拼车</string>
+	<string name="samecity">同城</string>
 </resources>
