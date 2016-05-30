@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/rl_tab"
+        android:layout_width="25dp"
+        android:layout_height="32dp" >
+
+        <ImageView
+            android:id="@+id/iv_tab"
+            android:layout_width="25dp"
+            android:layout_height="32dp"
+            />
+        <ImageView 
+            android:id="@+id/iv_msg"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:src="@drawable/red_dot_small"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="1dp"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        android:textColor="@color/color_tab_normal" />
+</LinearLayout>

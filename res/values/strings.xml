@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">随心而飞</string>
+    <string name="use_attention">+关注</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="use_trip">旅图</string>
+    <string name="Backpacking">发布约伴</string>
+    <string name="departure">选择出发日期</string>
+    <string name="next">下一步</string>
+    <string name="cancel">取消</string>
+    <string name="travel_together">旅行约伴</string>
+    <string name="ambitus">周边游</string>
+    <string name="Tibet">川藏滇青</string>
+    <string name="Southeast_Asia">东南亚</string>
+    <string name="Japan_Korea_Hongkong_Taiwan">日韩港台</string>
+    <string name="western">欧美</string>
+    <string name="inland">国内其他</string>
+    <string name="overseas">境外其他</string>
+    <string name="toddle">随便走走</string>
+    <string name="City">同城活动</string>
+    <string name="exploring">体验探索</string>
+    <string name="sports">运动</string>
+    <string name="entertainment">休闲娱乐</string>
+    <string name="beer_skittles">酒仙食神</string>
+    <string name="performance">演出展览</string>
+    <string name="movie">电影天堂</string>
+    <string name="grace">优雅生活</string>
+    <string name="Other_interests">其他兴趣</string>
+    <string name="tv_invite">发约伴</string>
+    <string name="tv_showtrip">晒旅途</string>
+    <string name="tv_video">拍视频</string>
+
+</resources>

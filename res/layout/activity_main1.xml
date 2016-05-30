@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <GridView
+        android:id="@+id/gv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:horizontalSpacing="0dp"
+        android:listSelector="@null"
+        android:numColumns="5"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0dp" >
+    </GridView>
+
+    <LinearLayout
+        android:id="@+id/ll_fragmentshow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/gv_bottom"
+        android:background="#fff000"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignTop="@id/gv_bottom"
+        android:background="@color/color_line" />
+
+    <View
+        android:id="@+id/v_addshow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.9"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:visibility="gone" >
+    </View>
+
+    <LinearLayout
+        android:id="@+id/ll_addshow"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/ll_fragmentshow"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <RelativeLayout
+            android:id="@+id/rl_invite"
+            style="@style/style_rl_ll_addshow" >
+
+            <ImageView
+                android:id="@+id/iv_invite"
+                style="@style/style_iv_ll_addshow"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/home_menu_sametown" />
+
+            <TextView
+                android:id="@+id/tv_invite"
+                style="@style/style_tv_ll_addshow"
+                android:layout_below="@id/iv_invite"
+                android:text="@string/tv_invite" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_showtrip"
+            style="@style/style_rl_ll_addshow" >
+
+            <ImageView
+                android:id="@+id/iv_showtrip"
+                style="@style/style_iv_ll_addshow"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/home_menu_tourpic" />
+
+            <TextView
+                android:id="@+id/tv_showtrip"
+                style="@style/style_tv_ll_addshow"
+                android:layout_below="@id/iv_showtrip"
+                android:text="@string/tv_showtrip" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_video"
+            style="@style/style_rl_ll_addshow" >
+            <ImageView
+                android:id="@+id/iv_video"
+                style="@style/style_iv_ll_addshow"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/home_menu_video" />
+
+            <TextView
+                android:id="@+id/tv_video"
+                style="@style/style_tv_ll_addshow"
+                android:layout_below="@id/iv_video"
+                android:text="@string/tv_video" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_home"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/btn_home_add" />
+
+</RelativeLayout>

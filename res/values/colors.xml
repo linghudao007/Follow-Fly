@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_line">#E8E4DD</color>
+    <color name="color_tab_normal">#C2BBAE</color>
+   	<color name="color_btn_bg">#fff</color>
+</resources>
