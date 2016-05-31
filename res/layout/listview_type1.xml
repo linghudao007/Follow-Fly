@@ -6,7 +6,9 @@
     <ImageView 
         android:id="@+id/iv_banner"
         android:layout_width="match_parent"
-        android:layout_height="130dp"/>
+        android:layout_height="130dp"
+        android:src="@drawable/default_theme_icon"
+        android:background="@color/color_load_bg"/>
     
 
 </LinearLayout>

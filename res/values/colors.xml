@@ -12,4 +12,7 @@
    	<color name="color_listview_bg">#F6F2EA</color>
    	<color name="color_tv_journey">#AF8022</color>
    	<color name="color_tv_gray">#ABA7A2</color>
+   	<color name="color_tv_see">#C9C5C1</color>
+   	<color name="color_load_bg">#F2F0ED</color>
+   	    
 </resources>

@@ -45,44 +45,29 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_order"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/ll_home_top"
-        android:paddingLeft="17dp"
-        android:paddingRight="17dp"
-        android:scaleType="center"
-        android:src="@drawable/filtericon" />
+   
 
-    <View
-        android:id="@+id/v_line"
-        android:layout_width="1px"
-        android:layout_height="26dp"
-        android:layout_alignLeft="@+id/iv_order"
-        android:layout_below="@id/ll_home_top"
-        android:layout_marginTop="8dp"
-        android:background="@color/color_line" />
 
     <LinearLayout
         android:id="@+id/ll_home_classify"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:layout_below="@id/ll_home_top"
-        android:layout_toLeftOf="@id/v_line"
+        android:layout_marginRight="50dp"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/tv_hot"
             style="@style/style_tv_ll_home_classify"
-            android:text="@string/hot" />
+            android:text="@string/hot" 
+            android:background="@drawable/home_tab_selected" />
 
         <TextView
             android:id="@+id/tv_local"
             style="@style/style_tv_ll_home_classify"
-            android:text="@string/local" />
+            android:text="@string/local"
+            />
 
         <TextView
             android:id="@+id/tv_carpooling"
@@ -92,27 +77,69 @@
         <TextView
             android:id="@+id/tv_samecity"
             style="@style/style_tv_ll_home_classify"
-            android:text="@string/samecity" />
+            android:text="@string/samecity"
+            />
     </LinearLayout>
-    <ImageView 
-        android:id="@+id/iv_flag"
-        android:src="@drawable/home_tab_selected"
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="1px"
+        android:layout_height="26dp"
+        android:layout_below="@id/ll_home_top"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_line"
+        android:layout_alignRight="@id/ll_home_classify"/>
+    <LinearLayout
+        android:id="@+id/ll_order"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/ll_home_classify"/>
-    <View 
+        android:layout_height="42dp"
+        android:layout_toEndOf="@id/ll_home_classify"
+        android:layout_below="@id/ll_home_top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_orderbyhot"
+            style="@style/style_tv_ll_home_classify"
+            android:textColor="@color/color_tv_gray"
+            android:text="@string/orderbyhot" />
+
+        <TextView
+            android:id="@+id/tv_orderbynear"
+            style="@style/style_tv_ll_home_classify"
+            android:textColor="@color/color_tv_gray"
+            android:text="@string/orderbynear" />
+
+        <TextView
+            android:id="@+id/tv_oderbynewtime"
+            style="@style/style_tv_ll_home_classify"
+            android:textColor="@color/color_tv_gray"
+            android:text="@string/orderbynewtime"/>
+    </LinearLayout>
+
+    
+     <ImageView
+        android:id="@+id/iv_order"
+        android:layout_width="50dp"
+        android:layout_height="42dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/ll_home_top"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:scaleType="center"
+        android:src="@drawable/filtericon" />
+	<View
         android:id="@+id/v_line_iv"
-        android:layout_height="1px"
         android:layout_width="match_parent"
-        android:background="@color/color_line_iv"
-        android:layout_below="@id/iv_flag"/>
+        android:layout_height="1px"
+        android:layout_below="@id/ll_home_classify"
+        android:background="@color/color_line_iv" 
+       />
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/v_line_iv"        
-        >
-        
+        android:layout_below="@id/v_line_iv" >
     </android.support.v4.view.ViewPager>
 
 </RelativeLayout>

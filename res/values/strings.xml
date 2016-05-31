@@ -38,4 +38,7 @@
 	<string name="carpooling">拼车</string>
 	<string name="samecity">同城</string>
 	<string name="open">开启奇妙之旅</string>
+	<string name="orderbyhot">热度排序</string>
+	<string name="orderbynear">最近出发</string>
+	<string name="orderbynewtime">最新发布</string>
 </resources>
