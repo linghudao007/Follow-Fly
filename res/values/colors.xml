@@ -9,4 +9,7 @@
    	<color name="color_select_bg">#FFF9CC</color>
    	<color name="color_city">#AD7F2D</color>
    	<color name="color_line_iv">#FEE100</color>
+   	<color name="color_listview_bg">#F6F2EA</color>
+   	<color name="color_tv_journey">#AF8022</color>
+   	<color name="color_tv_gray">#ABA7A2</color>
 </resources>

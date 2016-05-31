@@ -101,9 +101,18 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/ll_home_classify"/>
     <View 
+        android:id="@+id/v_line_iv"
         android:layout_height="1px"
         android:layout_width="match_parent"
         android:background="@color/color_line_iv"
         android:layout_below="@id/iv_flag"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/v_line_iv"        
+        >
+        
+    </android.support.v4.view.ViewPager>
 
 </RelativeLayout>

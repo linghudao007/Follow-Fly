@@ -44,5 +44,10 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">@dimen/layout_textsize</item>
     </style>
+    <style name="style_tv_base">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/latout_textsize_m</item>
+    </style>
 
 </resources>
