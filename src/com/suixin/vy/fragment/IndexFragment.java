@@ -97,12 +97,10 @@ public class IndexFragment extends Fragment implements OnClickListener {
 			}
 		});
 
-		LayoutParams para2 = (LayoutParams) ll_order.getLayoutParams();
-
-		para2.width = width*3;// 修改宽度
-
-		ll_order.setLayoutParams(para2);
-
+//		LayoutParams para2 = (LayoutParams) ll_order.getLayoutParams();
+//		para2.width = width*3;// 修改宽度
+//		ll_order.setLayoutParams(para2);
+		
 	}
 
 	private void addListener() {
@@ -159,6 +157,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 					"translationX", -width * 3);
 			PropertyValuesHolder holder_a = PropertyValuesHolder.ofFloat(
 					"alpha", 0);
+			PropertyValuesHolder holder_s = PropertyValuesHolder.ofFloat("scaleX",0,1);
 
 			ObjectAnimator animl = ObjectAnimator.ofPropertyValuesHolder(
 					tv_local, holder_xl, holder_a);
@@ -168,7 +167,9 @@ public class IndexFragment extends Fragment implements OnClickListener {
 					tv_samecity, holder_xs, holder_a);
 			ObjectAnimator animv = ObjectAnimator.ofPropertyValuesHolder(v_line, holder_xs);
 			ObjectAnimator animll_or = ObjectAnimator.ofPropertyValuesHolder(
-					ll_order, holder_xs);
+					ll_order, holder_s);
+			ll_order.setVisibility(View.VISIBLE);
+			ll_order.setPivotX(width*3);
 			AnimatorSet set = new AnimatorSet();
 			set.playTogether(animl, animc, anims,animv,animll_or);
 			set.setDuration(500);
@@ -186,7 +187,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 					"translationX",0);
 			PropertyValuesHolder holder_a = PropertyValuesHolder.ofFloat(
 					"alpha", 1);
-
+			PropertyValuesHolder holder_s = PropertyValuesHolder.ofFloat("scaleX",1,0);
 			ObjectAnimator animl = ObjectAnimator.ofPropertyValuesHolder(
 					tv_local, holder_xl, holder_a);
 			ObjectAnimator animc = ObjectAnimator.ofPropertyValuesHolder(
@@ -195,7 +196,8 @@ public class IndexFragment extends Fragment implements OnClickListener {
 					tv_samecity, holder_xs, holder_a);
 			ObjectAnimator animv = ObjectAnimator.ofPropertyValuesHolder(v_line, holder_xs);
 			ObjectAnimator animll_or = ObjectAnimator.ofPropertyValuesHolder(
-					ll_order, holder_xs);
+					ll_order, holder_s);
+			
 			AnimatorSet set = new AnimatorSet();
 			set.playTogether(animl, animc, anims,animv,animll_or);
 			set.setDuration(500);

@@ -45,9 +45,6 @@
         </RelativeLayout>
     </LinearLayout>
 
-   
-
-
     <LinearLayout
         android:id="@+id/ll_home_classify"
         android:layout_width="match_parent"
@@ -60,14 +57,13 @@
         <TextView
             android:id="@+id/tv_hot"
             style="@style/style_tv_ll_home_classify"
-            android:text="@string/hot" 
-            android:background="@drawable/home_tab_selected" />
+            android:background="@drawable/home_tab_selected"
+            android:text="@string/hot" />
 
         <TextView
             android:id="@+id/tv_local"
             style="@style/style_tv_ll_home_classify"
-            android:text="@string/local"
-            />
+            android:text="@string/local" />
 
         <TextView
             android:id="@+id/tv_carpooling"
@@ -77,48 +73,52 @@
         <TextView
             android:id="@+id/tv_samecity"
             style="@style/style_tv_ll_home_classify"
-            android:text="@string/samecity"
-            />
+            android:text="@string/samecity" />
     </LinearLayout>
 
     <View
         android:id="@+id/v_line"
         android:layout_width="1px"
         android:layout_height="26dp"
+        android:layout_alignRight="@id/ll_home_classify"
         android:layout_below="@id/ll_home_top"
         android:layout_marginTop="8dp"
-        android:background="@color/color_line"
-        android:layout_alignRight="@id/ll_home_classify"/>
+        android:background="@color/color_line" />
+
     <LinearLayout
         android:id="@+id/ll_order"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
-        android:layout_toEndOf="@id/ll_home_classify"
+        android:layout_alignParentRight="true"
         android:layout_below="@id/ll_home_top"
+        android:layout_marginRight="50dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
 
         <TextView
             android:id="@+id/tv_orderbyhot"
             style="@style/style_tv_ll_home_classify"
-            android:textColor="@color/color_tv_gray"
-            android:text="@string/orderbyhot" />
+            android:text="@string/orderbyhot"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/tv_orderbynear"
             style="@style/style_tv_ll_home_classify"
+            android:text="@string/orderbynear"
             android:textColor="@color/color_tv_gray"
-            android:text="@string/orderbynear" />
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/tv_oderbynewtime"
             style="@style/style_tv_ll_home_classify"
+            android:text="@string/orderbynewtime"
             android:textColor="@color/color_tv_gray"
-            android:text="@string/orderbynewtime"/>
+            android:layout_marginLeft="5dp"/>
     </LinearLayout>
 
-    
-     <ImageView
+    <ImageView
         android:id="@+id/iv_order"
         android:layout_width="50dp"
         android:layout_height="42dp"
@@ -128,13 +128,14 @@
         android:paddingRight="17dp"
         android:scaleType="center"
         android:src="@drawable/filtericon" />
-	<View
+
+    <View
         android:id="@+id/v_line_iv"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_below="@id/ll_home_classify"
-        android:background="@color/color_line_iv" 
-       />
+        android:background="@color/color_line_iv" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_home"
         android:layout_width="match_parent"
