@@ -75,14 +75,14 @@ public class CategoryTabStrip extends HorizontalScrollView {
 		
 		defaultTabLayoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 
-		// ���Ƹ���������Ϊ������ҳָʾ��
+		// 绘制高亮区域作为滑动分页指示器
 		indicator = getResources().getDrawable(R.drawable.bg_category_indicator);
-		// ���ұ߽���ӰЧ��
+		// 左右边界阴影效果
 		left_edge = getResources().getDrawable(R.drawable.ic_category_left_edge);
         right_edge = getResources().getDrawable(R.drawable.ic_category_right_edge);
 	}
 
-	// ����CategoryTabStrip�ؼ���Ӧ��ViewPager�ؼ���ʵ������
+	// 绑定与CategoryTabStrip控件对应的ViewPager控件，实现联动
 	public void setViewPager(ViewPager pager) {
 		this.pager = pager;
 
@@ -94,8 +94,7 @@ public class CategoryTabStrip extends HorizontalScrollView {
 
 		notifyDataSetChanged();
 	}
-
-	// ��������ViewPager�������ϵ����ݷ����仯ʱ,Ӧ�õ��ø÷���֪ͨCategoryTabStripˢ������
+	// 当附加在ViewPager适配器上的数据发生变化时,应该调用该方法通知CategoryTabStrip刷新数据
 	public void notifyDataSetChanged() {
 		tabsContainer.removeAllViews();
 
@@ -124,8 +123,7 @@ public class CategoryTabStrip extends HorizontalScrollView {
 
 		tabsContainer.addView(tab, position, defaultTabLayoutParams);
 	}
-
-	// ���㻬�������о��θ����������������λ��
+	// 计算滑动过程中矩形高亮区域的上下左右位置
 	private void calculateIndicatorRect(Rect rect) {
 		ViewGroup currentTab = (ViewGroup)tabsContainer.getChildAt(currentPosition);
 		TextView category_text = (TextView) currentTab.findViewById(R.id.category_text);
@@ -147,7 +145,7 @@ public class CategoryTabStrip extends HorizontalScrollView {
 
 	}
 	
-	// ���������Χ
+	// 计算滚动范围
 	private int getScrollRange() {
         return getChildCount() > 0 ? Math.max(0, getChildAt(0).getWidth() - getWidth() + getPaddingLeft() + getPaddingRight()) : 0;
     }
@@ -249,10 +247,10 @@ public class CategoryTabStrip extends HorizontalScrollView {
 		public void onPageScrollStateChanged(int state) {
 			if (state == ViewPager.SCROLL_STATE_IDLE) {
 				if(pager.getCurrentItem() == 0) {
-					// �����������
+				 // 滑动到最左边
 					scrollTo(0, 0);
 				} else if (pager.getCurrentItem() == tabCount - 1) {
-					// ���������ұ�
+				 // 滑动到最右边
 					scrollTo(getScrollRange(), 0);
 				} else {
 					scrollToChild(pager.getCurrentItem(), 0);
