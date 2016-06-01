@@ -11,28 +11,32 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class MainActivity1 extends FragmentActivity {
+public class TripFragment extends Fragment {
     private CategoryTabStrip tabs;
     private ViewPager pager;
     private MyPagerAdapter adapter;
 
+   
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_vz_fg);
-        
-        tabs = (CategoryTabStrip) findViewById(R.id.category_strip);
-        pager = (ViewPager) findViewById(R.id.view_pager);
-        adapter = new MyPagerAdapter(getSupportFragmentManager());
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+    	View view = inflater.inflate(R.layout.activity_main_vz_fg, container, false);
+    	 tabs = (CategoryTabStrip)view.findViewById(R.id.category_strip);
+         pager = (ViewPager)view.findViewById(R.id.view_pager);
+         adapter = new MyPagerAdapter(getActivity().getSupportFragmentManager());
+         pager.setAdapter(adapter);
+         tabs.setViewPager(pager);
+		return view;
+	}
 
-        pager.setAdapter(adapter);
 
-        tabs.setViewPager(pager);
 
-    }
-
-    public class MyPagerAdapter extends FragmentPagerAdapter {
+	public class MyPagerAdapter extends FragmentPagerAdapter {
 
         private final List<String> catalogs = new ArrayList<String>();
 
