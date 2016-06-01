@@ -12,7 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class MainActivity1 extends FragmentActivity {
+public class TripActivity extends FragmentActivity {
     private CategoryTabStrip tabs;
     private ViewPager pager;
     private MyPagerAdapter adapter;

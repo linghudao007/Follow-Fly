@@ -17,19 +17,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.TypedValue;
 
-/**
- * A Drawable object that draws text.
- * A TextDrawable accepts most of the same parameters that can be applied to
- * {@link android.widget.TextView} for displaying and formatting text.
- *
- * Optionally, a {@link Path} may be supplied on which to draw the text.
- *
- * A TextDrawable has an intrinsic size equal to that required to draw all
- * the text it has been supplied, when possible.  In cases where a {@link Path}
- * has been supplied, the caller must explicitly call
- * {@link #setBounds(android.graphics.Rect) setBounds()} to provide the Drawable
- * size based on the Path constraints.
- */
 public class TextDrawable extends Drawable {
 
     /* Platform XML constants for typeface */
@@ -137,10 +124,6 @@ public class TextDrawable extends Drawable {
     }
 
 
-    /**
-     * Set the text that will be displayed
-     * @param text Text to display
-     */
     public void setText(CharSequence text) {
         if (text == null) text = "";
 
@@ -149,42 +132,24 @@ public class TextDrawable extends Drawable {
         measureContent();
     }
 
-    /**
-     * Return the text currently being displayed
-     */
     public CharSequence getText() {
         return mText;
     }
 
-    /**
-     * Return the current text size, in pixels
-     */
     public float getTextSize() {
         return mTextPaint.getTextSize();
     }
 
-    /**
-     * Set the text size.  The value will be interpreted in "sp" units
-     * @param size Text size value, in sp
-     */
     public void setTextSize(float size) {
         setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
     }
 
-    /**
-     * Set the text size, using the supplied complex units
-     * @param unit Units for the text size, such as dp or sp
-     * @param size Text size value
-     */
     public void setTextSize(int unit, float size) {
         float dimension = TypedValue.applyDimension(unit, size,
                 mResources.getDisplayMetrics());
         setRawTextSize(dimension);
     }
 
-    /*
-     * Set the text size, in raw pixels
-     */
     private void setRawTextSize(float size) {
         if (size != mTextPaint.getTextSize()) {
             mTextPaint.setTextSize(size);
@@ -193,17 +158,10 @@ public class TextDrawable extends Drawable {
         }
     }
 
-    /**
-     * Return the horizontal stretch factor of the text
-     */
     public float getTextScaleX() {
         return mTextPaint.getTextScaleX();
     }
 
-    /**
-     * Set the horizontal stretch factor of the text
-     * @param size Text scale factor
-     */
     public void setTextScaleX(float size) {
         if (size != mTextPaint.getTextScaleX()) {
             mTextPaint.setTextScaleX(size);
@@ -211,23 +169,9 @@ public class TextDrawable extends Drawable {
         }
     }
 
-    /**
-     * Return the current text alignment setting
-     */
     public Layout.Alignment getTextAlign() {
         return mTextAlignment;
     }
-
-    /**
-     * Set the text alignment.  The alignment itself is based on the text layout direction.
-     * For LTR text NORMAL is left aligned and OPPOSITE is right aligned.
-     * For RTL text, those alignments are reversed.
-     * @param align Text alignment value.  Should be set to one of:
-     *
-     *   {@link Layout.Alignment#ALIGN_NORMAL},
-     *   {@link Layout.Alignment#ALIGN_NORMAL},
-     *   {@link Layout.Alignment#ALIGN_OPPOSITE}.
-     */
     public void setTextAlign(Layout.Alignment align) {
         if (mTextAlignment != align) {
             mTextAlignment = align;
@@ -235,13 +179,6 @@ public class TextDrawable extends Drawable {
         }
     }
 
-    /**
-     * Sets the typeface and style in which the text should be displayed.
-     * Note that not all Typeface families actually have bold and italic
-     * variants, so you may need to use
-     * {@link #setTypeface(Typeface, int)} to get the appearance
-     * that you actually want.
-     */
     public void setTypeface(Typeface tf) {
         if (mTextPaint.getTypeface() != tf) {
             mTextPaint.setTypeface(tf);
@@ -250,13 +187,6 @@ public class TextDrawable extends Drawable {
         }
     }
 
-    /**
-     * Sets the typeface and style in which the text should be displayed,
-     * and turns on the fake bold and italic bits in the Paint if the
-     * Typeface that you provided does not have all the bits in the
-     * style that you specified.
-     *
-     */
     public void setTypeface(Typeface tf, int style) {
         if (style > 0) {
             if (tf == null) {
@@ -278,39 +208,19 @@ public class TextDrawable extends Drawable {
         }
     }
 
-    /**
-     * Return the current typeface and style that the Paint
-     * using for display.
-     */
     public Typeface getTypeface() {
         return mTextPaint.getTypeface();
     }
 
-    /**
-     * Set a single text color for all states
-     * @param color Color value such as {@link Color#WHITE} or {@link Color#argb(int, int, int, int)}
-     */
     public void setTextColor(int color) {
         setTextColor(ColorStateList.valueOf(color));
     }
 
-    /**
-     * Set the text color as a state list
-     * @param colorStateList ColorStateList of text colors, such as inflated from an R.color resource
-     */
     public void setTextColor(ColorStateList colorStateList) {
         mTextColors = colorStateList;
         updateTextColors(getState());
     }
 
-    /**
-     * Optional Path object on which to draw the text.  If this is set,
-     * TextDrawable cannot properly measure the bounds this drawable will need.
-     * You must call {@link #setBounds(int, int, int, int) setBounds()} before
-     * applying this TextDrawable to any View.
-     *
-     * Calling this method with <code>null</code> will remove any Path currently attached.
-     */
     public void setTextPath(Path path) {
         if (mTextPath != path) {
             mTextPath = path;
@@ -318,32 +228,20 @@ public class TextDrawable extends Drawable {
         }
     }
 
-    /**
-     * Internal method to take measurements of the current contents and apply
-     * the correct bounds when possible.
-     */
     private void measureContent() {
-        //If drawing to a path, we cannot measure intrinsic bounds
-        //We must resly on setBounds being called externally
         if (mTextPath != null) {
-            //Clear any previous measurement
             mTextLayout = null;
             mTextBounds.setEmpty();
         } else {
-            //Measure text bounds
             double desired = Math.ceil( Layout.getDesiredWidth(mText, mTextPaint) );
             mTextLayout = new StaticLayout(mText, mTextPaint, (int)desired,
                     mTextAlignment, 1.0f, 0.0f, false);
             mTextBounds.set(0, 0, mTextLayout.getWidth(), mTextLayout.getHeight());
         }
 
-        //We may need to be redrawn
         invalidateSelf();
     }
 
-    /**
-     * Internal method to apply the correct text color based on the drawable's state
-     */
     private boolean updateTextColors(int[] stateSet) {
         int newColor = mTextColors.getColorForState(stateSet, Color.WHITE);
         if (mTextPaint.getColor() != newColor) {
@@ -356,16 +254,11 @@ public class TextDrawable extends Drawable {
 
     @Override
     protected void onBoundsChange(Rect bounds) {
-        //Update the internal bounds in response to any external requests
         mTextBounds.set(bounds);
     }
 
     @Override
     public boolean isStateful() {
-        /*
-         * The drawable's ability to represent state is based on
-         * the text color list set
-         */
         return mTextColors.isStateful();
     }
 
