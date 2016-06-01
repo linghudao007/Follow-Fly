@@ -41,4 +41,6 @@
 	<string name="orderbyhot">热度排序</string>
 	<string name="orderbynear">最近出发</string>
 	<string name="orderbynewtime">最新发布</string>
+	<string name="found">发现</string>
+	<string name="attention">关注</string>
 </resources>

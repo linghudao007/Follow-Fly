@@ -3,7 +3,7 @@
     <color name="color_line">#E8E4DD</color>
     <color name="color_tab_normal">#C2BBAE</color>
    	<color name="color_btn_bg">#fff</color>
-   		<color name="color_theme">#FFE100</color>
+   	<color name="color_theme">#FFE100</color>
    	<color name="color_themesub">#7F4802</color>
    	<color name="color_select_hint">#D6B963</color>
    	<color name="color_select_bg">#FFF9CC</color>
@@ -15,4 +15,14 @@
    	<color name="color_tv_see">#C9C5C1</color>
    	<color name="color_load_bg">#F2F0ED</color>
    	    
+   	<color name="activity_bg_color">#fffafafa</color>
+    <color name="top_category_bar_background">#ffeeeeee</color>
+    <color name="divider">#ffdddddd</color>
+    <color name="category_tab_text">#ff707070</color>
+    <color name="category_tab_text_dark">#fffafafa</color>
+    <color name="category_tab_highlight_text">#fffafafa</color>
+    <color name="category_tab_highlight_text_dark">#ffd43d3d</color>
+    <color name="category_tab_highlight_bg">#ffd43d3d</color>
+    <color name="category_tab_highlight_dark_bg">#fffafafa</color>
+   	
 </resources>
