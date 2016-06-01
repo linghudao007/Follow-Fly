@@ -58,6 +58,7 @@
             android:id="@+id/tv_hot"
             style="@style/style_tv_ll_home_classify"
             android:background="@drawable/home_tab_selected"
+            android:textColor="@color/color_city"
             android:text="@string/hot" />
 
         <TextView
@@ -108,14 +109,14 @@
             style="@style/style_tv_ll_home_classify"
             android:text="@string/orderbynear"
             android:textColor="@color/color_tv_gray"
-            android:layout_marginLeft="5dp"/>
+            />
 
         <TextView
             android:id="@+id/tv_oderbynewtime"
             style="@style/style_tv_ll_home_classify"
             android:text="@string/orderbynewtime"
             android:textColor="@color/color_tv_gray"
-            android:layout_marginLeft="5dp"/>
+            />
     </LinearLayout>
 
     <ImageView

@@ -54,7 +54,7 @@
         android:layout_below="@id/ll_info"
         android:layout_marginTop="14dp"
         android:text="西安-武汉-佛山-其后行程未定"
-        android:textColor="@color/color_tv_journey"
+        android:textColor="@color/color_city"
         android:textSize="@dimen/layout_textsize" />
 
     <TextView
