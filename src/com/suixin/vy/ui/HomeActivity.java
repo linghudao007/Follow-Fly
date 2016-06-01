@@ -6,10 +6,11 @@ import java.util.List;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,11 +20,13 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.suixin.vy.adapter.GVBottomAdapter;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.fragment.IndexFragment;
 import com.suixin.vy.model.GVBottomModel;
+import com.suixin.vz.fragment.TripFragment;
 
 public class HomeActivity extends BaseActivity {
 	private GridView gv_bottom;
@@ -36,6 +39,7 @@ public class HomeActivity extends BaseActivity {
 	private LinearLayout ll_addshow;
 	private FragmentManager fm;
 	private FragmentTransaction ft;
+	private Fragment indexFrag;
       //
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +56,8 @@ public class HomeActivity extends BaseActivity {
 		// 初始化状态
 		isOpneBtn_home = false;
 		// 绑定碎片
-		Fragment indexFrag = new IndexFragment();
-		fm =this.getFragmentManager();
+		indexFrag = new IndexFragment();
+		fm =this.getSupportFragmentManager();
 		ft=fm.beginTransaction();
 		ft.add(R.id.ll_fragmentshow, indexFrag);
 		ft.commit();
@@ -181,7 +185,26 @@ public class HomeActivity extends BaseActivity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				gvbAdapter.notifyDataSetChanged();
+				Toast.makeText(HomeActivity.this, arg2+"", 1000).show();
+				switch(arg2){
+				case 0:break;
+				case 1:
+					ft.remove(indexFrag);
+					Fragment tripFrag = new TripFragment();
+					//fm =HomeActivity.this.getSupportFragmentManager(); 
+					ft=fm.beginTransaction();
+					ft.add(R.id.ll_fragmentshow, tripFrag);
+					ft.commit();
+					break;
+				case 3:break;
+				case 4:break;
+				default:break;
+				}
+				
+				
 			}
+
+			
 		});
 		btn_home.setOnClickListener(this);
 	}
