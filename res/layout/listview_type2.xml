@@ -153,6 +153,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="13dp"
         android:layout_toStartOf="@id/tv_seecount"
+        android:layout_toLeftOf="@id/tv_seecount"
         android:src="@drawable/view_count" />
 
     <HorizontalScrollView
@@ -163,7 +164,9 @@
         
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@id/iv_tab"
+        android:layout_toRightOf="@id/iv_tab"
         android:layout_toStartOf="@id/iv_see"
+        android:layout_toLeftOf="@id/iv_see"
         android:scrollbars="none"
         >
         <LinearLayout 
