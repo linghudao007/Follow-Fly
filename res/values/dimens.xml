@@ -12,5 +12,6 @@
     <dimen name="tv_bar_height">50dp</dimen>
     <dimen name="tv_size_title">18sp</dimen>
     <dimen name="tv_size_min">10sp</dimen>
+    <dimen name="tv_size_m">12sp</dimen>
     
 </resources>

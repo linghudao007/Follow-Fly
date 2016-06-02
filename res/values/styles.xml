@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -17,7 +17,7 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
-   <style name="style_tv_ll_addshow">
+    <style name="style_tv_ll_addshow">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
@@ -44,24 +44,23 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/layout_textsize</item>
     </style>
+
     <style name="style_tv_base">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/latout_textsize_m</item>
     </style>
-    
-    <style name="style_tv_tab"
-        >
-            <item name="android:paddingRight">12dp</item>
-            <item name="android:paddingLeft">12dp</item>
-            <item name="android:textSize">13sp</item>
-            <item name="android:layout_marginLeft">10dp</item>
-            <item name="android:layout_width">wrap_content</item>
-            <item name="android:layout_height">match_parent</item>
-            <item name="android:gravity">center</item>
-            <item name="android:background">@drawable/shape_tv_tab</item>
-            <item name="android:textColor">@color/color_tv_gray</item>
-         
+
+    <style name="style_tv_tab">
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/shape_tv_tab</item>
+        <item name="android:textColor">@color/color_tv_gray</item>
     </style>
 
     <style name="main_title_bar_style">
@@ -69,4 +68,30 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">44.0dip</item>
     </style>
+
+    <style name="style_im_head">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@drawable/pic_loading_big</item>
+    </style>
+
+    <style name="style_tv_user">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/latout_textsize_m</item>
+        <item name="android:layout_marginTop">13dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="style_tv_gocitynum">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/color_tv_gray</item>
+        <item name="android:textSize">@dimen/tv_size_min</item>
+    </style>
+
 </resources>
