@@ -6,32 +6,21 @@
     <LinearLayout
         android:id="@+id/ll_home_top"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/tv_bar_height"
         android:layout_alignParentTop="true"
         android:background="@color/color_theme"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/tv_currentcity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:drawablePadding="6dp"
-            android:drawableRight="@drawable/home_search_switch"
-            android:gravity="right"
-            android:text="@string/tv_beijing"
-            android:textColor="@color/color_city"
-            android:textSize="15sp" />
 
         <RelativeLayout
             android:id="@+id/rl_home_select"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/shape_btn_home_select"
-            android:gravity="center" >
+            android:gravity="center_vertical" >
 
             <Button
                 android:layout_width="wrap_content"
@@ -39,6 +28,7 @@
                 android:background="@color/color_select_bg"
                 android:drawableLeft="@drawable/home_search_1"
                 android:drawablePadding="6dp"
+                android:layout_marginLeft="10dp"
                 android:text="@string/select_hint"
                 android:textColor="@color/color_select_hint"
                 android:textSize="15sp" />
@@ -50,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:layout_below="@id/ll_home_top"
-        android:layout_marginRight="50dp"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -76,59 +65,6 @@
             style="@style/style_tv_ll_home_classify"
             android:text="@string/samecity" />
     </LinearLayout>
-
-    <View
-        android:id="@+id/v_line"
-        android:layout_width="1px"
-        android:layout_height="26dp"
-        android:layout_alignRight="@id/ll_home_classify"
-        android:layout_below="@id/ll_home_top"
-        android:layout_marginTop="8dp"
-        android:background="@color/color_line" />
-
-    <LinearLayout
-        android:id="@+id/ll_order"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/ll_home_top"
-        android:layout_marginRight="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        >
-
-        <TextView
-            android:id="@+id/tv_orderbyhot"
-            style="@style/style_tv_ll_home_classify"
-            android:text="@string/orderbyhot"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/tv_orderbynear"
-            style="@style/style_tv_ll_home_classify"
-            android:text="@string/orderbynear"
-            android:textColor="@color/color_tv_gray"
-            />
-
-        <TextView
-            android:id="@+id/tv_oderbynewtime"
-            style="@style/style_tv_ll_home_classify"
-            android:text="@string/orderbynewtime"
-            android:textColor="@color/color_tv_gray"
-            />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_order"
-        android:layout_width="50dp"
-        android:layout_height="42dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/ll_home_top"
-        android:paddingLeft="17dp"
-        android:paddingRight="17dp"
-        android:scaleType="center"
-        android:src="@drawable/filtericon" />
 
     <View
         android:id="@+id/v_line_iv"

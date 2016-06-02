@@ -61,7 +61,7 @@ public class MainActivity extends Activity
                 // 设置内间距
                 v.setPadding(5, 5, 5, 5);
                 // 设置图片显示的大小
-                v.setLayoutParams(new LayoutParams(40, 40));
+                v.setLayoutParams(new LayoutParams(30, 30));
                 if (i == 0) {// 代表当前选中的
                     v.setBackgroundResource(R.drawable.icon_like);
                 } else {
@@ -123,7 +123,6 @@ public class MainActivity extends Activity
 
     @Override
     public void onClick(View arg0) {
-        // TODO Auto-generated method stub
 
     }
 }
