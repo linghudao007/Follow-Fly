@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.suixin.vy.ui.R;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,20 +25,18 @@ public class TripFragment extends Fragment{
     private int lineWidth;
 
     private View lineView;
-    private TextView fragment_hot_listview_vz,fragment_listview_find_vz,fragment_trip_vz;
+    private TextView fragment_hot_listview_vz,fragment_listview_find_vz,fragment_attention_vz;
     private TextView[] tvs;
 
     private int currentPagerIndex = 0;
     private int screenWidth;
     
     
-    
-    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trip_main, container,false);
-        initView(view,inflater);
+        initView(view,inflater,container);
 
         initLine();
 
@@ -61,7 +58,6 @@ public class TripFragment extends Fragment{
         tvs[pos].setTextColor(getResources().getColor(android.R.color.holo_blue_light));
     }
 
-    @SuppressWarnings("deprecation")
     private void addListener() {
         pager.setOnPageChangeListener(new OnPageChangeListener() {
 
@@ -97,21 +93,21 @@ public class TripFragment extends Fragment{
         lineWidth = screenWidth / 3;
     }
 
-    private void initView(View view,LayoutInflater inflater) {
+    private void initView(View view,LayoutInflater inflater,ViewGroup container) {
         fragment_hot_listview_vz = (TextView)view. findViewById(R.id.tab1);
         fragment_listview_find_vz = (TextView) view.findViewById(R.id.tab2);
-        fragment_trip_vz = (TextView) view.findViewById(R.id.tab3);
-        tvs = new TextView[]{fragment_hot_listview_vz,fragment_listview_find_vz,fragment_trip_vz};
+        fragment_attention_vz = (TextView) view.findViewById(R.id.tab3);
+        tvs = new TextView[]{fragment_hot_listview_vz,fragment_listview_find_vz,fragment_attention_vz};
         
         pager = (ViewPager) view.findViewById(R.id.pager);
         lineView = view.findViewById(R.id.tab_line);
         views = new ArrayList<View>();
         View item1 = inflater.inflate(R.layout.fragment_hot_listview_vz,
-                null);
-        View item2 = inflater.inflate(R.layout.fragment_listview_find_vz,
-                null);
-        View item3 = inflater.inflate(R.layout.fragment_trip_vz,
-                null);
+                container,false);
+         View item2 = inflater.inflate(R.layout.fragment_listview_find_vz,
+                container,false);
+        View item3 = inflater.inflate(R.layout.fragment_attention_vz,
+                container,false);
 
         views.add(item1);
         views.add(item2);

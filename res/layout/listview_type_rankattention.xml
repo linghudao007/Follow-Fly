@@ -31,7 +31,7 @@
         android:layout_centerVertical="true"
         android:background="@drawable/shape_tv_concern"
         android:gravity="center"
-        android:text="@string/concern"
+        android:text="@string/use_attention"
         android:textSize="@dimen/tv_size_m" />
 
     <TextView

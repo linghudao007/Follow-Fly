@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/include_no2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:contentDescription="@string/hello_world"
+        android:id="@+id/Iv_no2_1"
+        android:layout_width="155dp"
+        android:layout_height="170dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/bg_user2" />
+
+    <ImageView
+        android:contentDescription="@string/hello_world"
+        android:id="@+id/Iv_no2_2"
+        android:layout_width="155dp"
+        android:layout_height="170dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/bg_user2" />
+
+</RelativeLayout>
