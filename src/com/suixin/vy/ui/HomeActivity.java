@@ -6,11 +6,12 @@ import java.util.List;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,10 +19,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.suixin.vlee.ui.MainActivity_Lee;
 import com.suixin.vy.adapter.GVBottomAdapter;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.fragment.IndexFragment;
@@ -34,7 +37,7 @@ public class HomeActivity extends BaseActivity {
 	private GVBottomAdapter gvbAdapter;
 	private Button btn_home;
 	private boolean isOpneBtn_home;
-	// private ImageView iv_invite, iv_showtrip, iv_video;
+	 private ImageView iv_invite, iv_showtrip, iv_video;
 	private RelativeLayout rl_invite, rl_showtrip, rl_video;
 	private LinearLayout ll_addshow;
 	private FragmentManager fm;
@@ -87,6 +90,11 @@ public class HomeActivity extends BaseActivity {
 		case R.id.v_addshow:
 			closeAdd();
 			this.isOpneBtn_home = false;
+			break;
+		case R.id.iv_invite:
+			Intent intent = new Intent(this,MainActivity_Lee.class);
+			this.startActivity(intent);
+			
 			break;
 		default:
 			break;
@@ -166,9 +174,9 @@ public class HomeActivity extends BaseActivity {
 		gv_bottom.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
 		btn_home = (Button) findViewById(R.id.btn_home);
 
-		// iv_invite = (ImageView) findViewById(R.id.iv_invite);
-		// iv_showtrip = (ImageView) findViewById(R.id.iv_showtrip);
-		// iv_video = (ImageView) findViewById(R.id.iv_video);
+		iv_invite = (ImageView) findViewById(R.id.iv_invite);
+		iv_showtrip = (ImageView) findViewById(R.id.iv_showtrip);
+		iv_video = (ImageView) findViewById(R.id.iv_video);
 
 		rl_invite = (RelativeLayout) findViewById(R.id.rl_invite);
 		rl_showtrip = (RelativeLayout) findViewById(R.id.rl_showtrip);
@@ -195,6 +203,7 @@ public class HomeActivity extends BaseActivity {
 					ft.commit();
 					break;
 				case 3:break;
+				
 				case 4:break;
 				default:break;
 				}
@@ -205,6 +214,8 @@ public class HomeActivity extends BaseActivity {
 			
 		});
 		btn_home.setOnClickListener(this);
+		
+		iv_invite.setOnClickListener(this);
 	}
 
 	@Override
