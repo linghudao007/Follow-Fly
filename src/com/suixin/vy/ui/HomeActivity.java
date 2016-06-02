@@ -26,6 +26,7 @@ import com.suixin.vy.adapter.GVBottomAdapter;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.fragment.IndexFragment;
 import com.suixin.vy.model.GVBottomModel;
+import com.suixin.vz.fragment.TripFragment;
 
 public class HomeActivity extends BaseActivity {
 	private GridView gv_bottom;
@@ -188,7 +189,11 @@ public class HomeActivity extends BaseActivity {
 				switch(arg2){
 				case 0:break;
 				case 1:
-					
+					Fragment tripFrag = new TripFragment();
+					ft=fm.beginTransaction();
+					ft.replace(R.id.ll_fragmentshow,tripFrag);
+					ft.commit();
+					break;
 				case 3:break;
 				case 4:break;
 				default:break;

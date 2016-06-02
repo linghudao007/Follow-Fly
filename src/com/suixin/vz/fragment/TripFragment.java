@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-public class TripMain extends Fragment{
+public class TripFragment extends Fragment{
 
     private List<View> views;
     private ViewPager pager;

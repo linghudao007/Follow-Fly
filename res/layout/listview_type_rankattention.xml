@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:gravity="center_vertical"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/tv_rank"
+        android:layout_width="24dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/diyiming"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@id/iv_head"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/tv_rank"
+        android:src="@drawable/pic_loading_big"
+        android:layout_marginRight="20dp" />
+    <TextView 
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SSSSSS"
+        android:layout_toRightOf="@id/iv_head"/>
+    <TextView
+        android:id="@+id/tv_sexandage"
+        android:layout_width="30dp"
+        android:layout_height="15dp"
+        android:background="@drawable/girl"
+        android:layout_toRightOf="@id/tv_username"
+        android:layout_marginLeft="2dp"
+        android:text="22"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/tv_size_min"
+        android:textColor="@android:color/white"
+        android:paddingLeft="16dp"></TextView>
+   
+    
+
+</RelativeLayout>

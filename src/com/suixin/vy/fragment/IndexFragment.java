@@ -33,13 +33,10 @@ import com.suixin.vy.ui.R;
 public class IndexFragment extends Fragment implements OnClickListener {
 	private List<View> list;
 	private ViewPager vp_home;
-	private ImageView iv_order;
 	private boolean iv_order_clicked;
-	private LinearLayout ll_home_classify, ll_order;
+	private LinearLayout ll_home_classify;
 	private TextView tv_hot, tv_local, tv_carpooling, tv_samecity;
-	private TextView tv_currentcity;
 	private int width;
-	private View v_line;
 	private String tv_clicked;
 
 	@Override
@@ -84,51 +81,31 @@ public class IndexFragment extends Fragment implements OnClickListener {
 	/** 获取控件宽度 */
 
 	private void setViewWidth(final TextView view) {
-		// 此方法要VIEW已绘制了才有用
-		// int width=view.getWidth();
-		// int w =
-		// View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
-		// int h =
-		// View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
-		// view.measure(w, h);
-		// width =view.getMeasuredWidth();
 		ViewTreeObserver vto2 = view.getViewTreeObserver();
 		vto2.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 			@Override
 			public void onGlobalLayout() {
 				view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 				width = view.getWidth();
-
 			}
 		});
-
-		// LayoutParams para2 = (LayoutParams) ll_order.getLayoutParams();
-		// para2.width = width*3;// 修改宽度
-		// ll_order.setLayoutParams(para2);
-
 	}
 
 	private void addListener() {
 
-		iv_order.setOnClickListener(this);
 		tv_hot.setOnClickListener(this);
 		tv_local.setOnClickListener(this);
 		tv_carpooling.setOnClickListener(this);
 		tv_samecity.setOnClickListener(this);
-		tv_currentcity.setOnClickListener(this);
 	}
 
 	private void initView(View view) {
-		v_line = (View) view.findViewById(R.id.v_line);
-		iv_order = (ImageView) view.findViewById(R.id.iv_order);
 		ll_home_classify = (LinearLayout) view
 				.findViewById(R.id.ll_home_classify);
-		ll_order = (LinearLayout) view.findViewById(R.id.ll_order);
 		tv_hot = (TextView) view.findViewById(R.id.tv_hot);
 		tv_local = (TextView) view.findViewById(R.id.tv_local);
 		tv_carpooling = (TextView) view.findViewById(R.id.tv_carpooling);
 		tv_samecity = (TextView) view.findViewById(R.id.tv_samecity);
-		tv_currentcity=(TextView)view.findViewById(R.id.tv_currentcity);
 	}
 
 	/** 设置转页 */
@@ -147,9 +124,6 @@ public class IndexFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.iv_order:
-			orderClick();
-			break;
 		case R.id.tv_hot:
 			hotClick();
 			break;
@@ -162,15 +136,12 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		case R.id.tv_samecity:
 			samecityClick();
 			break;
-		case R.id.tv_currentcity:
-			//Intent intent = new Intent(this);
-			break;
 		default:
 			break;
 		}
 	}
 
-	/** 热门点击效果 */
+	/** 推荐点击效果 */
 	private void hotClick() {
 		if (!tv_clicked.equals("hot")) {
 			tv_hot.setTextColor(Color.parseColor("#AD7F2D"));
@@ -202,7 +173,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		}
 	}
 
-	/** 拼车点击效果 */
+	/** 约伴点击效果 */
 	private void carpoolingClick() {
 		if (!tv_clicked.equals("carpooling")) {
 			tv_carpooling.setTextColor(Color.parseColor("#AD7F2D"));
@@ -218,7 +189,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		}
 	}
 
-	/** 同城点击效果 */
+	/** 达人点击效果 */
 	private void samecityClick() {
 		if (!tv_clicked.equals("samecity")) {
 			tv_samecity.setTextColor(Color.parseColor("#AD7F2D"));
@@ -234,75 +205,8 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		}
 	}
 
-	/** 排序按钮点击动画效果 */
-	private void orderClick() {
-		if (!this.iv_order_clicked) {
-			iv_order.setImageResource(R.drawable.filtericon_click);
-			this.iv_order_clicked = true;
-			if (ll_order.getVisibility() == View.GONE) {
-				ll_order.setVisibility(View.VISIBLE);
-				//动态修改宽度
-				LayoutParams para2 = (LayoutParams) ll_order.getLayoutParams();
-				para2.width = width*3;// 修改宽度
-				ll_order.setLayoutParams(para2);
-				ll_order.setPivotX(width * 3);
-			}
-			tabAnim(-width, 0, 0, 1);
-		} else {
-			iv_order.setImageResource(R.drawable.filtericon);
-			this.iv_order_clicked = false;
-			tabAnim(0, 1, 1, 0);
-		}
-	}
+	
 
-	/** tab的动画效果,移动的宽，透明度，缩放 */
-	private void tabAnim(int tox, float toalpha, float fromscalex,
-			float toscalex) {
-		PropertyValuesHolder holder_xl = PropertyValuesHolder.ofFloat(
-				"translationX", tox);
-		PropertyValuesHolder holder_xc = PropertyValuesHolder.ofFloat(
-				"translationX", tox * 2);
-		PropertyValuesHolder holder_xs = PropertyValuesHolder.ofFloat(
-				"translationX", tox * 3);
-		PropertyValuesHolder holder_a = PropertyValuesHolder.ofFloat("alpha",
-				toalpha);
-		PropertyValuesHolder holder_s = PropertyValuesHolder.ofFloat("scaleX",
-				fromscalex, toscalex);
-
-		ObjectAnimator animh = ObjectAnimator.ofPropertyValuesHolder(tv_hot,
-				holder_a);
-
-		ObjectAnimator animl = ObjectAnimator.ofPropertyValuesHolder(tv_local,
-				holder_xl, holder_a);
-
-		ObjectAnimator animc = ObjectAnimator.ofPropertyValuesHolder(
-				tv_carpooling, holder_xc, holder_a);
-
-		ObjectAnimator anims = ObjectAnimator.ofPropertyValuesHolder(
-				tv_samecity, holder_xs, holder_a);
-		//判断当前选中的按钮，使此按钮只移动不改变可见度
-		if (tv_clicked.equals("hot")) {
-			animh = ObjectAnimator.ofPropertyValuesHolder(tv_hot);
-		}
-		if (tv_clicked.equals("local")) {
-			animl = ObjectAnimator.ofPropertyValuesHolder(tv_local, holder_xl);
-		}
-		if (tv_clicked.equals("carpooling")) {
-			animc = ObjectAnimator.ofPropertyValuesHolder(tv_carpooling,
-					holder_xc);
-		}
-		if (tv_clicked.equals("samecity")) {
-			anims = ObjectAnimator.ofPropertyValuesHolder(tv_samecity,
-					holder_xs);
-		}
-		ObjectAnimator animv = ObjectAnimator.ofPropertyValuesHolder(v_line,
-				holder_xs);
-		ObjectAnimator animll_or = ObjectAnimator.ofPropertyValuesHolder(
-				ll_order, holder_s);
-		AnimatorSet set = new AnimatorSet();
-		set.playTogether(animh, animl, animc, anims, animv, animll_or);
-		set.setDuration(500);
-		set.start();
-	}
+	
 
 }
