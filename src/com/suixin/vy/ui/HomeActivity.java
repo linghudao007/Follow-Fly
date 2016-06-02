@@ -189,9 +189,7 @@ public class HomeActivity extends BaseActivity {
 				switch(arg2){
 				case 0:break;
 				case 1:
-					
 					Fragment tripFrag = new TripFragment();
-					//fm =HomeActivity.this.getSupportFragmentManager(); 
 					ft=fm.beginTransaction();
 					ft.replace(R.id.ll_fragmentshow,tripFrag);
 					ft.commit();

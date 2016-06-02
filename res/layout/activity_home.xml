@@ -112,7 +112,6 @@
         android:layout_height="44dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="2dp"
         android:background="@drawable/btn_home_add" />
 
 </RelativeLayout>

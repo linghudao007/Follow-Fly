@@ -5,70 +5,144 @@ import java.util.List;
 
 import com.suixin.vy.ui.R;
 
+import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
-public class TripFragment extends Fragment {
-    private CategoryTabStrip tabs;
+public class TripFragment extends Fragment{
+
+    private List<View> views;
     private ViewPager pager;
-    private MyPagerAdapter adapter;
+    private int lineWidth;
+
+    private View lineView;
+    private TextView fragment_hot_listview_vz,fragment_listview_find_vz,fragment_trip_vz;
+    private TextView[] tvs;
+
+    private int currentPagerIndex = 0;
+    private int screenWidth;
+    
+    
+    
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_trip_main, container,false);
+        initView(view,inflater);
+
+        initLine();
+
+        setLine(currentPagerIndex);
+        setTabTextViewColor(currentPagerIndex);
+        addListener();
+        
+        return view;
+   
+    
+    }
 
    
-
-    @Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-    	View view = inflater.inflate(R.layout.activity_main_vz_fg, container, false);
-    	 tabs = (CategoryTabStrip)view.findViewById(R.id.category_strip);
-         pager = (ViewPager)view.findViewById(R.id.view_pager);
-         adapter = new MyPagerAdapter(getActivity().getSupportFragmentManager());
-         pager.setAdapter(adapter);
-         tabs.setViewPager(pager);
-		return view;
-	}
-
-
-
-	public class MyPagerAdapter extends FragmentPagerAdapter {
-
-        private final List<String> catalogs = new ArrayList<String>();
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-            catalogs.add(getString(R.string.hot));
-            catalogs.add("\u672c\u5730");
-            catalogs.add(getString(R.string.found));
-            catalogs.add(getString(R.string.attention));
-            /*catalogs.add(getString(R.string.category_entertainment));
-            catalogs.add(getString(R.string.category_tech));
-            catalogs.add(getString(R.string.category_finance));
-            catalogs.add(getString(R.string.category_military));
-            catalogs.add(getString(R.string.category_world));
-            catalogs.add(getString(R.string.category_image_ppmm));
-            catalogs.add(getString(R.string.category_health));
-            catalogs.add(getString(R.string.category_government));*/
+    
+    private void setTabTextViewColor(int pos){
+        for (int i = 0; i < tvs.length; i++) {
+            tvs[i].setTextColor(Color.BLACK);
         }
+        tvs[pos].setTextColor(getResources().getColor(android.R.color.holo_blue_light));
+    }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return catalogs.get(position);
-        }
+    @SuppressWarnings("deprecation")
+    private void addListener() {
+        pager.setOnPageChangeListener(new OnPageChangeListener() {
+
+            public void onPageSelected(int arg0) {
+                currentPagerIndex = arg0;
+                setTabTextViewColor(currentPagerIndex);
+            }
+
+            public void onPageScrolled(int position, float offset,
+                    int positionOffsetPixels) {
+                float flag = 0f;
+                flag = position*lineWidth+(int)(offset*lineWidth);
+                setLine(flag);
+            }
+
+            public void onPageScrollStateChanged(int arg0) {
+
+            }
+        });
+    }
+
+    protected void setLine(float offset) {
+        LinearLayout.LayoutParams lp = (LayoutParams) lineView
+                .getLayoutParams();
+        lp.width = lineWidth;
+        lp.leftMargin = (int)offset;
+        lineView.setLayoutParams(lp);
+    }
+
+    private void initLine() {
+        screenWidth = getActivity().getWindow().getWindowManager().getDefaultDisplay()
+                .getWidth();
+        lineWidth = screenWidth / 3;
+    }
+
+    private void initView(View view,LayoutInflater inflater) {
+        fragment_hot_listview_vz = (TextView)view. findViewById(R.id.tab1);
+        fragment_listview_find_vz = (TextView) view.findViewById(R.id.tab2);
+        fragment_trip_vz = (TextView) view.findViewById(R.id.tab3);
+        tvs = new TextView[]{fragment_hot_listview_vz,fragment_listview_find_vz,fragment_trip_vz};
+        
+        pager = (ViewPager) view.findViewById(R.id.pager);
+        lineView = view.findViewById(R.id.tab_line);
+        views = new ArrayList<View>();
+        View item1 = inflater.inflate(R.layout.fragment_hot_listview_vz,
+                null);
+        View item2 = inflater.inflate(R.layout.fragment_listview_find_vz,
+                null);
+        View item3 = inflater.inflate(R.layout.fragment_trip_vz,
+                null);
+
+        views.add(item1);
+        views.add(item2);
+        views.add(item3);
+
+        pager.setAdapter(new MyPagerAdapter());
+    }
+
+    class MyPagerAdapter extends PagerAdapter {
 
         @Override
         public int getCount() {
-            return catalogs.size();
+            return 3;
         }
 
         @Override
-        public Fragment getItem(int position) {
-            return NewsFragment.newInstance(position);
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == arg1;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView(views.get(position));
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View view = views.get(position);
+            container.removeView(view);
+            container.addView(view);
+            return view;
         }
 
     }
