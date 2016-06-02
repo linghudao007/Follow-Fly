@@ -113,11 +113,11 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		list = new ArrayList<View>();
 		list.add(inflater.inflate(R.layout.viewpager_home_view, container,
 				false));
-		list.add(inflater.inflate(R.layout.viewpager_home_view, container,
+		list.add(inflater.inflate(R.layout.viewpager_currcity_view, container,
 				false));
-		list.add(inflater.inflate(R.layout.viewpager_home_view, container,
+		list.add(inflater.inflate(R.layout.viewpager_pack_view, container,
 				false));
-		list.add(inflater.inflate(R.layout.viewpager_home_view, container,
+		list.add(inflater.inflate(R.layout.viewpager_rank_view, container,
 				false));
 	}
 

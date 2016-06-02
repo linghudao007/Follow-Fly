@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff" >
+    
+    
+    <TextView
+        android:id="@+id/TextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="18dp"
+        android:text="上传生活照" />
+    
+    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/TextView2"
+        android:layout_alignBaseline="@id/TextView2"
+        android:text="(增加约伴成功率)" 
+        android:textColor="#aba7a2"/>
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="111dp"
+        android:layout_height="111dp"
+        android:layout_below="@id/TextView2"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="12dp"
+        android:background="#f2f0ed"
+        android:src="@drawable/icon_addpic_unfocused" />
+
+</RelativeLayout>

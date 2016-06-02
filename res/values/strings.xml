@@ -45,4 +45,8 @@
 	<string name="attention">关注</string>
 	<string name="celebrityrank">达人榜</string>
 	<string name="comments">评论</string>
+	<string name="more">更多</string>
+	<string name="online">在线达人</string>
+	<string name="samecityone">同城达人</string>
+	<string name="popularitys">火爆达人</string>
 </resources>

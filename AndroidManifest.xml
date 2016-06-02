@@ -26,6 +26,11 @@
             android:name="com.suixin.vy.ui.HomeActivity"
              >
         </activity>
+         <activity
+            android:name="com.suixin.vlee.ui.MainActivity_Lee"
+             >
+        </activity>
+       
     </application>
 
 </manifest>

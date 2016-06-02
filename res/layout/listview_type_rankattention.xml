@@ -18,28 +18,69 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/tv_rank"
-        android:src="@drawable/pic_loading_big"
-        android:layout_marginRight="20dp" />
-    <TextView 
+        android:scaleType="fitXY"
+        android:src="@drawable/pic_loading_big" />
+
+    <TextView
+        android:id="@+id/tv_concern"
+        android:layout_width="55dp"
+        android:layout_height="27dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/shape_tv_concern"
+        android:gravity="center"
+        android:text="@string/use_attention"
+        android:textSize="@dimen/tv_size_m" />
+
+    <TextView
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_head"
         android:text="SSSSSS"
-        android:layout_toRightOf="@id/iv_head"/>
+        android:textSize="@dimen/tv_size_title" />
+
     <TextView
         android:id="@+id/tv_sexandage"
         android:layout_width="30dp"
         android:layout_height="15dp"
-        android:background="@drawable/girl"
-        android:layout_toRightOf="@id/tv_username"
         android:layout_marginLeft="2dp"
-        android:text="22"
+        android:layout_toRightOf="@id/tv_username"
+        android:background="@drawable/girl"
         android:gravity="center_vertical"
-        android:textSize="@dimen/tv_size_min"
+        android:paddingLeft="16dp"
+        android:text="22"
         android:textColor="@android:color/white"
-        android:paddingLeft="16dp"></TextView>
-   
-    
+        android:textSize="@dimen/tv_size_min" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_gocitynum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_username"
+        android:layout_below="@id/tv_username"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="8dp"
+        android:text="去过122个城市"
+        android:textColor="@color/color_tv_gray"
+        android:textSize="@dimen/tv_size_m" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_say"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_head"
+        android:layout_alignLeft="@id/tv_username"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@id/tv_concern"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="不一样的心情你好吗为很好情你好吗为很好"
+        android:textColor="@color/color_tv_gray" >
+    </TextView>
 
 </RelativeLayout>

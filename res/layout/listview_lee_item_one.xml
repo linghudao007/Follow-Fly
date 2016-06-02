@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <TextView
+        android:id="@+id/TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="18dp"
+        android:text="约伴简介" />
+
+    <EditText
+        android:id="@+id/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_below="@id/TextView"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="13dp"
+        android:gravity="top"
+        android:paddingTop="14dp"
+        android:paddingLeft="14dp"
+        android:background="#F7F5F3"
+        android:hint="可以写下您的自我介绍，旅行计划，约伴要求等..."
+        android:textColorHint="#aba7a2"
+        android:textSize="14sp"
+        android:inputType="textMultiLine" />
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+        android:layout_below="@id/EditText"
+	    android:background="#ffffff">
+    <TextView
+        android:id="@+id/TextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="18dp"
+        android:text="添加标签" />
+    
+    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_toRightOf="@+id/TextView2"
+        android:text="(限选三个)" 
+        android:textColor="#aba7a2"/>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_below="@id/TextView2"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="13dp"
+        android:background="#f8f7f5"
+        android:text="拼车"
+        android:textColor="#7d7975"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/button1"
+        android:background="#f8f7f5"
+        android:text="自驾结伴"
+        android:textColor="#7d7975"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_below="@+id/button1"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="15dp"
+        android:background="#f8f7f5"
+        android:text="目前一人"
+        android:textColor="#7d7975"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_alignBaseline="@+id/button5"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/button5"
+        android:background="#f8f7f5"
+        android:text="时间可调"
+        android:textColor="#7d7975"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_alignBaseline="@+id/button5"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/button6"
+        android:background="#f8f7f5"
+        android:text="已出票"
+        android:textColor="#7d7975"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_alignBaseline="@+id/button5"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/button7"
+        android:background="#f8f7f5"
+        android:text="女生最好"
+        android:textColor="#7d7975"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/button2"
+        android:background="#f8f7f5"
+        android:text="拼团拼房"
+        android:textColor="#7d7975"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/button3"
+        android:background="#f8f7f5"
+        android:text="同游散心"
+        android:textColor="#7d7975"
+        android:textSize="13sp" />
+</RelativeLayout>
+</RelativeLayout>
