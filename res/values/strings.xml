@@ -49,4 +49,15 @@
 	<string name="online">在线达人</string>
 	<string name="samecityone">同城达人</string>
 	<string name="popularitys">火爆达人</string>
+	<string name="outtime">出行时间</string>
+	<string name="actclass">活动类别</string>
+	<string name="startingoint">出发地</string>
+	<string name="destination">目的地</string>
+	<string name="tomorrow">明天</string>
+	<string name="thisweek">本周</string>
+	<string name="thismonth">本月</string>
+	<string name="calendar">日历</string>
+	<string name="siftaction">精选活动</string>
+	<string name="thisrecommend">本地推荐</string>
+	<string name="hottrip">热门旅途</string>
 </resources>

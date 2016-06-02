@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_home"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" >
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:id="@+id/ll_home_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_siftaction"
+            style="@style/style_ll_actionbar" >
+
+            <ImageView
+                android:id="@+id/iv_siftaction"
+                style="@style/style_iv_actionbar"
+                android:src="@drawable/home_recomm_selected" />
+
+            <TextView
+                android:id="@+id/tv_siftaction"
+                style="@style/style_tv_actionbar"
+                android:text="@string/siftaction" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_thisrecommend"
+            style="@style/style_ll_actionbar" >
+
+            <ImageView
+                android:id="@+id/iv_thisrecommend"
+                style="@style/style_iv_actionbar"
+                android:src="@drawable/home_recomm_local" />
+
+            <TextView
+                android:id="@+id/tv_thisrecommend"
+                style="@style/style_tv_actionbar"
+                android:text="@string/thisrecommend" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_hottrip"
+            style="@style/style_ll_actionbar" >
+
+            <ImageView
+                android:id="@+id/iv_hottrip"
+                style="@style/style_iv_actionbar"
+                android:src="@drawable/home_recomm_tourpic" />
+
+            <TextView
+                android:id="@+id/tv_hottrip"
+                style="@style/style_tv_actionbar"
+                android:text="@string/hottrip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_online"
+            style="@style/style_ll_actionbar" >
+
+            <ImageView
+                android:id="@+id/iv_online"
+                style="@style/style_iv_actionbar"
+                android:src="@drawable/home_recomm_online" />
+
+            <TextView
+                android:id="@+id/tv_online"
+                style="@style/style_tv_actionbar"
+                android:text="@string/online" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

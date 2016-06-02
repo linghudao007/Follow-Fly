@@ -25,4 +25,5 @@
     <color name="category_tab_highlight_bg">#ffd43d3d</color>
     <color name="category_tab_highlight_dark_bg">#fffafafa</color>
    	<color name="gray_d">#75746D</color>
+   	<color name="color_blue_d">#777C73</color>
 </resources>
