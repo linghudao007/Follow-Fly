@@ -2,80 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
- <RelativeLayout
-        android:id="@+id/ret_head"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/white"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="@string/use_trip"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="19sp" />
-
-        <ImageButton
-            android:id="@+id/im_btn_magnifier"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="14dp"
-            android:layout_marginRight="14dp"
-            android:background="@android:color/white"
-            android:contentDescription="@string/use_trip"
-            android:gravity="center"
-            android:src="@drawable/home_search"
-            android:textSize="16sp" />
-    </RelativeLayout>
 
    <LinearLayout
-        android:id="@+id/llt_lv"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/ret_head"
-        android:orientation="horizontal" >
+       android:id="@+id/llt_lv"
+       android:layout_width="wrap_content"
+       android:layout_height="match_parent"
+       android:orientation="horizontal" >
 
         <ListView
             android:id="@+id/lv_jpg1"
             android:layout_width="160dp"
-            android:layout_height="428dp"
+            android:layout_height="match_parent"
             android:scrollbars="none" >
         </ListView>
 
         <ListView
             android:id="@+id/lv_jpg2"
             android:layout_width="match_parent"
-            android:layout_height="428dp"
+            android:layout_height="match_parent"
             android:scrollbars="none" >
         </ListView>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#D7C286"
-        android:orientation="horizontal" >
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/jpg_link"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/use_trip"
-        android:src="@drawable/chat_open_option" />
     
 </RelativeLayout>
