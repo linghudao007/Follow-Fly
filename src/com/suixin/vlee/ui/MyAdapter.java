@@ -1,9 +1,7 @@
 package com.suixin.vlee.ui;
 
 import java.util.List;
-
 import com.suixin.vy.ui.R;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,11 +17,13 @@ public class MyAdapter extends BaseAdapter {
 	public static final String KEY = "key";
 	public static final String VALUE = "value";
 
-	public static final int listvit_item_one = 0;// 5种不同的布局
+	public static final int listvit_item_one = 0;// 7种不同的布局
 	public static final int listvit_item_tow = 1;
 	public static final int listvit_item_photo = 2;
 	public static final int listvit_item_sex = 3;
 	public static final int listvit_item_foot = 4;
+	public static final int listvit_item_head_tow = 5;
+	public static final int listvit_item_head_one = 6;
 	private LayoutInflater mInflater;
 
 	private List<Message> myList;
@@ -48,6 +48,12 @@ public class MyAdapter extends BaseAdapter {
 	public Object getItem(int arg0) {
 		return myList.get(arg0);
 	}
+	
+
+	/*@Override
+	public int getViewTypeCount() {
+		return myList.size();
+	}*/
 
 	public long getItemId(int arg0) {
 		return arg0;
@@ -56,7 +62,7 @@ public class MyAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup arg2) {
 
 		int type = getItemViewType(position);
-		if (convertView == null) {
+	//	if (convertView == null) {
 
 			switch (type) {
 			case listvit_item_one:
@@ -82,17 +88,30 @@ public class MyAdapter extends BaseAdapter {
 				convertView = mInflater.inflate(R.layout.listview_lee_item_sex,
 						null);
 				break;
-			case listvit_item_foot:
+			case listvit_item_foot://
 
 				convertView = mInflater.inflate(
 						R.layout.listview_lee_item_foot, null);
+				Log.e("sss", "foot");
 				break;
+				
+			case listvit_item_head_tow:
 
-			default:
+				convertView = mInflater.inflate(
+						R.layout.listview_item_head_tow, null);
 				break;
+			case listvit_item_head_one:
+
+				convertView = mInflater.inflate(
+						R.layout.listview_item_head_one, null);
+				break;
+				default:
+					Log.e("sss", "foot");
+					break;
 			}
 
-		}
+	//	}
+		
 		return convertView;
 	}
 

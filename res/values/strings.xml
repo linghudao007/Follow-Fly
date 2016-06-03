@@ -49,4 +49,7 @@
 	<string name="online">在线达人</string>
 	<string name="samecityone">同城达人</string>
 	<string name="popularitys">火爆达人</string>
+	<string name="point_of_departure">出发地</string>
+	<string name="destination">目的地(多个目的地用空格隔开)</string>
+	<string name="location">请输入您所在城市的某个活动地点</string>
 </resources>
