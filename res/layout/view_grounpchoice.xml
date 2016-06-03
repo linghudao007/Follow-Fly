@@ -1,7 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_outtime"
+        style="@style/style_ll_timeselect" >
+
+        <TextView
+            style="@style/style_tv_timeselect"
+            android:text="@string/outtime" />
+
+        <TextView
+            android:id="@+id/tv_tomorrow"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/tomorrow" />
+
+        <TextView
+            android:id="@+id/tv_thisweek"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/thisweek" />
+
+        <TextView
+            android:id="@+id/tv_thismonth"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/thismonth" />
+
+        <TextView
+            android:id="@+id/tv_calendar"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/calendar" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/color_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_actclass"
+        style="@style/style_ll_timeselect" >
+
+        <TextView
+            style="@style/style_tv_timeselect"
+            android:text="@string/actclass" />
+
+        <TextView
+            android:id="@+id/tv_pack"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/travel_together" />
+
+        <TextView
+            android:id="@+id/tv_samecityact"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/City" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/color_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_startingoint"
+        style="@style/style_ll_timeselect" >
+
+        <TextView
+            style="@style/style_tv_timeselect"
+            android:text="@string/startingoint" />
+
+        <EditText
+            android:id="@+id/tv_citystart"
+            style="@style/style_tv_cityselect_hasbg" />
+
+        <TextView
+            style="@style/style_tv_timeselect"
+            android:layout_marginLeft="16dp"
+            android:text="@string/destination" />
+
+        <EditText
+            android:id="@+id/tv_cityend"
+            style="@style/style_tv_cityselect_hasbg" />
+    </LinearLayout>
+
+</LinearLayout>

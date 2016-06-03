@@ -37,13 +37,14 @@ public class HomeActivity extends BaseActivity {
 	private GVBottomAdapter gvbAdapter;
 	private Button btn_home;
 	private boolean isOpneBtn_home;
-	 private ImageView iv_invite, iv_showtrip, iv_video;
+	private ImageView iv_invite, iv_showtrip, iv_video;
 	private RelativeLayout rl_invite, rl_showtrip, rl_video;
 	private LinearLayout ll_addshow;
 	private FragmentManager fm;
 	private FragmentTransaction ft;
-	private Fragment indexFrag;
-      //
+	private Fragment indexFrag, tripFrag;
+
+	//
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,12 +60,29 @@ public class HomeActivity extends BaseActivity {
 		// 初始化状态
 		isOpneBtn_home = false;
 		// 绑定碎片
-		indexFrag = new IndexFragment();
-		fm =this.getSupportFragmentManager();
-		ft=fm.beginTransaction();
-		ft.add(R.id.ll_fragmentshow, indexFrag);
+		fm = this.getSupportFragmentManager();
+		switchFragment(0);
+
+	}
+
+	/** 初始化碎片,根据的按钮位置 */
+	private void switchFragment(int witch) {
+		ft = fm.beginTransaction();
+		switch (witch) {
+		case 0:
+			if (indexFrag == null) {
+				indexFrag = new IndexFragment();
+			}
+			ft.replace(R.id.ll_fragmentshow, indexFrag);
+			break;
+		case 1:
+			if (tripFrag == null) {
+				tripFrag = new TripFragment();
+			}
+			ft.replace(R.id.ll_fragmentshow, tripFrag);
+			break;
+		}
 		ft.commit();
-		
 	}
 
 	private void setAdapter() {
@@ -81,20 +99,16 @@ public class HomeActivity extends BaseActivity {
 			// 判断加号按钮是否打开
 			if (this.isOpneBtn_home) {
 				closeAdd();
-				this.isOpneBtn_home = false;
 			} else {
 				opneAdd();
-				this.isOpneBtn_home = true;
 			}
 			break;
 		case R.id.v_addshow:
 			closeAdd();
-			this.isOpneBtn_home = false;
 			break;
 		case R.id.iv_invite:
-			Intent intent = new Intent(this,MainActivity_Lee.class);
+			Intent intent = new Intent(this, MainActivity_Lee.class);
 			this.startActivity(intent);
-			
 			break;
 		default:
 			break;
@@ -148,6 +162,7 @@ public class HomeActivity extends BaseActivity {
 		set.play(anim_a1).before(anim_a11);
 		set.playTogether(anim_a11, anim_a12, anim_a13, anim_ss);
 		set.start();
+		this.isOpneBtn_home = true;
 	}
 
 	/** 关闭加号按钮 */
@@ -166,6 +181,7 @@ public class HomeActivity extends BaseActivity {
 		AnimatorSet set = new AnimatorSet();
 		set.play(anim_re);
 		set.start();
+		this.isOpneBtn_home = false;
 	}
 
 	@Override
@@ -193,28 +209,27 @@ public class HomeActivity extends BaseActivity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				gvbAdapter.notifyDataSetChanged();
-				Toast.makeText(HomeActivity.this, arg2+"", 1000).show();
-				switch(arg2){
-				case 0:break;
-				case 1:
-					Fragment tripFrag = new TripFragment();
-					ft=fm.beginTransaction();
-					ft.replace(R.id.ll_fragmentshow,tripFrag);
-					ft.commit();
+				Toast.makeText(HomeActivity.this, arg2 + "", 1000).show();
+				switch (arg2) {
+				case 0:
+					switchFragment(arg2);
 					break;
-				case 3:break;
-				
-				case 4:break;
-				default:break;
+				case 1:
+					switchFragment(arg2);
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				default:
+					break;
 				}
-				
-				
+
 			}
 
-			
 		});
 		btn_home.setOnClickListener(this);
-		
+
 		iv_invite.setOnClickListener(this);
 	}
 
@@ -230,6 +245,16 @@ public class HomeActivity extends BaseActivity {
 				R.drawable.tab_chat_normal, "聊天", false, false));
 		list_gv.add(new GVBottomModel(R.drawable.tab_me_focused,
 				R.drawable.tab_me_normal, "我", false, false));
+	}
+
+	@Override
+	public void onBackPressed() {
+		// 判断加号按钮是否打开
+		if (this.isOpneBtn_home) {
+			closeAdd();
+		} else {
+			super.onBackPressed();
+		}
 	}
 
 }
