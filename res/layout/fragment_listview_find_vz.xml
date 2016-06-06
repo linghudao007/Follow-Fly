@@ -1,27 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.photowallfallsdemo.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/my_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-   <LinearLayout
-       android:id="@+id/llt_lv"
-       android:layout_width="wrap_content"
-       android:layout_height="match_parent"
-       android:orientation="horizontal" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
-        <ListView
-            android:id="@+id/lv_jpg1"
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:scrollbars="none" >
-        </ListView>
+        <LinearLayout
+            android:id="@+id/first_column"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+        </LinearLayout>
 
-        <ListView
-            android:id="@+id/lv_jpg2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none" >
-        </ListView>
+        <LinearLayout
+            android:id="@+id/second_column"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/third_column"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+        </LinearLayout>
     </LinearLayout>
-    
-</RelativeLayout>
+
+</com.example.photowallfallsdemo.MyScrollView>

@@ -5,6 +5,7 @@
     <string name="use_attention">+关注</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="tab_hot">热门</string>
     <string name="use_trip">旅图</string>
     <string name="Backpacking">发布约伴</string>
     <string name="departure">选择出发日期</string>
@@ -60,4 +61,7 @@
 	<string name="siftaction">精选活动</string>
 	<string name="thisrecommend">本地推荐</string>
 	<string name="hottrip">热门旅途</string>
+	<string name="border_top">Border Top</string>
+    <string name="border_bottom">Border Bottom</string>
+    <string name="image_url">Image Url</string>
 </resources>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/include_no6"
+    android:id="@+id/include_no8"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <ImageView
         android:contentDescription="@string/hello_world"
-        android:id="@+id/Iv_no6_1"
+        android:id="@+id/Iv_no8_1"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
@@ -14,7 +14,7 @@
 
     <ImageView
         android:contentDescription="@string/hello_world"
-        android:id="@+id/Iv_no6_2"
+        android:id="@+id/Iv_no8_2"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
@@ -23,7 +23,7 @@
         android:src="@drawable/default_place" />
 
     <ImageView
-        android:id="@+id/Iv_no6_3"
+        android:id="@+id/Iv_no8_3"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
@@ -31,33 +31,54 @@
         android:src="@drawable/default_place" />
 
     <ImageView
-        android:id="@+id/Iv_no6_4"
+        android:id="@+id/Iv_no8_5"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/Iv_no6_6"
+        android:layout_alignLeft="@+id/Iv_no8_3"
+        android:layout_alignStart="@+id/Iv_no8_3"
+        android:layout_below="@+id/Iv_no8_3"
+        android:layout_marginTop="5dp"
         android:contentDescription="@string/hello_world"
         android:src="@drawable/default_place" />
 
     <ImageView
-        android:id="@+id/Iv_no6_6"
+        android:id="@+id/Iv_no8_8"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignLeft="@+id/Iv_no8_5"
+        android:layout_alignStart="@+id/Iv_no8_5"
+        android:layout_below="@+id/Iv_no8_5"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/hello_world"
+        android:src="@drawable/default_place" />
+
+    <ImageView
+        android:id="@+id/Iv_no8_7"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/Iv_no6_5"
+        android:layout_alignTop="@+id/Iv_no8_8"
         android:contentDescription="@string/hello_world"
         android:src="@drawable/default_place" />
 
     <ImageView
-        android:id="@+id/Iv_no6_5"
+        android:id="@+id/Iv_no8_6"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_alignLeft="@+id/Iv_no6_3"
-        android:layout_alignStart="@+id/Iv_no6_3"
-        android:layout_below="@+id/Iv_no6_3"
-        android:layout_marginTop="5dp"
+        android:layout_above="@+id/Iv_no8_8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:contentDescription="@string/hello_world"
+        android:src="@drawable/default_place" />
+
+    <ImageView
+        android:id="@+id/Iv_no8_4"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/Iv_no8_8"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:contentDescription="@string/hello_world"
         android:src="@drawable/default_place" />
 

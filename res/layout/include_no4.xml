@@ -8,39 +8,39 @@
         android:contentDescription="@string/hello_world"
         android:id="@+id/Iv_no4_1"
         android:layout_width="155dp"
-        android:layout_height="170dp"
+        android:layout_height="85dp"
         android:layout_alignParentTop="true"
-        android:src="@drawable/bg_user2" />
+        android:src="@drawable/default_place" />
 
     <ImageView
         android:contentDescription="@string/hello_world"
         android:id="@+id/Iv_no4_2"
         android:layout_width="155dp"
-        android:layout_height="170dp"
+        android:layout_height="85dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/bg_user2" />
+        android:src="@drawable/default_place" />
 
     <ImageView
         android:id="@+id/Iv_no4_4"
         android:layout_width="155dp"
-        android:layout_height="170dp"
+        android:layout_height="85dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/Iv_no4_3"
         android:contentDescription="@string/hello_world"
-        android:src="@drawable/bg_user2" />
+        android:src="@drawable/default_place" />
 
     <ImageView
         android:id="@+id/Iv_no4_3"
         android:layout_width="155dp"
-        android:layout_height="170dp"
+        android:layout_height="85dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/Iv_no4_2"
         android:layout_marginTop="5dp"
         android:contentDescription="@string/hello_world"
-        android:src="@drawable/bg_user2" />
+        android:src="@drawable/default_place" />
 
 </RelativeLayout>
