@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/tow_rlt2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp" >
+
+        <RelativeLayout
+            android:id="@+id/tow_rlt3"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:background="#ffffff" >
+
+            <ImageView
+                android:id="@+id/tow_imav1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:background="#ffffff"
+                android:src="@drawable/kaishi" />
+        </RelativeLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/tow_rlt3"
+            android:background="#ffffff"
+            android:hint="@string/point_of_departure"
+            android:textColorHint="#c9c5c1"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tow_rlt4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#f7f7f5" >
+
+        <RelativeLayout
+            android:id="@+id/tow_rlt5"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:background="#ffffff" >
+
+            <ImageView
+                android:id="@+id/tow_imav2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:background="#ffffff"
+                android:src="@drawable/jieshu" />
+        </RelativeLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@id/tow_rlt5"
+            android:background="#ffffff"
+            android:hint="@string/destination"
+            android:textColorHint="#c9c5c1"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</LinearLayout>

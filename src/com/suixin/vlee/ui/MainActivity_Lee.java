@@ -1,52 +1,32 @@
 package com.suixin.vlee.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.suixin.vy.ui.R;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class MainActivity_Lee extends Activity {
-
-	private ListView lvData;
+	private Button but_next;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_one);
-		
-		lvData = (ListView) findViewById(R.id.list_view);
-		lvData.setAdapter(getAdapter());
-	}
 
-	private BaseAdapter getAdapter() {
+		but_next = (Button) findViewById(R.id.but_next);
 
-		return new MyAdapter(this, getMyData());
-	}
+		but_next.setOnClickListener(new OnClickListener() {
 
-	private List<Message> getMyData() {
-
-		List<Message> msgList = new ArrayList<Message>();
-		Message msg;
-		msg = new Message();
-		msg.setType(MyAdapter.listvit_item_one);
-		msgList.add(msg);
-
-		msg = new Message();
-		msg.setType(MyAdapter.listvit_item_photo);
-		msgList.add(msg);
-
-		msg = new Message();
-		msg.setType(MyAdapter.listvit_item_foot);
-		msgList.add(msg);
-
-		return msgList;
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(MainActivity_Lee.this,
+						ListViewLeeActivity.class);
+				startActivity(intent);
+			}
+		});
 
 	}
-
 }
