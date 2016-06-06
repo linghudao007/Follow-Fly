@@ -124,7 +124,7 @@ public class HomeActivity extends BaseActivity {
 		v_addshow.setVisibility(View.VISIBLE);
 		v_addshow.setOnClickListener(this);
 		btn_home.startAnimation(anim_btn);
-		// 显示3个按钮动画效果
+		//  显示3个按钮动画效果
 		ll_addshow.setVisibility(View.VISIBLE);
 		PropertyValuesHolder holder_x = PropertyValuesHolder.ofFloat("scaleX",
 				0.1f, 1f);

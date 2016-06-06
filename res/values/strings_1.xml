@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="point_of_departure">出发地</string>
+	<string name="destination_lees">目的地(多个目的地用空格隔开)</string>
+	<string name="location">请输入您所在城市的某个活动地点</string>
+</resources>

@@ -60,17 +60,37 @@ public class IndexFragment extends Fragment implements OnClickListener {
 
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				Toast.makeText(getActivity(), "ScrollStateChanged参数arg0："+arg0, 1000).show();
+				Toast.makeText(getActivity(),
+						"ScrollStateChanged参数arg0：" + arg0, 1000).show();
 			}
 
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				Toast.makeText(getActivity(), "Scrolled参数arg0："+arg0+"参数arg1："+arg1+"参数arg2："+arg2, 1000).show();
+				Toast.makeText(
+						getActivity(),
+						"Scrolled参数arg0：" + arg0 + "参数arg1：" + arg1 + "参数arg2："
+								+ arg2, 1000).show();
 			}
 
 			@Override
-			public void onPageSelected(int arg0) {
-				Toast.makeText(getActivity(), "Selected当前页面--"+arg0, 1000).show();
+			public void onPageSelected(int index) {
+				// 页面联动
+				switch (index) {
+				case 0:
+					hotClick();
+					break;
+				case 1:
+					localClick();
+					break;
+				case 2:
+					carpoolingClick();
+					break;
+				case 3:
+					samecityClick();
+					break;
+				default:
+					break;
+				}
 			}
 
 		});
@@ -125,16 +145,16 @@ public class IndexFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_hot:
-			hotClick();
+			vp_home.setCurrentItem(0);
 			break;
 		case R.id.tv_local:
-			localClick();
+			vp_home.setCurrentItem(1);
 			break;
 		case R.id.tv_carpooling:
-			carpoolingClick();
+			vp_home.setCurrentItem(2);
 			break;
 		case R.id.tv_samecity:
-			samecityClick();
+			vp_home.setCurrentItem(3);
 			break;
 		default:
 			break;
@@ -204,9 +224,5 @@ public class IndexFragment extends Fragment implements OnClickListener {
 			tv_clicked = "samecity";
 		}
 	}
-
-	
-
-	
 
 }

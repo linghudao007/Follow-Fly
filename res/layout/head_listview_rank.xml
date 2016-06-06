@@ -47,7 +47,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageView
+            <com.suixin.vy.coreCircleImageView
                 android:id="@+id/iv_no1"
                 style="@style/style_im_head" />
 
@@ -71,7 +71,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageView
+            <com.suixin.vy.coreCircleImageView
                 android:id="@+id/iv_no2"
                 style="@style/style_im_head" />
 
@@ -95,7 +95,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageView
+            <com.suixin.vy.coreCircleImageView
                 android:id="@+id/iv_no3"
                 style="@style/style_im_head" />
 
@@ -128,7 +128,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageView
+            <com.suixin.vy.coreCircleImageView
                 android:id="@+id/iv_no4"
                 style="@style/style_im_head" />
 
@@ -152,7 +152,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageView
+            <com.suixin.vy.coreCircleImageView
                 android:id="@+id/iv_no5"
                 style="@style/style_im_head" />
 
@@ -176,7 +176,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <ImageView
+            <com.suixin.vy.coreCircleImageView
                 android:id="@+id/iv_no6"
                 style="@style/style_im_head" />
 
