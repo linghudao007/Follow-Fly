@@ -1,7 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content" >
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/color_load_bg"
+        android:scaleType="fitXY"
+        android:src="@drawable/user_home_header_bg" />
+
+    <!-- android:src="@drawable/default_theme_icon" -->
+
+    <LinearLayout
+        android:id="@+id/ll_home_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@id/iv_top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_nearby"
+            style="@style/style_ll_actionbar" >
+
+            <ImageView
+                android:id="@+id/iv_nearby"
+                style="@style/style_iv_actionbar"
+                android:src="@drawable/home_local_nearby" />
+
+            <TextView
+                android:id="@+id/tv_nearby"
+                style="@style/style_tv_actionbar"
+                android:text="@string/nearby" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_localdate"
+            style="@style/style_ll_actionbar" >
+
+            <ImageView
+                android:id="@+id/iv_localdate"
+                style="@style/style_iv_actionbar"
+                android:src="@drawable/home_local_date" />
+
+            <TextView
+                android:id="@+id/tv_localdate"
+                style="@style/style_tv_actionbar"
+                android:text="@string/localdate" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_localtourpic"
+            style="@style/style_ll_actionbar" >
+
+            <ImageView
+                android:id="@+id/iv_localtourpic"
+                style="@style/style_iv_actionbar"
+                android:src="@drawable/home_local_tourpic" />
+
+            <TextView
+                android:id="@+id/tv_localtourpic"
+                style="@style/style_tv_actionbar"
+                android:text="@string/localtourpic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_samecityone"
+            style="@style/style_ll_actionbar" >
+
+            <ImageView
+                android:id="@+id/iv_samecityone"
+                style="@style/style_iv_actionbar"
+                android:src="@drawable/home_local_sametown" />
+
+            <TextView
+                android:id="@+id/tv_samecityone"
+                style="@style/style_tv_actionbar"
+                android:text="@string/samecityone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/tv_cut"
+        android:layout_width="70dp"
+        android:layout_height="26dp"
+        android:layout_alignBottom="@+id/iv_top"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/shape_v_clc"
+        android:drawableLeft="@drawable/didian_2"
+        android:text="@string/cutcity"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp" />
+    
+
+    <TextView
+        android:id="@+id/tv_cut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_top"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:text="@string/cutcity"
+        android:textSize="@dimen/tv_size_m"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:textColor="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/iv_cutic"
+        android:layout_width="10dp"
+        android:layout_height="12dp"
+        android:layout_alignBottom="@+id/tv_cut"
+        android:layout_toLeftOf="@+id/tv_cut"
+        android:layout_toStartOf="@id/tv_cut"
+        android:src="@drawable/didian_2"
+        android:scaleType="fitXY"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp" />
+
+</RelativeLayout>

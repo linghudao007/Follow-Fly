@@ -116,7 +116,7 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">6dp</item>
         <item name="android:textColor">@color/color_blue_d</item>
-        <item name="android:textSize">@dimen/tv_size_m</item>
+        <item name="android:textSize">@dimen/tv_size_xm</item>
     </style>
 
     <style name="style_tv_cityselect_hasbg">
@@ -146,7 +146,7 @@
     <style name="style_tv_actionbar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginTop">7dp</item>
         <item name="android:textSize">@dimen/tv_size_m</item>
     </style>
 

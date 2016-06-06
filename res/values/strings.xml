@@ -60,4 +60,13 @@
 	<string name="siftaction">精选活动</string>
 	<string name="thisrecommend">本地推荐</string>
 	<string name="hottrip">热门旅途</string>
+	<string name="nearby">附近约人</string>
+	<string name="localdate">活动日历</string>
+	<string name="localtourpic">本地旅途</string>
+	<string name="cutcity">切换城市</string>
+	<string name="pull_to_refresh">下拉可以刷新</string>
+	<string name="refreshing">正在刷新...</string>
+	<string name="release_to_refresh">释放立即刷新</string>
+	    
+	
 </resources>

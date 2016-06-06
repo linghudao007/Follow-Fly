@@ -13,7 +13,7 @@
         android:background="@drawable/diyiming"
         android:gravity="center" />
 
-    <ImageView
+    <com.suixin.vy.coreCircleImageView
         android:id="@id/iv_head"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -21,7 +21,7 @@
         android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/tv_rank"
         android:scaleType="fitXY"
-        android:src="@drawable/pic_loading_big" />
+        android:src="@drawable/pic_loading_big"/>
 
     <TextView
         android:id="@+id/tv_concern"
