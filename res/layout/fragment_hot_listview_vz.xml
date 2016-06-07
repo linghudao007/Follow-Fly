@@ -91,6 +91,7 @@
         android:drawableLeft="@drawable/location"
         android:drawableStart="@drawable/location"
         android:text="@string/action_settings"
+        android:layout_marginLeft="10dp"
         android:textSize="15sp" />
 
     <TextView
@@ -105,7 +106,9 @@
         android:layout_marginRight="14dp"
         android:drawableLeft="@drawable/xiangqu_2"
         android:drawableStart="@drawable/xiangqu_2"
-        android:text="@string/praise_vz"/>
+        android:text="@string/praise_vz"
+         android:drawablePadding="5dp"
+         android:gravity="top"/>
 
     <TextView
         android:id="@+id/tV_1"
@@ -117,7 +120,10 @@
         android:layout_toLeftOf="@+id/tV_2"
         android:drawableLeft="@drawable/comments"
         android:drawableStart="@drawable/comments"
-        android:text="@string/comments" />
+        android:drawablePadding="5dp"
+        android:text="@string/comments"
+        android:textSize="12sp"
+        android:gravity="top" />
 
 /
 
