@@ -71,4 +71,5 @@
 	<string name="point_of_departure">出发地</string>
 	<string name="lees_destination">目的地(多个目的地用空格隔开)</string>
 	<string name="location">请输入您所在城市的某个活动地点</string>
+	<string name="pepo">/人</string>
 </resources>
