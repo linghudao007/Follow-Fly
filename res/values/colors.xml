@@ -27,4 +27,6 @@
    	<color name="gray_d">#75746D</color>
    	<color name="color_blue_d">#777C73</color>
    	<color name="color_blue_s">#F1F6ED</color>
+   	<color name="action_press" >#aaff0000</color>
+    <color name="action_normal">#44ff0000</color>
 </resources>
