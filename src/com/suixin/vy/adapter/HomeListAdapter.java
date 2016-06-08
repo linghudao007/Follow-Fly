@@ -2,6 +2,10 @@ package com.suixin.vy.adapter;
 
 import java.util.List;
 
+import com.suixin.vy.core.CircleImageView;
+import com.suixin.vy.ui.R;
+
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +23,11 @@ public class HomeListAdapter extends BaseAdapter {
 	private static final int USER = 2;
 
 	public HomeListAdapter(List list, List<String> typeList,
-			LayoutInflater inflater) {
+			Context context) {
 		super();
 		this.list = list;
 		this.typeList = typeList;
-		inflater = inflater;
+		inflater = LayoutInflater.from(context);
 	}
 
 	@Override
@@ -70,10 +74,13 @@ public class HomeListAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			switch (type) {
 			case TOURPIC:
+				v =inflater.inflate(R.layout.listview_type_msg,null);
 				break;
 			case PLAN:
+				v = inflater.inflate(R.layout.listview_type_collective,null);
 				break;
 			case USER:
+				v = inflater.inflate(R.layout.listview_type_user,null);
 				break;
 			}
 			v.setTag(holder);
@@ -92,10 +99,12 @@ public class HomeListAdapter extends BaseAdapter {
 	}
 
 	class ViewHolder {
-		private ImageView head;
-		private TextView name,time,age;
-		
-		
+		private CircleImageView head;
+		private TextView name,time,age,describe,location,reviewCount,praiseCount;
+		private ImageView[] photos;
+		private TextView concern;
+		private ImageView bg,isLike;
+		private TextView title,startTime,playType,price,qi;
 
 	}
 
