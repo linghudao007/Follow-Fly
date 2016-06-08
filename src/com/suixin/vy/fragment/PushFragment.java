@@ -39,30 +39,64 @@ public class PushFragment extends Fragment {
 
 	private View view;
 	private LayoutInflater inflater;
+	private HomeListAdapter adapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.viewpager_home_view, container, false);
-		this.inflater=inflater;
+		this.inflater = inflater;
 		// 实例化推荐中的控件
-		initLv_home(inflater,container);
-		//getJson();
+		initLv_home(inflater, container);
+		getJson();
+		adapter = new HomeListAdapter(list_home, type,this.getActivity());
+		lv_home.setAdapter(adapter);
 		return view;
 	}
 
 	/** 实例化推荐中的控件 */
-	private void initLv_home(LayoutInflater inflater,ViewGroup container) {
+	private void initLv_home(LayoutInflater inflater, ViewGroup container) {
 		lv_home = (ListView) view.findViewById(R.id.lv_home);
-		lv_home_head = inflater.inflate(R.layout.head_listview_home,null);
+		lv_home_head = inflater.inflate(R.layout.head_listview_home, null);
 		lv_home.addHeaderView(lv_home_head);
+	}
+
+	public void getHomeListViewData() {
+		Log.e("ss", "getHomeListViewData");
+		type = all.getData().getMixedList();
+		List<UserList> userList = all.getData().getUserList();
+		List<TourPicList> tourPicList = all.getData().getTourPicList();
+		List<PlanList> planList = all.getData().getPlanList();
+		list_home = new ArrayList();
+		for (int i = 0, j = 0, k = 0, m = 0; i < type.size(); i++) {
+			if (type.get(i).equals("0")) {
+				list_home.add(tourPicList.get(j));
+				j++;
+			}
+			if (type.get(i).equals("1")) {
+				list_home.add(planList.get(k));
+				k++;
+			}
+			if (type.get(i).equals("2")) {
+				list_home.add(userList.get(m));
+				m++;
+			}
+		}
+		Log.e("ss", "refresh");
+		//adapter.notifyDataSetChanged();
+		adapter = new HomeListAdapter(list_home,type,this.getActivity());
+		Log.e("ss", list_home.toString());
+		Log.e("ss", type.toString());
+		lv_home.setAdapter(adapter);
 	}
 
 	/** 通过接口解析JSON */
 	private void getJson() {
 		RequestParams params = new RequestParams();
 		params.addBodyParameter("OrderStr", "");
+		Log.e("ss", "params");
 		HttpUtils http = new HttpUtils();
+		Log.e("ss", http + "");
 		http.send(HttpRequest.HttpMethod.POST,
 				"http://www.duckr.cn/api/v5/homepage/recommend/", params,
 				new RequestCallBack<String>() {
@@ -96,9 +130,6 @@ public class PushFragment extends Fragment {
 							if (all.getStatus() == 0
 									&& all.getMsg().equals("获取首页推荐列表成功")) {
 								getHomeListViewData();
-								HomeListAdapter homelistAdapter = new HomeListAdapter(
-										list_home, type, inflater);
-								lv_home.setAdapter(homelistAdapter);
 							}
 						} catch (UnsupportedEncodingException e) {
 							e.printStackTrace();
@@ -111,26 +142,5 @@ public class PushFragment extends Fragment {
 					}
 				});
 	}
-
-	private void getHomeListViewData() {
-		List<String> type = all.getData().getMixedList();
-		List<UserList> userList = all.getData().getUserList();
-		List<TourPicList> tourPicList = all.getData().getTourPicList();
-		List<PlanList> planList = all.getData().getPlanList();
-		list_home = new ArrayList();
-		for (int i = 0, j = 0, k = 0, m = 0; i < type.size(); i++) {
-			if (type.get(i).equals("0")) {
-				list_home.add(tourPicList.get(j));
-				j++;
-			}
-			if (type.get(i).equals("1")) {
-				list_home.add(planList.get(k));
-				k++;
-			}
-			if (type.get(i).equals("2")) {
-				list_home.add(userList.get(m));
-				m++;
-			}
-		}
-	}
+	
 }

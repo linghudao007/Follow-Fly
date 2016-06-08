@@ -1,5 +1,6 @@
 package com.suixin.vy.fragment;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.TextView;
+
 import com.suixin.vy.adapter.VPHomeAdapter;
 import com.suixin.vy.ui.R;
 
@@ -27,7 +30,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 	private ViewPager vp_home;
 	private Fragment v_home, v_currcity, v_pack, v_rank;
 	private List<Fragment> list;
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -148,7 +151,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 			break;
 		}
 	}
-
+	
 	/** 推荐点击效果 */
 	private void hotClick() {
 		if (!tv_clicked.equals("hot")) {
@@ -212,4 +215,6 @@ public class IndexFragment extends Fragment implements OnClickListener {
 			tv_clicked = "samecity";
 		}
 	}
+
+	
 }

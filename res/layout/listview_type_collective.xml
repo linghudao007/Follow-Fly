@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="230dp" >
+    android:layout_height="230dp"
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/iv_fillbg"
@@ -23,8 +24,6 @@
         android:id="@+id/tv_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/shape_bg_tv_withe"
         android:padding="5dp"
@@ -37,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:paddingBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/tv_tag"
         android:text="xxx-xx-xx"
@@ -49,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:paddingBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/tv_starttime"
         android:text="xxx1xx"
@@ -62,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
+        android:paddingBottom="20dp"
         android:layout_marginRight="15dp"
         android:text="@string/pepo"
         android:textColor="@android:color/white"
@@ -73,9 +72,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:paddingBottom="20dp"
         android:layout_marginLeft="10dp"
-        android:layout_toStartOf="@id/tv_pepo"
+        android:layout_alignRight="@id/tv_pepo"
+        android:paddingRight="20dp"
+        
         android:text="xx70x"
         android:textColor="@android:color/white"
         android:textSize="@dimen/latout_textsize_m"/>
@@ -88,19 +89,21 @@
         android:textSize="@dimen/tv_size_xm"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="50dp"/>
-    
-     <TextView 
-        android:id="@+id/tv_description"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/tv_size_title"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="75dp"/>
+        android:paddingBottom="50dp"/>
+
+     <TextView
+         android:id="@+id/tv_description"
+         android:layout_width="250dp"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentLeft="true"
+         android:layout_toLeftOf="@+id/iv_islike"
+         android:ellipsize="end"
+         android:paddingBottom="75dp"
+         android:paddingLeft="10dp"
+         android:singleLine="true"
+         android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+         android:textColor="@android:color/white"
+         android:textSize="@dimen/tv_size_title" />
 
 </RelativeLayout>

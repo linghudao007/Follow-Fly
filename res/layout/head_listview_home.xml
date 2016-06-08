@@ -7,7 +7,8 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_home"
         android:layout_width="match_parent"
-        android:layout_height="200dp" >
+        android:layout_height="200dp"
+        android:visibility="gone">
     </android.support.v4.view.ViewPager>
 
     <LinearLayout
@@ -15,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:background="@android:color/white" >
 
         <LinearLayout
             android:id="@+id/ll_siftaction"
@@ -29,7 +31,8 @@
             <TextView
                 android:id="@+id/tv_siftaction"
                 style="@style/style_tv_actionbar"
-                android:text="@string/siftaction" />
+                android:text="@string/siftaction"
+                />
         </LinearLayout>
 
         <LinearLayout
