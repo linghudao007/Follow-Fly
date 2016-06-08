@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white">
+<com.suixin.vz.find.LazyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/waterfall_scroll"
+     >
 
-    <ImageView
-        android:id="@+id/masonry_item_img"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
-    <TextView
-        android:id="@+id/masonry_item_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"/>
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/waterfall_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+</com.suixin.vz.find.LazyScrollView>

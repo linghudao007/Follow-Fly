@@ -8,7 +8,8 @@ import com.suixin.vy.ui.R;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ import android.widget.Toast;
 
 public class TripFragment extends Fragment implements OnClickListener {
 
-    private List<View> views;
+    private List<Fragment> frags;
 
     private ViewPager pager;
 
@@ -115,47 +116,33 @@ public class TripFragment extends Fragment implements OnClickListener {
         pager = (ViewPager) view.findViewById(R.id.pager);
 
         lineView = view.findViewById(R.id.tab_line);
-        views = new ArrayList<View>();
-        View item1 = inflater.inflate(R.layout.fragment_hot_listview_vz,
-                container, false);
-        View item2 = inflater.inflate(R.layout.fragment_listview_find_vz,
-                container, false);
-        View item3 = inflater.inflate(R.layout.fragment_attention_vz, container,
-                false);
-
-        views.add(item1);
-        views.add(item2);
-        views.add(item3);
-
-        pager.setAdapter(new MyPagerAdapter());
+        frags = new ArrayList<Fragment>();
+        Fragment hotFarg =  new HotFragment();
+        Fragment findFrag = new FindFragment();
+        Fragment attentionFrag = new AttentionFragment();
+        frags.add(hotFarg);
+        frags.add(findFrag);
+        frags.add(attentionFrag);
+        pager.setAdapter(new MyPagerAdapter(this.getActivity().getSupportFragmentManager(),frags));
     }
 
-    class MyPagerAdapter extends PagerAdapter {
+    class MyPagerAdapter extends FragmentPagerAdapter {
+        private List<Fragment> list;
+
+        public MyPagerAdapter(FragmentManager fm,List<Fragment> list) {
+            super(fm);
+            this.list = list;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return list!=null?list.get(position):null;
+        }
 
         @Override
         public int getCount() {
-            return 3;
+            return list!=null?list.size():0;
         }
-
-        @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
-            return arg0 == arg1;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position,
-                Object object) {
-            container.removeView(views.get(position));
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            View view = views.get(position);
-            container.removeView(view);
-            container.addView(view);
-            return view;
-        }
-
     }
 
     @Override
