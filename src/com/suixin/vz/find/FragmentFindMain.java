@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class FragmentFindMain extends Fragment {
-    //private static final Context View = null;
     private LazyScrollView waterfall_scroll;
 	private LinearLayout waterfall_container;
 	private ArrayList<LinearLayout> waterfall_items;
@@ -84,8 +83,8 @@ public class FragmentFindMain extends Fragment {
 			LinearLayout itemLayout = new LinearLayout(getActivity());
 			LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(
 					itemWidth, LayoutParams.WRAP_CONTENT);
-			 itemParam.width = itemWidth;
-			 itemParam.height = LayoutParams.WRAP_CONTENT;
+			itemParam.width = itemWidth;
+			itemParam.height = LayoutParams.WRAP_CONTENT;
 			itemLayout.setPadding(2, 2, 2, 2);
 			itemLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -115,7 +114,6 @@ public class FragmentFindMain extends Fragment {
 			AddImage(image_filenames.get(i), j++);
 
 		}
-
 	}
 
 	private void AddImage(String filename, int columnIndex) {

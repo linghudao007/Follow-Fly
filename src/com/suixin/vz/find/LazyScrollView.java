@@ -1,5 +1,5 @@
 package com.suixin.vz.find;
-//来自：http://blog.csdn.net/listening_music/article/details/7192629
+
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -14,15 +14,12 @@ public class LazyScrollView extends ScrollView{
 	private View view;
 	public LazyScrollView(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 	public LazyScrollView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 	}
 	public LazyScrollView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
 	}
 	//这个获得总的高度
 	public int computeVerticalScrollRange(){
@@ -68,7 +65,6 @@ public class LazyScrollView extends ScrollView{
 	  OnTouchListener onTouchListener=new OnTouchListener(){
 
 			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
 					break;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -15,19 +15,22 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="#fff"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_margin="10dp" >
 
-            <ImageView
+            <com.suixin.vy.core.CircleImageView
                 android:id="@+id/txt2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@android:color/white"
                 android:contentDescription="@string/hello_world"
-                android:src="@drawable/abc_btn_check_to_on_mtrl_000" />
+                android:src="@drawable/pic_loading_big" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent" 
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp">
 
                 <TextView
                     android:id="@+id/tv_hello"
@@ -44,7 +47,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="7dp"
                     android:gravity="center_vertical"
                     android:text="@string/action_settings"
                     android:textColor="#000"
@@ -74,10 +76,12 @@
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/tv_hello"
                     android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/shape"
-                    android:text="@string/use_attention" />
+                    android:text="@string/use_attention"
+                    />
 
             </RelativeLayout>
 
@@ -96,12 +100,10 @@
                 android:id="@+id/im_btn_jpg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/include_picture"
-                android:layout_alignParentLeft="true"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="@string/hello_world" />
-
+                android:text="@string/hello_world" 
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
         </RelativeLayout>
     </LinearLayout>
 
@@ -113,8 +115,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/tV_1"
         android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:drawableLeft="@drawable/location"
         android:drawableStart="@drawable/location"
+        android:drawablePadding="5dp"
         android:text="@string/action_settings"
         android:textSize="15sp" />
 
@@ -140,13 +144,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout1"
         android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginTop="16dp"
-        android:layout_toLeftOf="@+id/tV_2"
+        android:layout_toLeftOf="@id/tV_2"
+        android:layout_toStartOf="@id/tV_2"
         android:drawableLeft="@drawable/comments"
         android:drawablePadding="5dp"
         android:drawableStart="@drawable/comments"
         android:gravity="top"
         android:text="@string/comments"
         android:textSize="12sp" />
-
 </RelativeLayout>

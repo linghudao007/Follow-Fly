@@ -8,8 +8,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/attention"
+        android:text="loging"
         android:textSize="30sp"
         android:textColor="@android:color/darker_gray" />
+    <ListView 
+         android:id="@+id/id_gallery"  
+            android:layout_width="wrap_content"  
+            android:layout_height="wrap_content"  
+            android:layout_gravity="center_vertical"  
+            android:orientation="horizontal"
+            android:scrollbars="none" > 
+    </ListView>
 
 </RelativeLayout>
