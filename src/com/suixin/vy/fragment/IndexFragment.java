@@ -1,7 +1,5 @@
 package com.suixin.vy.fragment;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,85 +8,60 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.alibaba.fastjson.JSON;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.VPHomeAdapter;
-import com.suixin.vy.model.AllModel;
-import com.suixin.vy.model.PlanList;
-import com.suixin.vy.model.TourPicList;
-import com.suixin.vy.model.UserList;
 import com.suixin.vy.ui.R;
 
 public class IndexFragment extends Fragment implements OnClickListener {
-	private List<View> list;
-	private ViewPager vp_home;
-	private boolean iv_order_clicked;
-	private LinearLayout ll_home_classify;
-	private TextView tv_hot, tv_local, tv_carpooling, tv_samecity;
-	private int width;
+	/** 记录当前被点击的标题 */
 	private String tv_clicked;
-	/** 每个页面中的ListView */
-	private ListView lv_home;
-	/** vp_home里的每个页面 */
-	private View v_home, v_currcity, v_pack, v_rank;
-	/** 头部布局 */
-	private View lv_home_head;
-	/**获取来的推荐总数据*/
-	private AllModel all;
-	/**获取来显示的数据*/
-	private List list_home;
+	private TextView tv_hot, tv_local, tv_carpooling, tv_samecity;
+
+	/** vp_home里的每个页面 (数据源) */
+	private ViewPager vp_home;
+	private Fragment v_home, v_currcity, v_pack, v_rank;
+	private List<Fragment> list;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_index, container, false);
-		iv_order_clicked = false;
 		tv_clicked = "hot";
 		// 实例化整个碎片中的控件
 		initView(view);
-		// 实例化vp_home里的每个页面
-		initVp_home(inflater, container);
-		// 实例化推荐中的控件
-		initLv_home(inflater, container);
-		// 设置 Vp_home 数据源
-		geViewPagertData();
-		// 获取控件宽度
-		setViewWidth(tv_hot);
 		// 绑定监听
 		addListener();
-		// ViewPager适配器
-		VPHomeAdapter vpAdapter = new VPHomeAdapter(list);
-		vp_home.setOnPageChangeListener(new OnPageChangeListener() {
+		// 设置 Vp_home 数据源
+		geViewPagertData();
+		// ViewPager绑定适配器
+		addAdapter();
+		// 给翻页添加监听
+		vp_homeSetLisntener();
+		return view;
+	}
 
+	/** ViewPager绑定适配器 */
+	private void addAdapter() {
+		VPHomeAdapter vpAdapter = new VPHomeAdapter(this.getActivity()
+				.getSupportFragmentManager(), list);
+		vp_home.setAdapter(vpAdapter);
+	}
+
+	/** 给翻页添加监听 */
+	private void vp_homeSetLisntener() {
+		vp_home.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				Toast.makeText(getActivity(),
-						"ScrollStateChanged参数arg0：" + arg0, 1000).show();
 			}
 
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				Toast.makeText(
-						getActivity(),
-						"Scrolled参数arg0：" + arg0 + "参数arg1：" + arg1 + "参数arg2："
-								+ arg2, 1000).show();
 			}
 
 			@Override
@@ -111,108 +84,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 					break;
 				}
 			}
-
 		});
-		vp_home.setAdapter(vpAdapter);
-
-		getJson();
-
-		return view;
-	}
-
-	/** 实例化推荐中的控件 */
-	private void initLv_home(LayoutInflater inflater, ViewGroup container) {
-		lv_home = (ListView) v_home.findViewById(R.id.lv_home);
-		lv_home_head = inflater.inflate(R.layout.head_listview_home, lv_home,
-				false);
-		lv_home.addHeaderView(lv_home_head);
-		Log.e("ss", "addHeaderView");
-	}
-
-	/** 实例化布局 */
-	private void initVp_home(LayoutInflater inflater, ViewGroup container) {
-		v_home = inflater.inflate(R.layout.viewpager_home_view, container,
-				false);
-		v_currcity = inflater.inflate(R.layout.viewpager_currcity_view,
-				container, false);
-		v_pack = inflater.inflate(R.layout.viewpager_pack_view, container,
-				false);
-		v_rank = inflater.inflate(R.layout.viewpager_rank_view, container,
-				false);
-
-	}
-
-	/** 通过接口解析JSON */
-	private void getJson() {
-		RequestParams params = new RequestParams();
-		params.addBodyParameter("OrderStr", "");
-		HttpUtils http = new HttpUtils();
-		http.send(HttpRequest.HttpMethod.POST,
-				"http://www.duckr.cn/api/v5/homepage/recommend/", params,
-				new RequestCallBack<String>() {
-					@Override
-					public void onStart() {
-						Log.e("ss", "onStart");
-					}
-
-					@Override
-					public void onLoading(long total, long current,
-							boolean isUploading) {
-						if (isUploading) {
-							// testTextView.setText("upload: " + current + "/" +
-							// total);
-						} else {
-							// testTextView.setText("reply: " + current + "/" +
-							// total);
-						}
-					}
-
-					@Override
-					public void onSuccess(ResponseInfo<String> responseInfo) {
-						// testTextView.setText("reply: " +
-						// responseInfo.result);
-						try {
-							Log.e("ss",
-									new String(responseInfo.result
-											.getBytes("Unicode"), "Unicode"));
-							all = JSON.parseObject(
-									responseInfo.result, AllModel.class);
-							Log.e("ss", all.toString());
-							//判断是否获取成功
-							if(all.getStatus()==0&&all.getMsg().equals("获取首页推荐列表成功")){
-								List<String> type = all.getData().getMixedList();
-								List<UserList> userList = all.getData().getUserList();
-								List<TourPicList> tourPicList = all.getData().getTourPicList();
-								List<PlanList> planList = all.getData().getPlanList();
-								list_home = new ArrayList();
-								for(int i = 0,j=0,k=0,m=0;i<type.size();i++){
-									if(type.get(i).equals("0")){
-										list_home.add(tourPicList.get(j));
-										j++;
-									}
-									if(type.get(i).equals("1")){
-										list_home.add(planList.get(k));
-										k++;
-									}
-									if(type.get(i).equals("2")){
-										list_home.add(userList.get(m));
-										m++;
-									}
-								}
-								
-							}
-						} catch (UnsupportedEncodingException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-
-					@Override
-					public void onFailure(HttpException error, String msg) {
-						Log.e("ss", error.getExceptionCode() + ":" + msg);
-					}
-				});
-
 	}
 
 	/** 获取控件宽度 */
@@ -222,11 +94,12 @@ public class IndexFragment extends Fragment implements OnClickListener {
 			@Override
 			public void onGlobalLayout() {
 				view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-				width = view.getWidth();
+				int width = view.getWidth();
 			}
 		});
 	}
-
+	
+	/**给普通控件绑定监听*/
 	private void addListener() {
 		tv_hot.setOnClickListener(this);
 		tv_local.setOnClickListener(this);
@@ -236,8 +109,6 @@ public class IndexFragment extends Fragment implements OnClickListener {
 
 	/** 实例化碎片中的控件 */
 	private void initView(View view) {
-		ll_home_classify = (LinearLayout) view
-				.findViewById(R.id.ll_home_classify);
 		tv_hot = (TextView) view.findViewById(R.id.tv_hot);
 		tv_local = (TextView) view.findViewById(R.id.tv_local);
 		tv_carpooling = (TextView) view.findViewById(R.id.tv_carpooling);
@@ -247,7 +118,11 @@ public class IndexFragment extends Fragment implements OnClickListener {
 
 	/** 设置 Vp_home 数据源 */
 	private void geViewPagertData() {
-		list = new ArrayList<View>();
+		v_home = new PushFragment();
+		v_currcity = new CurrcityFragment();
+		v_pack = new PackFragment();
+		v_rank = new RankFragment();
+		list = new ArrayList<Fragment>();
 		list.add(v_home);
 		list.add(v_currcity);
 		list.add(v_pack);
@@ -337,5 +212,4 @@ public class IndexFragment extends Fragment implements OnClickListener {
 			tv_clicked = "samecity";
 		}
 	}
-
 }
