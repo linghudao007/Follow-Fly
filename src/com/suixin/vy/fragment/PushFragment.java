@@ -55,9 +55,7 @@ public class PushFragment extends Fragment {
 	private void initLv_home(LayoutInflater inflater,ViewGroup container) {
 		lv_home = (ListView) view.findViewById(R.id.lv_home);
 		lv_home_head = inflater.inflate(R.layout.head_listview_home,null);
-		//Log.e("xx", lv_home_head+"");
 		lv_home.addHeaderView(lv_home_head);
-		Log.e("ss", "addHeaderView");
 	}
 
 	/** 通过接口解析JSON */
@@ -135,5 +133,4 @@ public class PushFragment extends Fragment {
 			}
 		}
 	}
-
 }

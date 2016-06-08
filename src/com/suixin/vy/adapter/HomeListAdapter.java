@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class HomeListAdapter extends BaseAdapter {
 	private List list;
@@ -92,6 +93,9 @@ public class HomeListAdapter extends BaseAdapter {
 
 	class ViewHolder {
 		private ImageView head;
+		private TextView name,time,age;
+		
+		
 
 	}
 
