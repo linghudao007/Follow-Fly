@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.suixin.vy.ui.R;
+import com.suixin.vz.find.FragmentFindMain;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
@@ -118,7 +120,7 @@ public class TripFragment extends Fragment implements OnClickListener {
         lineView = view.findViewById(R.id.tab_line);
         frags = new ArrayList<Fragment>();
         Fragment hotFarg =  new HotFragment();
-        Fragment findFrag = new FindFragment();
+        Fragment findFrag = new FragmentFindMain();
         Fragment attentionFrag = new AttentionFragment();
         frags.add(hotFarg);
         frags.add(findFrag);
@@ -126,7 +128,7 @@ public class TripFragment extends Fragment implements OnClickListener {
         pager.setAdapter(new MyPagerAdapter(this.getActivity().getSupportFragmentManager(),frags));
     }
 
-    class MyPagerAdapter extends FragmentPagerAdapter {
+    class MyPagerAdapter extends FragmentStatePagerAdapter {
         private List<Fragment> list;
 
         public MyPagerAdapter(FragmentManager fm,List<Fragment> list) {

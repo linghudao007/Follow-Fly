@@ -8,24 +8,20 @@ import java.util.List;
 import com.suixin.vy.ui.R;
 import com.suixin.vz.find.LazyScrollView.OnScrollListener;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.AttributeSet;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class FragmentFindMain extends Fragment {
-    private static final Context View = null;
+    //private static final Context View = null;
     private LazyScrollView waterfall_scroll;
 	private LinearLayout waterfall_container;
 	private ArrayList<LinearLayout> waterfall_items;
@@ -46,17 +42,10 @@ public class FragmentFindMain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_listview_find_vz, container, false);
         super.onCreate(savedInstanceState);
+        final View view = inflater.inflate(R.layout.fragment_listview_find_vz, container, false);
         
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-            
-            @Override
-            public void onGlobalLayout() {
-                // TODO Auto-generated method stub
-                widthFrag =  view.getMeasuredWidth();
-            }
-        });
+        widthFrag = getActivity().getWindow().getWindowManager().getDefaultDisplay().getWidth();
         
         itemWidth = widthFrag / column_count;
         // 根据屏幕大小计算每列大小
@@ -92,11 +81,11 @@ public class FragmentFindMain extends Fragment {
 		waterfall_items = new ArrayList<LinearLayout>();
 
 		for (int i = 0; i < column_count; i++) {
-			LinearLayout itemLayout = new LinearLayout(View);
+			LinearLayout itemLayout = new LinearLayout(getActivity());
 			LinearLayout.LayoutParams itemParam = new LinearLayout.LayoutParams(
 					itemWidth, LayoutParams.WRAP_CONTENT);
-			// itemParam.width = itemWidth;
-			// itemParam.height = LayoutParams.WRAP_CONTENT;
+			 itemParam.width = itemWidth;
+			 itemParam.height = LayoutParams.WRAP_CONTENT;
 			itemLayout.setPadding(2, 2, 2, 2);
 			itemLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -130,7 +119,7 @@ public class FragmentFindMain extends Fragment {
 	}
 
 	private void AddImage(String filename, int columnIndex) {
-		ImageView item = (ImageView) LayoutInflater.from(View).inflate(R.layout.waterfallitem_vz, null);
+		ImageView item = (ImageView) LayoutInflater.from(getActivity()).inflate(R.layout.waterfallitem_vz, null);
 		waterfall_items.get(columnIndex).addView(item);
 
 		TaskParam param = new TaskParam();
