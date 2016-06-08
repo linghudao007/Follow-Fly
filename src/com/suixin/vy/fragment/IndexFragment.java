@@ -3,11 +3,6 @@ package com.suixin.vy.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
-import android.annotation.SuppressLint;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,58 +13,55 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnDrawListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.suixin.vy.adapter.VPHomeAdapter;
 import com.suixin.vy.ui.R;
 
 public class IndexFragment extends Fragment implements OnClickListener {
-	private List<View> list;
-	private ViewPager vp_home;
-	private boolean iv_order_clicked;
-	private LinearLayout ll_home_classify;
-	private TextView tv_hot, tv_local, tv_carpooling, tv_samecity;
-	private int width;
+	/** 记录当前被点击的标题 */
 	private String tv_clicked;
+	private TextView tv_hot, tv_local, tv_carpooling, tv_samecity;
+
+	/** vp_home里的每个页面 (数据源) */
+	private ViewPager vp_home;
+	private Fragment v_home, v_currcity, v_pack, v_rank;
+	private List<Fragment> list;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_index, container, false);
-		geViewPagertData(inflater, container);
-		iv_order_clicked = false;
 		tv_clicked = "hot";
-
-		// 实例化控件
+		// 实例化整个碎片中的控件
 		initView(view);
-		// 获取控件宽度
-		setViewWidth(tv_hot);
 		// 绑定监听
 		addListener();
-		// ViewPager适配器
-		VPHomeAdapter vpAdapter = new VPHomeAdapter(list);
-		vp_home = (ViewPager) view.findViewById(R.id.vp_home);
-		vp_home.setOnPageChangeListener(new OnPageChangeListener() {
+		// 设置 Vp_home 数据源
+		geViewPagertData();
+		// ViewPager绑定适配器
+		addAdapter();
+		// 给翻页添加监听
+		vp_homeSetLisntener();
+		return view;
+	}
 
+	/** ViewPager绑定适配器 */
+	private void addAdapter() {
+		VPHomeAdapter vpAdapter = new VPHomeAdapter(this.getActivity()
+				.getSupportFragmentManager(), list);
+		vp_home.setAdapter(vpAdapter);
+	}
+
+	/** 给翻页添加监听 */
+	private void vp_homeSetLisntener() {
+		vp_home.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				Toast.makeText(getActivity(),
-						"ScrollStateChanged参数arg0：" + arg0, 1000).show();
 			}
 
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				Toast.makeText(
-						getActivity(),
-						"Scrolled参数arg0：" + arg0 + "参数arg1：" + arg1 + "参数arg2："
-								+ arg2, 1000).show();
 			}
 
 			@Override
@@ -92,53 +84,49 @@ public class IndexFragment extends Fragment implements OnClickListener {
 					break;
 				}
 			}
-
 		});
-		vp_home.setAdapter(vpAdapter);
-		return view;
 	}
 
 	/** 获取控件宽度 */
-
 	private void setViewWidth(final TextView view) {
 		ViewTreeObserver vto2 = view.getViewTreeObserver();
 		vto2.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 			@Override
 			public void onGlobalLayout() {
 				view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-				width = view.getWidth();
+				int width = view.getWidth();
 			}
 		});
 	}
-
+	
+	/**给普通控件绑定监听*/
 	private void addListener() {
-
 		tv_hot.setOnClickListener(this);
 		tv_local.setOnClickListener(this);
 		tv_carpooling.setOnClickListener(this);
 		tv_samecity.setOnClickListener(this);
 	}
 
+	/** 实例化碎片中的控件 */
 	private void initView(View view) {
-		ll_home_classify = (LinearLayout) view
-				.findViewById(R.id.ll_home_classify);
 		tv_hot = (TextView) view.findViewById(R.id.tv_hot);
 		tv_local = (TextView) view.findViewById(R.id.tv_local);
 		tv_carpooling = (TextView) view.findViewById(R.id.tv_carpooling);
 		tv_samecity = (TextView) view.findViewById(R.id.tv_samecity);
+		vp_home = (ViewPager) view.findViewById(R.id.vp_home);
 	}
 
-	/** 设置转页 */
-	private void geViewPagertData(LayoutInflater inflater, ViewGroup container) {
-		list = new ArrayList<View>();
-		list.add(inflater.inflate(R.layout.viewpager_home_view, container,
-				false));
-		list.add(inflater.inflate(R.layout.viewpager_currcity_view, container,
-				false));
-		list.add(inflater.inflate(R.layout.viewpager_pack_view, container,
-				false));
-		list.add(inflater.inflate(R.layout.viewpager_rank_view, container,
-				false));
+	/** 设置 Vp_home 数据源 */
+	private void geViewPagertData() {
+		v_home = new PushFragment();
+		v_currcity = new CurrcityFragment();
+		v_pack = new PackFragment();
+		v_rank = new RankFragment();
+		list = new ArrayList<Fragment>();
+		list.add(v_home);
+		list.add(v_currcity);
+		list.add(v_pack);
+		list.add(v_rank);
 	}
 
 	@Override
@@ -224,5 +212,4 @@ public class IndexFragment extends Fragment implements OnClickListener {
 			tv_clicked = "samecity";
 		}
 	}
-
 }

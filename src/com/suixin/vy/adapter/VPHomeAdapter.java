@@ -2,41 +2,26 @@ package com.suixin.vy.adapter;
 
 import java.util.List;
 
-import android.support.v4.view.PagerAdapter;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
-public class VPHomeAdapter extends PagerAdapter{
-	private List<View> list;
-	
-	public VPHomeAdapter(List<View> list) {
-		super();
+public class VPHomeAdapter extends FragmentPagerAdapter {
+	private List<Fragment> list;
+
+	public VPHomeAdapter(FragmentManager fm,List<Fragment> list) {
+		super(fm);
 		this.list = list;
 	}
 
 	@Override
 	public int getCount() {
-		
-		return list!=null?list.size():0;
+		return list != null ? list.size() : 0;
 	}
 
 	@Override
-	public boolean isViewFromObject(View view, Object object) {
-		return view==object;
+	public Fragment getItem(int position) {
+		return list!=null?list.get(position):null;
 	}
 
-	@Override
-	public void destroyItem(ViewGroup container, int position, Object object) {
-		container.removeView(list.get(position));
-		
-	}
-
-	@Override
-	public Object instantiateItem(ViewGroup container, int position) {
-		View view = list.get(position);
-		container.removeView(view);
-		container.addView(view);
-		return view;
-	}
-	
 }
