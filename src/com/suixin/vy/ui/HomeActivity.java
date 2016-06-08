@@ -11,13 +11,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -124,7 +128,7 @@ public class HomeActivity extends BaseActivity {
 		v_addshow.setVisibility(View.VISIBLE);
 		v_addshow.setOnClickListener(this);
 		btn_home.startAnimation(anim_btn);
-		//  显示3个按钮动画效果
+		// 显示3个按钮动画效果
 		ll_addshow.setVisibility(View.VISIBLE);
 		PropertyValuesHolder holder_x = PropertyValuesHolder.ofFloat("scaleX",
 				0.1f, 1f);
