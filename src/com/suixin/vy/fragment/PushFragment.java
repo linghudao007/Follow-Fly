@@ -18,8 +18,10 @@ import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.UserList;
 import com.suixin.vy.ui.R;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,16 +42,20 @@ public class PushFragment extends Fragment {
 	private View view;
 	private LayoutInflater inflater;
 	private HomeListAdapter adapter;
+	
+	private String tag = "PushFragment";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.viewpager_home_view, container, false);
 		this.inflater = inflater;
+		list_home = new ArrayList();
+		type = new ArrayList<String>();
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
 		getJson();
-		adapter = new HomeListAdapter(list_home, type,this.getActivity());
+		adapter = new HomeListAdapter(list_home, type, this.getActivity());
 		lv_home.setAdapter(adapter);
 		return view;
 	}
@@ -59,35 +65,6 @@ public class PushFragment extends Fragment {
 		lv_home = (ListView) view.findViewById(R.id.lv_home);
 		lv_home_head = inflater.inflate(R.layout.head_listview_home, null);
 		lv_home.addHeaderView(lv_home_head);
-	}
-
-	public void getHomeListViewData() {
-		Log.e("ss", "getHomeListViewData");
-		type = all.getData().getMixedList();
-		List<UserList> userList = all.getData().getUserList();
-		List<TourPicList> tourPicList = all.getData().getTourPicList();
-		List<PlanList> planList = all.getData().getPlanList();
-		list_home = new ArrayList();
-		for (int i = 0, j = 0, k = 0, m = 0; i < type.size(); i++) {
-			if (type.get(i).equals("0")) {
-				list_home.add(tourPicList.get(j));
-				j++;
-			}
-			if (type.get(i).equals("1")) {
-				list_home.add(planList.get(k));
-				k++;
-			}
-			if (type.get(i).equals("2")) {
-				list_home.add(userList.get(m));
-				m++;
-			}
-		}
-		Log.e("ss", "refresh");
-		//adapter.notifyDataSetChanged();
-		adapter = new HomeListAdapter(list_home,type,this.getActivity());
-		Log.e("ss", list_home.toString());
-		Log.e("ss", type.toString());
-		lv_home.setAdapter(adapter);
 	}
 
 	/** 通过接口解析JSON */
@@ -119,20 +96,13 @@ public class PushFragment extends Fragment {
 
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
-						try {
-							Log.e("ss",
-									new String(responseInfo.result
-											.getBytes("Unicode"), "Unicode"));
-							all = JSON.parseObject(responseInfo.result,
-									AllModel.class);
-							Log.e("ss", all.toString());
-							// 判断是否获取成功
-							if (all.getStatus() == 0
-									&& all.getMsg().equals("获取首页推荐列表成功")) {
-								getHomeListViewData();
-							}
-						} catch (UnsupportedEncodingException e) {
-							e.printStackTrace();
+						all = JSON.parseObject(responseInfo.result,
+								AllModel.class);
+						Log.e("ss", all.toString());
+						// 判断是否获取成功
+						if (all.getStatus() == 0
+								&& all.getMsg().equals("获取首页推荐列表成功")) {
+							getHomeListViewData();
 						}
 					}
 
@@ -142,5 +112,86 @@ public class PushFragment extends Fragment {
 					}
 				});
 	}
+
+	public void getHomeListViewData() {
+		List<String> mixedList =all.getData().getMixedList();
+		type.clear();
+		type.addAll(mixedList);
+		List<UserList> userList = all.getData().getUserList();
+		List<TourPicList> tourPicList = all.getData().getTourPicList();
+		List<PlanList> planList = all.getData().getPlanList();
+		for (int i = 0, j = 0, k = 0, m = 0; i < type.size(); i++) {
+			if (type.get(i).equals("0")) {
+				list_home.add(tourPicList.get(j));
+				j++;
+			}
+			if (type.get(i).equals("1")) {
+				list_home.add(planList.get(k));
+				k++;
+			}
+			if (type.get(i).equals("2")) {
+				list_home.add(userList.get(m));
+				m++;
+			}
+		}
+		adapter.notifyDataSetInvalidated();
+	}
 	
+	@Override
+	public void onAttach(Activity activity) {
+		Log.e(tag, "onAttach");
+		super.onAttach(activity);
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		Log.e(tag, "onCreate");
+		super.onCreate(savedInstanceState);
+	}
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		Log.e(tag, "onActivityCreated");
+		super.onActivityCreated(savedInstanceState);
+	}
+	@Override
+	public void onStart() {
+		Log.e(tag, "onStart");
+		super.onStart();
+	}
+	
+	@Override
+	public void onResume() {
+		Log.e(tag, "onResume");
+		super.onResume();
+	}
+	
+	@Override
+	public void onPause() {
+		Log.e(tag, "onPause");
+		super.onPause();
+	}
+	
+
+	@Override
+	public void onStop() {
+		Log.e(tag, "onStop");
+		super.onStop();
+	}
+	@Override
+	public void onDestroyView() {
+		Log.e(tag, "onDestroyView");
+		super.onDestroyView();
+	}
+	@Override
+	public void onDestroy() {
+		Log.e(tag, "onDestroy");
+		super.onDestroy();
+	}
+
+	@Override
+	public void onDetach() {
+		Log.e(tag, "onDetach");
+		super.onDetach();
+	}
+
 }

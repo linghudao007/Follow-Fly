@@ -48,7 +48,6 @@ public class HomeActivity extends BaseActivity {
 	private FragmentTransaction ft;
 	private Fragment indexFrag, tripFrag;
 
-	//
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,14 +75,20 @@ public class HomeActivity extends BaseActivity {
 		case 0:
 			if (indexFrag == null) {
 				indexFrag = new IndexFragment();
+				ft.add(R.id.ll_fragmentshow, indexFrag);
+			} else {
+				ft.hide(tripFrag);
+				ft.show(indexFrag);
 			}
-			ft.replace(R.id.ll_fragmentshow, indexFrag);
 			break;
 		case 1:
+			ft.hide(indexFrag);
 			if (tripFrag == null) {
 				tripFrag = new TripFragment();
+				ft.add(R.id.ll_fragmentshow, tripFrag);
+			} else {
+				ft.show(tripFrag);
 			}
-			ft.replace(R.id.ll_fragmentshow, tripFrag);
 			break;
 		}
 		ft.commit();

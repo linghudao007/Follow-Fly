@@ -34,6 +34,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		list = new ArrayList<Fragment>();
 		View view = inflater.inflate(R.layout.fragment_index, container, false);
 		tv_clicked = "hot";
 		// 实例化整个碎片中的控件
@@ -51,8 +52,8 @@ public class IndexFragment extends Fragment implements OnClickListener {
 
 	/** ViewPager绑定适配器 */
 	private void addAdapter() {
-		VPHomeAdapter vpAdapter = new VPHomeAdapter(this.getActivity()
-				.getSupportFragmentManager(), list);
+		VPHomeAdapter vpAdapter = new VPHomeAdapter(this.getChildFragmentManager(), list);
+		vp_home.setOffscreenPageLimit(3);
 		vp_home.setAdapter(vpAdapter);
 	}
 
@@ -125,7 +126,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		v_currcity = new CurrcityFragment();
 		v_pack = new PackFragment();
 		v_rank = new RankFragment();
-		list = new ArrayList<Fragment>();
+		
 		list.add(v_home);
 		list.add(v_currcity);
 		list.add(v_pack);

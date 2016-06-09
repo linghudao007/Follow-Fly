@@ -11,8 +11,6 @@
         android:scaleType="fitXY"
         android:src="@drawable/user_home_header_bg" />
 
-    <!-- android:src="@drawable/default_theme_icon" -->
-
     <LinearLayout
         android:id="@+id/ll_home_actionbar"
         android:layout_width="match_parent"

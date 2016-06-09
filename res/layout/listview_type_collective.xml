@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="230dp"
-    android:background="@android:color/white">
+    android:layout_height="wrap_content"
+    android:background="@android:color/white" >
 
     <ImageView
         android:id="@+id/iv_fillbg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="230dp"
         android:scaleType="fitXY"
         android:src="@drawable/pic_loading_big" />
 
@@ -15,7 +15,7 @@
         android:id="@+id/iv_islike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignRight="@id/iv_fillbg"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/commercial_plan_heart" />
@@ -24,6 +24,8 @@
         android:id="@+id/tv_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_fillbg"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/shape_bg_tv_withe"
         android:padding="5dp"
@@ -35,8 +37,8 @@
         android:id="@+id/tv_starttime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="20dp"
+        android:layout_alignBottom="@id/iv_fillbg"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/tv_tag"
         android:text="xxx-xx-xx"
@@ -47,8 +49,8 @@
         android:id="@+id/tv_allday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="20dp"
+        android:layout_alignBottom="@id/iv_fillbg"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/tv_starttime"
         android:text="xxx1xx"
@@ -59,9 +61,9 @@
         android:id="@+id/tv_pepo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@id/iv_fillbg"
         android:layout_alignParentRight="true"
-        android:paddingBottom="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginRight="15dp"
         android:text="@string/pepo"
         android:textColor="@android:color/white"
@@ -71,39 +73,39 @@
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@id/iv_fillbg"
         android:layout_alignRight="@id/tv_pepo"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
         android:paddingRight="20dp"
-        
         android:text="xx70x"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/latout_textsize_m"/>
-    <TextView 
+        android:textSize="@dimen/latout_textsize_m" />
+
+    <TextView
         android:id="@+id/tv_playline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_fillbg"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="10dp"
         android:text="xxxxx"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/tv_size_xm"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:paddingBottom="50dp"/>
+        android:textSize="@dimen/tv_size_xm" />
 
-     <TextView
-         android:id="@+id/tv_description"
-         android:layout_width="250dp"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
-         android:layout_alignParentLeft="true"
-         android:layout_toLeftOf="@+id/iv_islike"
-         android:ellipsize="end"
-         android:paddingBottom="75dp"
-         android:paddingLeft="10dp"
-         android:singleLine="true"
-         android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-         android:textColor="@android:color/white"
-         android:textSize="@dimen/tv_size_title" />
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_fillbg"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="75dp"
+        android:layout_toLeftOf="@+id/iv_islike"
+        android:ellipsize="end"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tv_size_title" />
 
 </RelativeLayout>
