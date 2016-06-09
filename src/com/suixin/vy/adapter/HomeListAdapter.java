@@ -6,6 +6,7 @@ import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.ui.R;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,6 @@ public class HomeListAdapter extends BaseAdapter {
 	private List list;
 	private List<String> typeList;
 	private LayoutInflater inflater;
-
 	private static final int TOURPIC = 0;
 	private static final int PLAN = 1;
 	private static final int USER = 2;
@@ -67,7 +67,6 @@ public class HomeListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View v, ViewGroup vg) {
-
 		ViewHolder holder = null;
 		int type = getItemViewType(position);
 		if (v == null) {
@@ -81,6 +80,7 @@ public class HomeListAdapter extends BaseAdapter {
 				break;
 			case USER:
 				v = inflater.inflate(R.layout.listview_type_user,null);
+				//holder.
 				break;
 			}
 			v.setTag(holder);
@@ -105,7 +105,5 @@ public class HomeListAdapter extends BaseAdapter {
 		private TextView concern;
 		private ImageView bg,isLike;
 		private TextView title,startTime,playType,price,qi;
-
 	}
-
 }
