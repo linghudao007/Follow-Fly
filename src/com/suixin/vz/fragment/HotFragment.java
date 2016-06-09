@@ -15,6 +15,10 @@ public class HotFragment extends Fragment{
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hot_listview_vz, container,false);
         return view;
+        
     }
-    
+    public void josn() {
+        return;
+        
+    }
 }

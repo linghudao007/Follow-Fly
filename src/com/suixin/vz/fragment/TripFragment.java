@@ -125,7 +125,8 @@ public class TripFragment extends Fragment implements OnClickListener {
         frags.add(hotFarg);
         frags.add(findFrag);
         frags.add(attentionFrag);
-        pager.setAdapter(new MyPagerAdapter(this.getActivity().getSupportFragmentManager(),frags));
+        pager.setOffscreenPageLimit(2);
+        pager.setAdapter(new MyPagerAdapter(this.getChildFragmentManager(),frags));
     }
 
     class MyPagerAdapter extends FragmentStatePagerAdapter {
