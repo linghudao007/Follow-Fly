@@ -31,9 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/iv_head"
-        android:text="SSSSSS"
         android:textSize="@dimen/latout_textsize_m"
-        android:layout_marginTop="10dp"/>
+        />
 
     <TextView
         android:id="@+id/tv_sexandage"
@@ -42,10 +41,9 @@
         android:layout_marginLeft="2dp"
         android:layout_toRightOf="@id/tv_username"
         android:background="@drawable/girl"
+        android:layout_marginTop="5dp"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
-        android:text="22"
-        android:layout_marginTop="10dp"
         android:textColor="@android:color/white"
         android:textSize="@dimen/tv_size_min" >
     </TextView>
@@ -57,8 +55,19 @@
         android:layout_alignLeft="@id/tv_username"
         android:layout_below="@id/tv_username"
         android:layout_centerVertical="true"
-        android:paddingTop="8dp"
-        android:text="北京市-东城区"
+        android:textColor="@color/color_tv_gray"
+        android:textSize="@dimen/tv_size_m" >
+    </TextView>
+    <TextView
+        android:id="@+id/tv_say"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_username"
+        android:layout_toLeftOf="@+id/tv_concern"
+        android:layout_below="@id/tv_location"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:textColor="@color/color_tv_gray"
         android:textSize="@dimen/tv_size_m" >
     </TextView>
