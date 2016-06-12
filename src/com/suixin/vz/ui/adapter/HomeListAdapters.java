@@ -1,15 +1,12 @@
-package com.suixin.vy.adapter;
+package com.suixin.vz.ui.adapter;
 
 import java.util.List;
 
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.ui.R;
-import com.suixin.vy.ui.R.string;
 import com.suixin.vz.model.TourPicList;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,27 +14,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class HomeListAdapter extends BaseAdapter {
-	private List list;
-	private List<String> typeList;
+public class HomeListAdapters extends BaseAdapter {
+	private List<TourPicList> list;
 	private LayoutInflater inflater;
 	private static final int TOURPIC = 0;
-	private static final int PLAN = 1;
-	private static final int USER = 2;
 
-	public HomeListAdapter(List list, List<String> type,
+	public HomeListAdapters(List<TourPicList> list,
 			Context context) {
 		super();
+		
 		this.list = list;
-		this.typeList = type;
 		inflater = LayoutInflater.from(context);
 	}
 
-	public HomeListAdapter(List list_home, List<String> type,
-            FragmentActivity activity) {
-    }
-
-    @Override
+	@Override
 	public int getCount() {
 		return list != null ? list.size() : 0;
 	}
@@ -50,15 +40,6 @@ public class HomeListAdapter extends BaseAdapter {
 	@Override
 	public int getItemViewType(int position) {
 		int type = 0;
-		if (typeList.get(position).equals("0")) {
-			type = 0;
-		}
-		if (typeList.get(position).equals("1")) {
-			type = 1;
-		}
-		if (typeList.get(position).equals("2")) {
-			type = 2;
-		}
 		return type;
 	}
 
@@ -72,7 +53,8 @@ public class HomeListAdapter extends BaseAdapter {
 		return position;
 	}
 
-	@Override
+	@SuppressLint("InflateParams")
+    @Override
 	public View getView(int position, View v, ViewGroup vg) {
 		ViewHolder holder = null;
 		int type = getItemViewType(position);
@@ -80,14 +62,7 @@ public class HomeListAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			switch (type) {
 			case TOURPIC:
-				v =inflater.inflate(R.layout.listview_type_msg,null);
-				break;
-			case PLAN:
-				v = inflater.inflate(R.layout.listview_type_collective,null);
-				break;
-			case USER:
-				v = inflater.inflate(R.layout.listview_type_user,null);
-				//holder.
+				v =inflater.inflate(R.layout.fragment_hot_vz,null);
 				break;
 			}
 			v.setTag(holder);
@@ -97,20 +72,12 @@ public class HomeListAdapter extends BaseAdapter {
 		switch (type) {
 		case TOURPIC:
 			break;
-		case PLAN:
-			break;
-		case USER:
-			break;
 		}
 		return v;
 	}
 
 	class ViewHolder {
-		private CircleImageView head;
-		private TextView name,time,age,describe,location,reviewCount,praiseCount;
-		private ImageView[] photos;
-		private TextView concern;
-		private ImageView bg,isLike;
-		private TextView title,startTime,playType,price,qi;
+		private CircleImageView head_vz;
+		private TextView tv_mon,tv_sexandage,tv_hello,tv_vz_concern,im_btn_jpg,tv_place,tV_comment,tV_laudation;
 	}
 }

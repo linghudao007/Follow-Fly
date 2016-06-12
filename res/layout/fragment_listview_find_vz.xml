@@ -4,7 +4,6 @@
     android:layout_height="fill_parent"
     android:id="@+id/waterfall_scroll"
      >
-
     <LinearLayout
         android:id="@+id/waterfall_container"
         android:layout_width="fill_parent"
@@ -12,5 +11,4 @@
         android:background="@android:color/white"
         android:orientation="horizontal" >
     </LinearLayout>
-
 </com.suixin.vz.find.LazyScrollView>
