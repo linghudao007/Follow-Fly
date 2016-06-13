@@ -117,14 +117,13 @@ public class FragmentFindMain extends Fragment {
 	}
 
 	private void AddImage(String filename, int columnIndex) {
-		ImageView item = (ImageView) LayoutInflater.from(getActivity()).inflate(R.layout.waterfallitem_vz, null);
-		waterfall_items.get(columnIndex).addView(item);
-
+		View view = LayoutInflater.from(getActivity()).inflate(R.layout.waterfallitem_vz, null,false);
+		waterfall_items.get(columnIndex).addView(view);
 		TaskParam param = new TaskParam();
 		param.setAssetManager(assetManager);
 		param.setFilename(image_path + "/" + filename);
 		param.setItemWidth(itemWidth);
-		ImageLoaderTask task = new ImageLoaderTask(item);
+		ImageLoaderTask task = new ImageLoaderTask(view);
 		task.execute(param);
 
 	}

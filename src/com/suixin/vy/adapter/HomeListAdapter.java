@@ -3,31 +3,24 @@ package com.suixin.vy.adapter;
 import java.util.List;
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.ui.R;
-import com.suixin.vy.ui.R.string;
 import com.suixin.vz.model.TourPicList;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.graphics.Bitmap;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.bitmap.BitmapCommonUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
-import com.lidroid.xutils.bitmap.core.BitmapSize;
-import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.core.TimeFactory;
 import com.suixin.vy.model.PlanList;
 import com.suixin.vy.model.UserList;
-import com.suixin.vy.ui.R;
 
 public class HomeListAdapter extends BaseAdapter {
 	private List list;
