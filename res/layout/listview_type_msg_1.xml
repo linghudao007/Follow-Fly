@@ -12,80 +12,8 @@
         android:background="#fff"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="#fff"
-            android:orientation="horizontal" >
-
-            <com.suixin.vy.core.CircleImageView
-                android:id="@+id/txt2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@android:color/white"
-                android:contentDescription="@string/hello_world"
-                android:src="@drawable/pic_loading_big" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp">
-
-                <TextView
-                    android:id="@+id/tv_hello"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center_vertical"
-                    android:text="xxxx"
-                    android:textColor="@color/color_tab_normal"/>
-
-                <TextView
-                    android:id="@+id/tv_mon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/action_settings"
-                    android:textColor="#000"
-                    android:textColorLink="#fff"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_sexandage"
-                    android:layout_width="30dp"
-                    android:layout_height="15dp"
-                    android:layout_alignBaseline="@+id/tv_mon"
-                    android:layout_alignBottom="@+id/tv_mon"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_toEndOf="@+id/tv_mon"
-                    android:layout_toRightOf="@+id/tv_mon"
-                    android:background="@drawable/girl"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="16dp"
-                    android:text="xx"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/tv_size_min" />
-
-                <Button
-                    android:id="@+id/btn_attention"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/tv_hello"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="40dp"
-                    android:background="@drawable/shape"
-                    android:text="@string/use_attention"
-                    android:visibility="invisible" />
-            </RelativeLayout>
-        </LinearLayout>
+        <include android:id="@+id/include_same"
+                layout="@layout/include_list_type_same" />
 
         <RelativeLayout
             android:layout_width="match_parent"

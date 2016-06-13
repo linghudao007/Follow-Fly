@@ -323,8 +323,11 @@ public class HomeListAdapter extends BaseAdapter {
 		}
 		holder.title.setText(plan.getDeclaration());
 		holder.location.setText(plan.getDestinationNames().get(0));
-		if (plan.getTourThemes() != null) {
+		if (plan.getTourThemes().size()>=1) {
 			holder.playType.setText(plan.getTourThemes().get(0).getTitle());
+			holder.playType.setVisibility(View.VISIBLE);
+		}else{
+			holder.playType.setVisibility(View.INVISIBLE);
 		}
 		if (plan.getStage().size() == 1) {
 			holder.startTime.setText(plan.getStartTime());
