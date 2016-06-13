@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
@@ -86,13 +87,12 @@
         android:layout_height="26dp"
         android:layout_alignBottom="@+id/iv_top"
         android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/shape_v_clc"
         android:drawableLeft="@drawable/didian_2"
         android:text="@string/cutcity"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp" />
-    
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/tv_cut"
@@ -100,23 +100,24 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/iv_top"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="25dp"
-        android:text="@string/cutcity"
-        android:textSize="@dimen/tv_size_m"
         android:layout_marginBottom="15dp"
+        android:layout_marginRight="25dp"
         android:gravity="center"
-        android:textColor="@android:color/white" />
+        android:text="@string/cutcity"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tv_size_m"
+        tools:ignore="DuplicateIds" />
 
     <ImageView
         android:id="@+id/iv_cutic"
         android:layout_width="10dp"
         android:layout_height="12dp"
         android:layout_alignBottom="@+id/tv_cut"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp"
         android:layout_toLeftOf="@+id/tv_cut"
         android:layout_toStartOf="@id/tv_cut"
-        android:src="@drawable/didian_2"
         android:scaleType="fitXY"
-        android:layout_marginBottom="2dp"
-        android:layout_marginRight="2dp" />
+        android:src="@drawable/didian_2" />
 
 </RelativeLayout>

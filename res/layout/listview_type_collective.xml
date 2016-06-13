@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white" >
@@ -82,7 +83,8 @@
         android:layout_toStartOf="@id/tv_pepo"
         android:text="xx70x"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/tv_size_title" />
+        android:textSize="@dimen/tv_size_title"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/tv_playline"
