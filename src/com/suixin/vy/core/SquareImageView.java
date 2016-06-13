@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
- * ¸ù¾Ý¿í¶ÈÈ·¶¨Õý·½ÐÎÍ¼Æ¬
+ * æ­£æ–¹å½¢å›¾ç‰‡
  * 
  * @author yxy
  * 
@@ -17,7 +17,6 @@ public class SquareImageView extends ImageView {
 
 	public SquareImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		Toast.makeText(context, "MyImageView", 1000).show();
 		this.context = context;
 	}
 

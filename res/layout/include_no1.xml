@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/include_no1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@id/im_btn_jpg" >
-    <ImageView
+    android:layout_below="@id/im_btn_jpg"
+    android:orientation="horizontal" >
+
+    <com.suixin.vy.core.SquareImageView
         android:id="@+id/Iv_no1"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_alignParentTop="true"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
         android:src="@drawable/default_place" />
 
-</RelativeLayout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="invisible" />
+
+</LinearLayout>

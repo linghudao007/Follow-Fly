@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.bitmap.BitmapCommonUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
@@ -62,7 +64,7 @@ public class HomeListAdapter extends BaseAdapter {
 				.getScreenSize(context));
 	}
 
-    @Override
+	@Override
 	public int getCount() {
 		return list != null ? list.size() : 0;
 	}
@@ -240,55 +242,17 @@ public class HomeListAdapter extends BaseAdapter {
 			holder = (ViewHolder) v.getTag();
 		}
 		switch (type) {
-
 		case TOURPIC_1:
-			TourPicList tourPic_1 = (TourPicList) list.get(position);
-
-			break;
 		case TOURPIC_2:
-			TourPicList tourPic_2 = (TourPicList) list.get(position);
-			break;
 		case TOURPIC_3:
-			TourPicList tourPic_3 = (TourPicList) list.get(position);
-			break;
 		case TOURPIC_4:
-			TourPicList tourPic_4 = (TourPicList) list.get(position);
-			break;
 		case TOURPIC_5:
-			TourPicList tourPic_5 = (TourPicList) list.get(position);
-			break;
 		case TOURPIC_6:
-			TourPicList tourPic_6 = (TourPicList) list.get(position);
-			break;
 		case TOURPIC_7:
-			TourPicList tourPic_7 = (TourPicList) list.get(position);
-			break;
 		case TOURPIC_8:
-			TourPicList tourPic_8 = (TourPicList) list.get(position);
-			break;
 		case TOURPIC_9:
-			TourPicList tourPic_9 = (TourPicList) list.get(position);
-			bitUtils.display(holder.head, tourPic_9.getCreaterUser()
-					.getAvatarThumbUrl(), bigPicDisplayConfig);
-			holder.name.setText(tourPic_9.getCreaterUser().getNick());
-			holder.age.setText(tourPic_9.getCreaterUser().getAge() + "");
-			// 判断男女
-			if (tourPic_9.getCreaterUser().getSex() != 2) {
-				holder.age.setBackgroundResource(R.drawable.boy);
-			} else {
-				holder.age.setBackgroundResource(R.drawable.girl);
-			}
-			holder.time.setText(TimeFactory.format(tourPic_9.getCreatedTime()));
-			// if (!TextUtils.isEmpty(tourPic_1.getLivingPlace())) {
-			// holder.location.setText(tourPic_1.getLivingPlace());
-			// } else {
-			// holder.location.setText("");
-			// }
-			// if (!TextUtils.isEmpty(tourPic_1.getSignature())) {
-			// holder.describe.setText(tourPic_1.getSignature());
-			// } else {
-			// holder.location.setText("");
-			// }
+			TourPicList tourPic = (TourPicList) list.get(position);
+			setTourPicContent(holder, tourPic);
 			break;
 		case PLAN:
 			setPlanContent(position, holder);
@@ -298,6 +262,50 @@ public class HomeListAdapter extends BaseAdapter {
 			break;
 		}
 		return v;
+	}
+
+	private void setTourPicContent(ViewHolder holder, TourPicList tourPic) {
+		bitUtils.display(holder.head, tourPic.getCreaterUser()
+				.getAvatarThumbUrl(), bigPicDisplayConfig);
+		holder.name.setText(tourPic.getCreaterUser().getNick());
+		holder.age.setText(tourPic.getCreaterUser().getAge() + "");
+		// 判断男女
+		if (tourPic.getCreaterUser().getSex() != 2) {
+			holder.age.setBackgroundResource(R.drawable.boy);
+		} else {
+			holder.age.setBackgroundResource(R.drawable.girl);
+		}
+		holder.time.setText(TimeFactory.format(tourPic.getCreatedTime()));
+		holder.describe.setText(tourPic.getDescription());
+		holder.location.setText(tourPic.getPlaceName());
+		if (tourPic.getCommentNum() == 0) {
+			holder.reviewCount.setText("评论");
+		} else {
+			holder.reviewCount.setText(tourPic.getCommentNum() + "");
+		}
+		if (tourPic.getIsLike() != 1) {
+			Drawable left = context.getResources().getDrawable(
+					R.drawable.xiangqu_2);
+			left.setBounds(0, 0, left.getMinimumWidth(),
+					left.getMinimumHeight());
+			holder.praiseCount.setCompoundDrawables(left, null, null, null);
+
+		} else {
+			Drawable left = context.getResources().getDrawable(
+					R.drawable.xiangqu_1);
+			left.setBounds(0, 0, left.getMinimumWidth(),
+					left.getMinimumHeight());
+			holder.praiseCount.setCompoundDrawables(left, null, null, null);
+		}
+		if (tourPic.getLikeNum() == 0) {
+			holder.praiseCount.setText("赞");
+		} else {
+			holder.praiseCount.setText(tourPic.getLikeNum() + "");
+		}
+		for (int i = 0; i < tourPic.getThumbPhotoUrls().size(); i++) {
+			bitUtils.display(holder.photos[i],
+					tourPic.getThumbPhotoUrls().get(i));
+		}
 	}
 
 	/** 实例化相同的部分 */
@@ -316,8 +324,7 @@ public class HomeListAdapter extends BaseAdapter {
 	/** 设置Plan的显示 */
 	private void setPlanContent(int position, ViewHolder holder) {
 		PlanList plan = (PlanList) list.get(position);
-		bitUtils.display(holder.bg, plan.getFirstPhotoUrl(),
-				bigPicDisplayConfig);
+		bitUtils.display(holder.bg, plan.getFirstPhotoUrl());
 		if (plan.getIsFavored() == 0) {
 			holder.isLike.setImageResource(R.drawable.commercial_plan_heart);
 		} else {
@@ -326,10 +333,10 @@ public class HomeListAdapter extends BaseAdapter {
 		}
 		holder.title.setText(plan.getDeclaration());
 		holder.location.setText(plan.getDestinationNames().get(0));
-		if (plan.getTourThemes().size()>=1) {
+		if (plan.getTourThemes().size() >= 1) {
 			holder.playType.setText(plan.getTourThemes().get(0).getTitle());
 			holder.playType.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			holder.playType.setVisibility(View.GONE);
 		}
 		if (plan.getStage().size() == 1) {

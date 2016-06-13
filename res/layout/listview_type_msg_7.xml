@@ -12,14 +12,15 @@
         android:background="#fff"
         android:orientation="vertical" >
 
-        <include android:id="@+id/include_same"
-                layout="@layout/include_list_type_same" />
+        <include
+            android:id="@+id/include_same"
+            layout="@layout/include_list_type_same" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff" >
-	
+
             <TextView
                 android:id="@+id/im_btn_jpg"
                 android:layout_width="match_parent"
@@ -27,6 +28,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:maxLines="3"
                 android:text="xxx" />
 
             <include
@@ -47,7 +50,7 @@
         android:drawablePadding="5dp"
         android:drawableStart="@drawable/location"
         android:text="@string/action_settings"
-        android:textSize="15sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tV_2"
@@ -63,7 +66,8 @@
         android:drawablePadding="5dp"
         android:drawableStart="@drawable/xiangqu_2"
         android:gravity="top"
-        android:text="@string/praise_vz" />
+        android:text="@string/praise_vz"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tV_1"
