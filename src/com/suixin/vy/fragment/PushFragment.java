@@ -54,7 +54,9 @@ public class PushFragment extends Fragment {
 		initLv_home(inflater, container);
 		getJson();
 		adapter = new HomeListAdapter(list_home, type, this.getActivity());
+		
 		lv_home.setAdapter(adapter);
+		Log.e("ss","lv_home.setAdapter(adapter);");
 		return view;
 	}
 
@@ -96,7 +98,7 @@ public class PushFragment extends Fragment {
 					public void onSuccess(ResponseInfo<String> responseInfo) {
 						all = JSON.parseObject(responseInfo.result,
 								AllModel.class);
-						Log.e("ss", all.toString());
+						Log.e("ss", "数据获取成功");
 						// 判断是否获取成功
 						if (all.getStatus() == 0
 								&& all.getMsg().equals("获取首页推荐列表成功")) {
@@ -133,63 +135,7 @@ public class PushFragment extends Fragment {
 			}
 		}
 		adapter.notifyDataSetInvalidated();
-	}
-	
-	@Override
-	public void onAttach(Activity activity) {
-		Log.e(tag, "onAttach");
-		super.onAttach(activity);
-	}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		Log.e(tag, "onCreate");
-		super.onCreate(savedInstanceState);
-	}
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		Log.e(tag, "onActivityCreated");
-		super.onActivityCreated(savedInstanceState);
-	}
-	@Override
-	public void onStart() {
-		Log.e(tag, "onStart");
-		super.onStart();
-	}
-	
-	@Override
-	public void onResume() {
-		Log.e(tag, "onResume");
-		super.onResume();
-	}
-	
-	@Override
-	public void onPause() {
-		Log.e(tag, "onPause");
-		super.onPause();
-	}
-	
-
-	@Override
-	public void onStop() {
-		Log.e(tag, "onStop");
-		super.onStop();
-	}
-	@Override
-	public void onDestroyView() {
-		Log.e(tag, "onDestroyView");
-		super.onDestroyView();
-	}
-	@Override
-	public void onDestroy() {
-		Log.e(tag, "onDestroy");
-		super.onDestroy();
-	}
-
-	@Override
-	public void onDetach() {
-		Log.e(tag, "onDetach");
-		super.onDetach();
+		Log.e("ss",adapter+"notifyDa" );
 	}
 
 }

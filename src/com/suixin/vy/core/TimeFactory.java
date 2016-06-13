@@ -20,7 +20,6 @@ public class TimeFactory {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		Log.e("ss", now+"---"+createTime);
 		if((now-createTime)/60<=0){
 			time="1分钟内";
 		}else if((now-createTime)/60<60){
