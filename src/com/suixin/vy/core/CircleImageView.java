@@ -1,17 +1,22 @@
 package com.suixin.vy.core;
 
+import com.lidroid.xutils.bitmap.core.AsyncDrawable;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -24,7 +29,7 @@ public class CircleImageView extends ImageView {
 	public CircleImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-	
+
 	public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
@@ -35,7 +40,6 @@ public class CircleImageView extends ImageView {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-
 		Drawable drawable = getDrawable();
 		if (drawable == null) {
 			return;
@@ -44,7 +48,19 @@ public class CircleImageView extends ImageView {
 			return;
 		}
 		// 获取图片，转化为Bitmap
-		Bitmap b = ((BitmapDrawable) drawable).getBitmap();
+		Bitmap b = null;
+		AsyncDrawable ad = null;
+		try {
+			b = ((BitmapDrawable) drawable).getBitmap();
+		} catch (ClassCastException c) {
+			drawable.draw(canvas);
+			//ad = ((AsyncDrawable) drawable);
+			//ad.draw(canvas);
+			return;
+		}
+		if (b == null && ad == null) {
+			return;
+		}
 		if (null == b) {
 			return;
 		}
@@ -56,9 +72,7 @@ public class CircleImageView extends ImageView {
 		Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
 		// 在自定义的CircleImage上展现
 		canvas.drawBitmap(roundBitmap, 0, 0, null);
-
 	}
-
 	public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
 		Bitmap p;
 		// 判断图片的大小与传入radius是否相等，如果不相等，那么

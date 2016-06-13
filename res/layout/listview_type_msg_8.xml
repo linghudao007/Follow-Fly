@@ -15,10 +15,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="#fff"
-            android:orientation="horizontal"
-            android:layout_margin="10dp" >
+            android:orientation="horizontal" >
 
             <com.suixin.vy.core.CircleImageView
                 android:id="@+id/txt2"
@@ -30,8 +30,10 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" 
-                android:layout_marginLeft="10dp">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp" >
 
                 <TextView
                     android:id="@+id/tv_hello"
@@ -39,8 +41,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:gravity="center_vertical"
-                    android:text="@string/hello_world"
-                    android:textColorLink="#fff" />
+                    android:text="xxxx"
+                    android:textColor="@color/color_tab_normal"/>
 
                 <TextView
                     android:id="@+id/tv_mon"
@@ -66,7 +68,7 @@
                     android:layout_toRightOf="@+id/tv_mon"
                     android:background="@drawable/girl"
                     android:gravity="center_vertical"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="16dp"
                     android:text="xx"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/tv_size_min" />
@@ -81,29 +83,27 @@
                     android:layout_marginRight="40dp"
                     android:background="@drawable/shape"
                     android:text="@string/use_attention"
-                    android:visibility="invisible"/>
-
+                    android:visibility="invisible" />
             </RelativeLayout>
-
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff" >
-
-            <include
-                android:id="@+id/include_picture"
-                layout="@layout/include_no9" />
-
+	
             <TextView
                 android:id="@+id/im_btn_jpg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hello_world" 
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:text="xxx" />
+
+            <include
+                android:id="@+id/include_picture"
+                layout="@layout/include_no8" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -116,8 +116,8 @@
         android:layout_alignTop="@+id/tV_1"
         android:layout_marginLeft="10dp"
         android:drawableLeft="@drawable/location"
-        android:drawableStart="@drawable/location"
         android:drawablePadding="5dp"
+        android:drawableStart="@drawable/location"
         android:text="@string/action_settings"
         android:textSize="15sp" />
 
@@ -150,6 +150,6 @@
         android:drawableStart="@drawable/comments"
         android:gravity="top"
         android:text="@string/comments"
-        android:textSize="12sp"
-        />
+        android:textSize="12sp" />
+
 </RelativeLayout>
