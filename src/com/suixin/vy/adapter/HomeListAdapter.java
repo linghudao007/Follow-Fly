@@ -1,8 +1,13 @@
 package com.suixin.vy.adapter;
 
 import java.util.List;
+import com.suixin.vy.core.CircleImageView;
+import com.suixin.vy.ui.R;
+import com.suixin.vy.ui.R.string;
+import com.suixin.vz.model.TourPicList;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +26,6 @@ import com.lidroid.xutils.bitmap.core.BitmapSize;
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.core.TimeFactory;
 import com.suixin.vy.model.PlanList;
-import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.UserList;
 import com.suixin.vy.ui.R;
 
@@ -32,7 +36,6 @@ public class HomeListAdapter extends BaseAdapter {
 	private Context context;
 	private BitmapDisplayConfig bigPicDisplayConfig;
 	private BitmapUtils bitUtils;
-
 	private static final int TOURPIC_1 = 1;
 	private static final int TOURPIC_2 = 2;
 	private static final int TOURPIC_3 = 3;
@@ -59,7 +62,11 @@ public class HomeListAdapter extends BaseAdapter {
 				.getScreenSize(context));
 	}
 
-	@Override
+	public HomeListAdapter(List list_home, List<String> type,
+            FragmentActivity activity) {
+    }
+
+    @Override
 	public int getCount() {
 		return list != null ? list.size() : 0;
 	}

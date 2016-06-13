@@ -72,5 +72,6 @@
 	<string name="lees_destination">目的地(多个目的地用空格隔开)</string>
 	<string name="location">请输入您所在城市的某个活动地点</string>
 	<string name="pepo">/人</string>
+	<string name="leaf">张</string>
 	<string name="concerned">已关注</string>
 </resources>

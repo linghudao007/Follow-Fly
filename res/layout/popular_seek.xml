@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white" > 
+<ImageView
+        android:contentDescription="@string/hot"
+        android:id="@+id/iv_fillbg"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/default_place" />
+    <ImageView
+        android:contentDescription="@string/hello_world"
+        android:id="@+id/iv_islike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_fillbg"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/commercial_plan_heart" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/iv_islike"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:ellipsize="end"
+        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:singleLine="true"
+        android:text="xxxxxxxx"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tv_size_title" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_islike"
+        android:layout_alignStart="@+id/iv_islike"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp"
+        android:text="7"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/latout_textsize_m" />
+
+    <TextView
+        android:id="@+id/tv_pepo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_price"
+        android:layout_toRightOf="@+id/tv_price"
+        android:layout_toEndOf="@+id/tv_price"
+        android:text="@string/leaf"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tv_size_xm" />
+
+    
+
+</RelativeLayout>
