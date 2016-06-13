@@ -4,7 +4,7 @@ import java.util.List;
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.ui.R;
 import com.suixin.vy.ui.R.string;
-import com.suixin.vz.model.TourPicList;
+import com.suixin.vy.model.TourPicList;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
@@ -61,10 +61,6 @@ public class HomeListAdapter extends BaseAdapter {
 		bigPicDisplayConfig.setBitmapMaxSize(BitmapCommonUtils
 				.getScreenSize(context));
 	}
-
-	public HomeListAdapter(List list_home, List<String> type,
-            FragmentActivity activity) {
-    }
 
     @Override
 	public int getCount() {
@@ -334,7 +330,7 @@ public class HomeListAdapter extends BaseAdapter {
 			holder.playType.setText(plan.getTourThemes().get(0).getTitle());
 			holder.playType.setVisibility(View.VISIBLE);
 		}else{
-			holder.playType.setVisibility(View.INVISIBLE);
+			holder.playType.setVisibility(View.GONE);
 		}
 		if (plan.getStage().size() == 1) {
 			holder.startTime.setText(plan.getStartTime());
