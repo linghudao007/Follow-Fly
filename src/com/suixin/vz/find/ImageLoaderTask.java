@@ -3,26 +3,20 @@ package com.suixin.vz.find;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
-
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
 public class ImageLoaderTask extends AsyncTask<TaskParam, Void, Bitmap> {
 
 	private TaskParam param;
-	private final WeakReference<View> imageViewReference; // 防止内存溢出
+	private final WeakReference<ImageView> imageViewReference; // 防止内存溢出
 
-	public ImageLoaderTask(View view) {
-		imageViewReference = new WeakReference<View>(view);
-
+	public ImageLoaderTask(ImageView imageView) {
+		imageViewReference = new WeakReference<ImageView>(imageView);
 	}
 
 	@Override
@@ -60,7 +54,7 @@ public class ImageLoaderTask extends AsyncTask<TaskParam, Void, Bitmap> {
 		}
 
 		if (imageViewReference != null) {
-			ImageView imageView = (ImageView) imageViewReference.get();
+			ImageView imageView = imageViewReference.get();
 			if (imageView != null) {
 				if (bitmap != null) {
 					int width = bitmap.getWidth();// 获取真实宽高
