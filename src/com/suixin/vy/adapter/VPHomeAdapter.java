@@ -6,7 +6,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
+/**
+ * 首页模块的翻页适配器
+ * @author Administrator
+ *
+ */
 public class VPHomeAdapter extends FragmentStatePagerAdapter {
 	private List<Fragment> list;
 

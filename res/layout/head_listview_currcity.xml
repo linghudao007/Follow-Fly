@@ -15,7 +15,7 @@
     <LinearLayout
         android:id="@+id/ll_home_actionbar"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="100dp"
         android:layout_below="@id/iv_top"
         android:gravity="center_vertical"
         android:orientation="horizontal" >

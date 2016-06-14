@@ -23,7 +23,11 @@ import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
 import com.suixin.vy.core.TimeFactory;
 import com.suixin.vy.model.PlanList;
 import com.suixin.vy.model.UserList;
-
+/**
+ * 主页列表的适配器
+ * @author Administrator
+ *
+ */
 public class HomeListAdapter extends BaseAdapter {
 	private List list;
 	private List<String> typeList;

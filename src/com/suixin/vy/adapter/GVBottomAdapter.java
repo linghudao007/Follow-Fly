@@ -16,7 +16,11 @@ import android.widget.TextView;
 
 import com.suixin.vy.model.GVBottomModel;
 import com.suixin.vy.ui.R;
-
+/**
+ * 主页活动窗口下部导航栏的适配器
+ * @author Administrator
+ *
+ */
 public class GVBottomAdapter extends BaseAdapter {
 	private List<GVBottomModel> list_gv;
 	private LayoutInflater inflater;
