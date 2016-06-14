@@ -1,30 +1,32 @@
 package com.suixin.vy.fragment;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.suixin.vy.adapter.VPHomeAdapter;
 import com.suixin.vy.ui.R;
+import com.suixin.vy.ui.SelectActivity;
 
 public class IndexFragment extends Fragment implements OnClickListener {
 	/** 记录当前被点击的标题 */
 	private String tv_clicked;
 	private TextView tv_hot, tv_local, tv_carpooling, tv_samecity;
+	private RelativeLayout rl_select;
 
 	/** vp_home里的每个页面 (数据源) */
 	private ViewPager vp_home;
@@ -109,6 +111,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		tv_local.setOnClickListener(this);
 		tv_carpooling.setOnClickListener(this);
 		tv_samecity.setOnClickListener(this);
+		rl_select.setOnClickListener(this);
 	}
 
 	/** 实例化碎片中的控件 */
@@ -118,6 +121,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		tv_carpooling = (TextView) view.findViewById(R.id.tv_carpooling);
 		tv_samecity = (TextView) view.findViewById(R.id.tv_samecity);
 		vp_home = (ViewPager) view.findViewById(R.id.vp_home);
+		rl_select=(RelativeLayout)view.findViewById(R.id.rl_home_select);
 	}
 
 	/** 设置 Vp_home 数据源 */
@@ -147,6 +151,10 @@ public class IndexFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.tv_samecity:
 			vp_home.setCurrentItem(3);
+			break;
+		case R.id.rl_home_select:
+			Intent intent = new Intent(getActivity(),SelectActivity.class);
+			getActivity().startActivity(intent);
 			break;
 		default:
 			break;

@@ -1,43 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp" >
+    android:layout_height="wrap_content" >
 
     <ImageView
         android:id="@+id/iv_show"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_load_bg"
-        android:src="@drawable/default_theme_icon" />
-
-    <LinearLayout
-        android:id="@+id/ll_vvv"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="12dp" >
-
-        <View
-            android:id="@+id/v_frag1"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:background="@drawable/abc_list_longpressed_holoy" />
-
-        <View
-            android:id="@+id/v_frag2"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/abc_list_pressed_holo_dark" />
-
-        <View
-            android:id="@+id/v_frag3"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-             android:layout_marginLeft="8dp"
-            android:background="@drawable/abc_list_pressed_holo_dark" />
-    </LinearLayout>
-
+        android:background="@color/color_load_bg"
+        android:adjustViewBounds="true"
+        />
+   
 </RelativeLayout>
