@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:id="@+id/r1"
+            android:layout_width="match_parent"
+            android:layout_height="51dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="身份认证"
+                android:textColor="#706B66"
+                android:textSize="30sp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="11dp"
+                android:src="@drawable/icon_back" 
+                android:background="@android:color/transparent"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/r2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" 
+            android:background="#EBE4DD"
+            android:layout_below="@+id/r1"
+            ></RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/r3"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/r2" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="17dp"
+                android:text="真实姓名:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="110dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="7dp"
+                android:background="@null"
+                android:maxLines="2"
+                android:padding="10dp"
+                android:singleLine="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView1"
+                android:layout_alignRight="@+id/et_input"
+                android:text="在此输入" />
+        </RelativeLayout>
+
+         <RelativeLayout
+            android:id="@+id/r4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" 
+            android:background="#EBE4DD"
+            android:layout_below="@+id/r3"
+            ></RelativeLayout>
+
+         <RelativeLayout
+             android:id="@+id/r5"
+             android:layout_width="match_parent"
+             android:layout_height="55dp"
+             android:layout_below="@+id/r4" >
+
+             <EditText
+                 android:id="@+id/et_input"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="110dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="7dp"
+                 android:background="@null"
+                 android:maxLines="2"
+                 android:padding="10dp"
+                 android:singleLine="false" />
+
+             <TextView
+                 android:id="@+id/textView2"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerVertical="true"
+                 android:layout_marginLeft="17dp"
+                 android:text="身份证号:"
+                 android:textSize="20sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignBottom="@+id/textView2"
+                 android:layout_alignRight="@+id/et_input"
+                 android:text="在此输入" />
+         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/r6"
+            android:layout_width="match_parent"
+            android:layout_height="10dp" 
+            android:background="#EBE4DD"
+            android:layout_below="@+id/r5"
+            ></RelativeLayout>
+        <RelativeLayout 
+            android:id="@+id/r7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/r6"
+            >
+           <TextView 
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="手持身份证照片"
+               android:layout_marginTop="20dp"
+               android:layout_marginLeft="13dp"
+               android:textSize="20sp"/>
+          </RelativeLayout>
+              <RelativeLayout 
+                  android:id="@+id/r8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/r7"
+            >
+           <TextView 
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="要求人脸、身份证文字清晰可见"
+               android:layout_marginTop="15dp"
+               android:layout_marginLeft="13dp"
+               android:textSize="15sp"
+               android:textColor="#A8A4A0"/>
+    </RelativeLayout>
+                <RelativeLayout 
+             android:id="@+id/r9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/r8" >
+           <ImageView 
+                android:id="@+id/I1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="19dp"
+               android:layout_marginLeft="13dp"
+               android:src="@drawable/identity_demo"
+               />
+
+           <ImageButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_alignTop="@+id/I1"
+               android:layout_marginRight="10dp"
+               android:background="#ffffff"
+               android:src="@drawable/up_pic_default" />
+         </RelativeLayout> 
+              <RelativeLayout
+                  android:id="@+id/R10" 
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/r9" >
+            <TextView 
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="认证照片范例"
+               android:layout_marginTop="10dp"
+               android:layout_marginLeft="13dp"
+               android:textSize="15sp"
+               android:textColor="#A8A4A0"/>
+           </RelativeLayout>
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/R10" 
+            android:background="#FAFAFA">
+            <RelativeLayout 
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#F7F5F3"
+                >
+               <Button 
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:layout_marginLeft="20dp"
+                   android:layout_marginRight="20dp"
+                   android:layout_marginTop="10dp"
+                   android:background="#F4D925"
+                   android:text="提交审核"
+                   android:textSize="20sp"
+                   android:textColor="#6B4A05"
+                   /> 
+    </RelativeLayout>
+</RelativeLayout>
+</RelativeLayout>
+</RelativeLayout>
