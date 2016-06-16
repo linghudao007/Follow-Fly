@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 import com.lidroid.xutils.BitmapUtils;
@@ -151,23 +152,23 @@ public class SelectAdapter extends BaseAdapter {
 		} else {
 			holder.praiseCount.setText(plan.getFavorNum() + "");
 		}
-		if (plan.getFirstPhotoThumbUrl().equals("")) {
+		if (plan.getFirstPhotoUrl().equals("")) {
 			holder.photos[0].setVisibility(View.INVISIBLE);
 		} else {
 			holder.photos[0].setVisibility(View.VISIBLE);
-			bitUtils.display(holder.photos[0], plan.getFirstPhotoThumbUrl());
+			bitUtils.display(holder.photos[0], plan.getFirstPhotoUrl());
 		}
-		if (plan.getSecondPhotoThumbUrl().equals("")) {
+		if (plan.getSecondPhotoUrl().equals("")) {
 			holder.photos[1].setVisibility(View.INVISIBLE);
 		} else {
 			holder.photos[1].setVisibility(View.VISIBLE);
-			bitUtils.display(holder.photos[1], plan.getSecondPhotoThumbUrl());
+			bitUtils.display(holder.photos[1], plan.getSecondPhotoUrl());
 		}
-		if (plan.getSecondPhotoThumbUrl().equals("")) {
+		if (plan.getSecondPhotoUrl().equals("")) {
 			holder.photos[2].setVisibility(View.INVISIBLE);
 		} else {
 			holder.photos[2].setVisibility(View.VISIBLE);
-			bitUtils.display(holder.photos[2], plan.getThirdPhotoThumbUrl());
+			bitUtils.display(holder.photos[2], plan.getThirdPhotoUrl());
 		}
 	}
 
