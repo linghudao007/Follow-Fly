@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +40,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 		list = new ArrayList<Fragment>();
 		View view = inflater.inflate(R.layout.fragment_index, container, false);
 		tv_clicked = "hot";
+		
 		// 实例化整个碎片中的控件
 		initView(view);
 		// 绑定监听
@@ -116,7 +118,7 @@ public class IndexFragment extends Fragment implements OnClickListener {
 
 	/** 实例化碎片中的控件 */
 	private void initView(View view) {
-		tv_hot = (TextView) view.findViewById(R.id.tv_hot);
+		tv_hot = (TextView)view.findViewById(R.id.tv_hot);
 		tv_local = (TextView) view.findViewById(R.id.tv_local);
 		tv_carpooling = (TextView) view.findViewById(R.id.tv_carpooling);
 		tv_samecity = (TextView) view.findViewById(R.id.tv_samecity);

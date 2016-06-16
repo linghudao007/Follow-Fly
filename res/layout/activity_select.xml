@@ -1,35 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
     <RelativeLayout
-        android:id="@+id/ll_home_top"
+        android:id="@+id/ll_select_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tv_bar_height"
-        android:layout_alignParentTop="true"
         android:background="@color/color_theme"
-        android:gravity="center_vertical"
-         >
-        <RelativeLayout
-            android:id="@+id/rl_home_select"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="33dp"
+            android:layout_height="32dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/flc" />
+
+        <EditText
+            android:id="@+id/et_select"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="33dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/shape_btn_home_select"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical"
+            android:hint="@string/select_hint"
+            android:paddingLeft="10dp"
+            android:textColor="@color/color_select_hint"
+            android:textColorHint="@color/color_select_hint"
+            android:textSize="15sp" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/color_select_bg"
-                android:drawableLeft="@drawable/home_search_1"
-                android:drawablePadding="6dp"
-                android:layout_marginLeft="10dp"
-                android:text="@string/select_hint"
-                android:textColor="@color/color_select_hint"
-                android:textSize="15sp" />
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_select"
+            android:layout_width="30dp"
+            android:layout_height="32dp"
+            android:layout_alignRight="@id/et_select"
+            android:clickable="true"
+            android:padding="6dp"
+            android:src="@drawable/home_search_1" />
     </RelativeLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_outtime"
+        style="@style/style_ll_timeselect" >
+
+        <TextView
+            style="@style/style_tv_timeselect"
+            android:text="@string/outtime" />
+
+        <TextView
+            android:id="@+id/tv_tomorrow"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/tomorrow" />
+
+        <TextView
+            android:id="@+id/tv_thisweek"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/thisweek" />
+
+        <TextView
+            android:id="@+id/tv_thismonth"
+            style="@style/style_tv_timeselect_hasbg"
+            android:text="@string/thismonth" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_theme" />
+
+    <LinearLayout
+        android:id="@+id/ll_startingoint"
+        style="@style/style_ll_timeselect" >
+
+        <TextView
+            style="@style/style_tv_timeselect"
+            android:text="@string/startingoint" />
+
+        <EditText
+            android:id="@+id/et_citystart"
+            style="@style/style_tv_cityselect_hasbg" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_theme" />
+	<include layout="@layout/include_selectempty"/>
+    <ListView
+        android:id="@+id/lv_selectResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/color_theme"
+        android:dividerHeight="1px" />
+
+</LinearLayout>

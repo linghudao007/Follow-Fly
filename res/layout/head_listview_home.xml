@@ -7,6 +7,7 @@
         android:id="@+id/vp_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         />
     <LinearLayout
         android:id="@+id/ll_vvv"
@@ -18,21 +19,21 @@
         android:orientation="horizontal" >
         <View
             android:id="@+id/v_frag1"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
             android:background="@drawable/abc_list_longpressed_holoy" />
 
         <View
             android:id="@+id/v_frag2"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
             android:layout_marginLeft="8dp"
             android:background="@drawable/abc_list_pressed_holo_dark" />
 
         <View
             android:id="@+id/v_frag3"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
             android:layout_marginLeft="8dp"
             android:background="@drawable/abc_list_pressed_holo_dark" />
     </LinearLayout>
@@ -106,5 +107,4 @@
                 android:text="@string/online" />
         </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>

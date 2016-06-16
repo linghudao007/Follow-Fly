@@ -4,17 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -24,6 +31,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.HomeListAdapter;
 import com.suixin.vy.adapter.VPLoopAdapter;
 import com.suixin.vy.core.HeightWarpViewPager;
+import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.model.AllModel;
 import com.suixin.vy.model.BannerList;
 import com.suixin.vy.model.PlanList;
@@ -49,11 +57,15 @@ public class PushFragment extends Fragment {
 	private List<View> list_loopView;
 	/** 轮播适配器 */
 	private VPLoopAdapter loopAdapter;
-
+	/** 轮播器上的小点 */
+	private View[] points;
+	private BitmapUtils bitUtils;
 	private View view;
 	private LayoutInflater inflater;
 	private HomeListAdapter adapter;
 	private String tag = "PushFragment";
+	private PushHandler pushHandler;
+	private int loopindex = 1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +75,8 @@ public class PushFragment extends Fragment {
 		list_home = new ArrayList();
 		type = new ArrayList<String>();
 		loopList = new ArrayList<BannerList>();
+		bitUtils = new BitmapUtils(getActivity());
+		pushHandler = new PushHandler();
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
 		// 网络请求数据
@@ -70,7 +84,6 @@ public class PushFragment extends Fragment {
 		// 适配列表
 		adapter = new HomeListAdapter(list_home, type, this.getActivity());
 		lv_home.setAdapter(adapter);
-		vp_home_head_loop.setCurrentItem(1, false);
 		return view;
 	}
 
@@ -80,18 +93,16 @@ public class PushFragment extends Fragment {
 		lv_home_head = inflater.inflate(R.layout.head_listview_home, null);
 		vp_home_head_loop = (HeightWarpViewPager) this.lv_home_head
 				.findViewById(R.id.vp_home);
+		points = new View[3];
+		points[0] = (View) lv_home_head.findViewById(R.id.v_frag1);
+		points[1] = (View) lv_home_head.findViewById(R.id.v_frag2);
+		points[2] = (View) lv_home_head.findViewById(R.id.v_frag3);
 		this.list_loopView = new ArrayList<View>();
-		View view_0 = inflater.inflate(R.layout.viewpager_loop_view, null);
-		View view_1 = inflater.inflate(R.layout.viewpager_loop_view, null);
-		View view_2 = inflater.inflate(R.layout.viewpager_loop_view, null);
-		View view_3 = inflater.inflate(R.layout.viewpager_loop_view, null);
-		View view_4 = inflater.inflate(R.layout.viewpager_loop_view, null);
-		this.list_loopView.add(view_0);
-		this.list_loopView.add(view_1);
-		this.list_loopView.add(view_2);
-		this.list_loopView.add(view_3);
-		this.list_loopView.add(view_4);
-		
+		View[] loopViews = new View[5];
+		for (int i = 0; i < loopViews.length; i++) {
+			loopViews[i] = inflater.inflate(R.layout.viewpager_loop_view, null);
+			this.list_loopView.add(loopViews[i]);
+		}
 		lv_home.addHeaderView(lv_home_head);
 	}
 
@@ -108,24 +119,6 @@ public class PushFragment extends Fragment {
 				"http://www.duckr.cn/api/v5/homepage/recommend/", params,
 				new RequestCallBack<String>() {
 					@Override
-					public void onStart() {
-					}
-
-					@Override
-					public void onLoading(long total, long current,
-							boolean isUploading) {
-						if (isUploading) {
-							// testTextView.setText("upload: " + current +
-							// "/" +
-							// total);
-						} else {
-							// testTextView.setText("reply: " + current +
-							// "/" +
-							// total);
-						}
-					}
-
-					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
 
 						all = JSON.parseObject(responseInfo.result,
@@ -134,7 +127,6 @@ public class PushFragment extends Fragment {
 						if (all.getStatus() == 0
 								&& all.getMsg().equals("获取首页推荐列表成功")) {
 							getHomeListViewData();
-
 						}
 						return;
 					}
@@ -146,6 +138,7 @@ public class PushFragment extends Fragment {
 				});
 	}
 
+	/** 处理主页数据源 */
 	public void getHomeListViewData() {
 		List<String> mixedList = all.getData().getMixedList();
 		type.clear();
@@ -173,13 +166,44 @@ public class PushFragment extends Fragment {
 			loopList.add(bannerList.get(i));
 		}
 		setLoop();
+		// 刷新主页列表
 		adapter.notifyDataSetInvalidated();
 	}
 
+	/** 设置轮播功能 */
 	private void setLoop() {
+		for (int i = 0; i < loopList.size() + 2; i++) {
+			ImageView iv_show = (ImageView) list_loopView.get(i).findViewById(
+					R.id.iv_show);
+			if (loopList != null && loopList.size() > 0) {
+				if (i == 0) {
+					bitUtils.display(iv_show, loopList.get(2)
+							.getCoverThumbUrl(), MyBitmapConfig
+							.getConfig(getActivity()));
+				} else if (i == 4) {
+					bitUtils.display(iv_show, loopList.get(0)
+							.getCoverThumbUrl(), MyBitmapConfig
+							.getConfig(getActivity()));
+				} else {
+					bitUtils.display(iv_show, loopList.get(i - 1)
+							.getCoverThumbUrl(), MyBitmapConfig
+							.getConfig(getActivity()));
+				}
+			}
+		}
 		loopAdapter = new VPLoopAdapter(this.getActivity(), list_loopView,
-				loopList, vp_home_head_loop);
+				vp_home_head_loop);
 		vp_home_head_loop.setAdapter(loopAdapter);
+		vp_home_head_loop.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent arg1) {
+				// 屏蔽父布局的触摸事件
+				v.getParent().requestDisallowInterceptTouchEvent(true);
+				return false;
+			}
+		});
+		// 设置轮播为显示
+		vp_home_head_loop.setVisibility(View.VISIBLE);
 		vp_home_head_loop.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
@@ -187,21 +211,74 @@ public class PushFragment extends Fragment {
 
 			@Override
 			public void onPageScrolled(int position, float arg1, int arg2) {
-				if(arg1!=0){
+				if (arg1 != 0) {
 					return;
 				}
 				if (position < 1) { // 首位之前，跳转到末尾（N）
-					position = loopList.size(); 
+					position = loopList.size();
 					vp_home_head_loop.setCurrentItem(position, false);
 				} else if (position > loopList.size()) {
-					vp_home_head_loop.setCurrentItem(1, false); 
+					vp_home_head_loop.setCurrentItem(1, false);
 					position = 1;
 				}
 			}
+
 			@Override
 			public void onPageSelected(int position) {
+				// 设置轮播图片点的显示
+				setPointShow(position);
 			}
 		});
+		// 设置轮播的初始显示页面位置
 		vp_home_head_loop.setCurrentItem(1, false);
+		// 开始计时器
+		pushHandler.sendEmptyMessageDelayed(1, 2000);
+	}
+
+	/** 设置轮播图片点的显示 */
+	private void setPointShow(int position) {
+		loopindex = position;
+		if (position == 4) {
+			points[0]
+					.setBackgroundResource(R.drawable.abc_list_longpressed_holoy);
+			points[1]
+					.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
+			points[2]
+					.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
+			return;
+		}
+		if (position == 0) {
+			points[2]
+					.setBackgroundResource(R.drawable.abc_list_longpressed_holoy);
+			points[1]
+					.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
+			points[0]
+					.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
+			return;
+		}
+		for (int i = 0; i < 3; i++) {
+			if (position == (i + 1)) {
+				points[i]
+						.setBackgroundResource(R.drawable.abc_list_longpressed_holoy);
+			} else {
+				points[i]
+						.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
+			}
+		}
+	}
+
+	class PushHandler extends Handler {
+
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				pushHandler.sendEmptyMessageDelayed(1, 2000);
+				vp_home_head_loop.setCurrentItem(loopindex);
+				loopindex++;
+				break;
+			}
+		}
 	}
 }

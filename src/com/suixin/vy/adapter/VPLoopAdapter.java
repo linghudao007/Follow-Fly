@@ -27,43 +27,24 @@ public class VPLoopAdapter extends PagerAdapter {
 	/** 用于显示的列表 */
 	private List<View> list;
 	/** 数据源列表 */
-	private List<BannerList> loopList;
-	private BitmapUtils bitUtils;
-	private Context context;
 	private HeightWarpViewPager vp;
 
 	public VPLoopAdapter(Context context, List<View> list,
-			List<BannerList> loopList, HeightWarpViewPager vp) {
+			 HeightWarpViewPager vp) {
 		super();
 		this.list = list;
-		this.loopList = loopList;
-		bitUtils = new BitmapUtils(context);
 		this.vp = vp;
 	}
 
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
-		//container.removeView(list.get(position));
+		container.removeView(list.get(position));
 	}
 
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
-
 		View view = list.get(position);
-		ImageView iv_show = (ImageView) view.findViewById(R.id.iv_show);
 		container.removeView(list.get(position));
-		if (loopList != null && loopList.size() > 0) {
-			if (position == 0) {
-				bitUtils.display(iv_show, loopList.get(2).getCoverThumbUrl(),
-						MyBitmapConfig.getConfig(context));
-			} else if (position == 4) {
-				bitUtils.display(iv_show, loopList.get(0).getCoverThumbUrl(),
-						MyBitmapConfig.getConfig(context));
-			} else {
-				bitUtils.display(iv_show, loopList.get(position-1)
-						.getCoverThumbUrl(), MyBitmapConfig.getConfig(context));
-			}
-		}
 		container.addView(list.get(position));
 		return view;
 	}

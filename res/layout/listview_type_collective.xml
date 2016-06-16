@@ -9,7 +9,7 @@
         android:id="@+id/iv_fillbg"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/pic_loading_big" />
 
     <ImageView

@@ -27,10 +27,6 @@
             style="@style/style_tv_timeselect_hasbg"
             android:text="@string/thismonth" />
 
-        <TextView
-            android:id="@+id/tv_calendar"
-            style="@style/style_tv_timeselect_hasbg"
-            android:text="@string/calendar" />
     </LinearLayout>
 
     <View
@@ -75,7 +71,7 @@
             android:text="@string/startingoint" />
 
         <EditText
-            android:id="@+id/tv_citystart"
+            android:id="@+id/et_citystart"
             style="@style/style_tv_cityselect_hasbg" />
 
         <TextView
@@ -84,7 +80,7 @@
             android:text="@string/destination" />
 
         <EditText
-            android:id="@+id/tv_cityend"
+            android:id="@+id/et_cityend"
             style="@style/style_tv_cityselect_hasbg" />
     </LinearLayout>
 

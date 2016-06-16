@@ -2,6 +2,7 @@ package com.suixin.vy.adapter;
 
 import java.util.List;
 import com.suixin.vy.core.CircleImageView;
+import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.ui.R;
 import com.suixin.vy.ui.R.string;
 import com.suixin.vy.model.TourPicList;
@@ -321,7 +322,7 @@ public class HomeListAdapter extends BaseAdapter {
 	/** 设置Plan的显示 */
 	private void setPlanContent(int position, ViewHolder holder) {
 		PlanList plan = (PlanList) list.get(position);
-		bitUtils.display(holder.bg, plan.getFirstPhotoUrl());
+		bitUtils.display(holder.bg, plan.getFirstPhotoUrl(),MyBitmapConfig.getConfig(context));
 		if (plan.getIsFavored() == 0) {
 			holder.isLike.setImageResource(R.drawable.commercial_plan_heart);
 		} else {

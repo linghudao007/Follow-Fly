@@ -42,7 +42,6 @@
         android:layout_below="@id/ll_home_top"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
-
         <TextView
             android:id="@+id/tv_hot"
             style="@style/style_tv_ll_home_classify"

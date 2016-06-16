@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_selectempty"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:visibility="gone" >
+    <TextView 
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="没有找到相关约伴"
+        android:textSize="@dimen/latout_textsize_m"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="快去发布约伴，开启你的美妙旅途吧！"
+        android:textSize="@dimen/tv_size_xm"
+        android:textColor="@color/color_blue_d"
+        android:layout_marginTop="20dp"/>
+    <Button 
+        android:id="@+id/btn_send"
+        android:layout_width="130dp"
+        android:layout_height="35dp"
+        android:text="发布约伴"
+        android:layout_marginTop="20dp"
+        android:textSize="@dimen/latout_textsize_m"
+        android:background="@drawable/shape_tv_yell_d_con"
+        android:textColor="@color/color_themesub"
+        />
+
+</LinearLayout>

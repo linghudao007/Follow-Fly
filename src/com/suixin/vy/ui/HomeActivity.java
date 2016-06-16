@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -65,7 +66,6 @@ public class HomeActivity extends BaseActivity {
 		// 绑定碎片
 		fm = this.getSupportFragmentManager();
 		switchFragment(0);
-
 	}
 
 	/** 初始化碎片,根据的按钮位置 */
@@ -75,6 +75,7 @@ public class HomeActivity extends BaseActivity {
 		case 0:
 			if (indexFrag == null) {
 				indexFrag = new IndexFragment();
+				
 				ft.add(R.id.ll_fragmentshow, indexFrag);
 			} else {
 				ft.hide(tripFrag);

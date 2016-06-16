@@ -27,6 +27,8 @@
         </activity>
         <activity android:name="com.suixin.vlee.ui.ListViewLeeActivity" >
         </activity>
+         <activity android:name="com.suixin.vy.ui.SelectActivity" >
+        </activity>
     </application>
 
 </manifest>
