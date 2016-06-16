@@ -12,7 +12,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.ui.R;
 import com.suixin.vz.model.HotModel;
-import com.suixin.vz.ui.adapter.HomeListAdapters;
+import com.suixin.vz.ui.adapter.HotListAdapter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,7 +32,7 @@ public class HotFragment extends Fragment {
     private HotModel hot;
     
     private View view;
-    private HomeListAdapters adapter;
+    private HotListAdapter adapter;
     private String tag = "HotFragment";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,16 +40,13 @@ public class HotFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_hot_listview_vz,
                 container, false);
         this.view=view;
-        Log.e("xx", "view");
         list = new ArrayList<com.suixin.vz.model.TourPicList>();
         Log.e("xx", "list");
         // 实例化热门中的控件
         initLv_hot(inflater, container);
-        Log.e("xx", "initLv_hot");
         getJson();
         Log.e("xx", "getJson");
-        adapter = new HomeListAdapters(list, this.getActivity());
-        Log.e("xx", "adapter");
+        adapter = new HotListAdapter(list, this.getActivity());
         lv_vz_home.setAdapter(adapter);
         Log.e("xx", "lv_vz_home");
         return view;
@@ -89,10 +86,9 @@ public class HotFragment extends Fragment {
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         hot = JSON.parseObject(responseInfo.result,
                                 HotModel.class);
-                        Log.e("xx", hot.toString());
+                        Log.e("xx", "数据获取成功");
                         // 判断是否获取成功
-                        if (hot.getStatus() == 0
-                                && hot.getMsg().equals("获取热门列表成功")) {
+                        if (hot.getStatus() == 0 ) {
                             getHotListViewData();
                         }
                     }
@@ -107,7 +103,7 @@ public class HotFragment extends Fragment {
         List<com.suixin.vz.model.TourPicList> tourPicList = hot.getData().getTourPicList();
         list.clear();
         list.addAll(tourPicList);
-        
         adapter.notifyDataSetInvalidated();
+        Log.e("xx",adapter+"notifyDa");
     }
 }

@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/item_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="loging"
-        android:textSize="30sp"
-        android:textColor="@android:color/darker_gray" />
-    <ListView 
-         android:id="@+id/id_gallery"  
-            android:layout_width="wrap_content"  
-            android:layout_height="wrap_content"  
-            android:layout_gravity="center_vertical"  
-            android:orientation="horizontal"
-            android:scrollbars="none" > 
+    <ListView
+        android:id="@+id/lv_vz_att_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_listview_bg"
+        android:divider="@color/color_line"
+        android:dividerHeight="10dp"
+        android:scrollbars="none" >
     </ListView>
 
-</RelativeLayout>
+</LinearLayout>
