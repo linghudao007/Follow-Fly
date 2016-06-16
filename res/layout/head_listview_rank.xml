@@ -211,7 +211,7 @@
                 android:id="@+id/iv_online"
                 android:layout_width="match_parent"
                 android:layout_height="112dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/pic_loading_big" />
 
             <TextView
@@ -234,7 +234,7 @@
                 android:id="@+id/iv_samecityone"
                 android:layout_width="match_parent"
                 android:layout_height="112dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/pic_loading_big" />
 
             <TextView
