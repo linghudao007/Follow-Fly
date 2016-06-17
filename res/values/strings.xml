@@ -74,4 +74,6 @@
 	<string name="pepo">/人</string>
 	<string name="leaf">张</string>
 	<string name="concerned">已关注</string>
+	<string name="tv_rank_name">name</string>
+	<string name="tv_rank_description">description</string>
 </resources>
