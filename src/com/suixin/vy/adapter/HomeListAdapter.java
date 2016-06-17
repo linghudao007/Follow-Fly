@@ -368,7 +368,7 @@ public class HomeListAdapter extends BaseAdapter {
 		if (!TextUtils.isEmpty(user.getSignature())) {
 			holder.describe.setText(user.getSignature());
 		} else {
-			holder.location.setText("");
+			holder.describe.setText("");
 		}
 		bitUtils.display(holder.head, user.getAvatarThumbUrl(),
 				bigPicDisplayConfig);
