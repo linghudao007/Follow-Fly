@@ -117,7 +117,7 @@ public class FragmentFindMain extends Fragment {
 	}
 
 	private void AddImage(String filename, int columnIndex) {
-		ImageView item = (ImageView) LayoutInflater.from(getActivity()).inflate(R.layout.waterfallitem_vz, null);
+		View item = (View) LayoutInflater.from(getActivity()).inflate(R.layout.waterfallitem_vz, null);
 		waterfall_items.get(columnIndex).addView(item);
 
 		TaskParam param = new TaskParam();

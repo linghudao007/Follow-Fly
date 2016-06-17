@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -58,10 +59,14 @@ public class MainActivity extends Activity
         if (data != null && data.size() > 0) {// data代表显示的界面的个数
             for (int i = 0; i < data.size(); i++) {
                 View v = new View(this);
+                WindowManager wm = (WindowManager)getSystemService(this
+                        .WINDOW_SERVICE);
+                
+                int width = wm.getDefaultDisplay().getWidth();
                 // 设置内间距
                 v.setPadding(5, 5, 5, 5);
                 // 设置图片显示的大小
-                v.setLayoutParams(new LayoutParams(30, 30));
+                v.setLayoutParams(new LayoutParams(width/18, width/18));
                 if (i == 0) {// 代表当前选中的
                     v.setBackgroundResource(R.drawable.icon_like);
                 } else {
