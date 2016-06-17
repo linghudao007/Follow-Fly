@@ -127,7 +127,12 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 		}
 		rl_hide.setVisibility(View.VISIBLE);
 		WeatherData wData = currCityModel.getData().getWeatherData();
-		String weather = wData.getDayName();
+		String weather ="";
+		if(wData.getDayName().equals("")){
+			weather= wData.getNightName();
+		}else{
+			weather= wData.getDayName();
+		}
 		tv_weather_str.setText(weather);
 		tv_temp.setText(wData.getT());
 		tv_wind.setText(wData.getDWindLevel());

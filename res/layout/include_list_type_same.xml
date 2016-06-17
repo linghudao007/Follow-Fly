@@ -28,7 +28,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
-            android:text="xxxx"
             android:textColor="@color/color_tab_normal"
             android:textSize="@dimen/tv_size_xm" />
 
@@ -56,7 +55,6 @@
             android:background="@drawable/girl"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
-            android:text="xx"
             android:textColor="@android:color/white"
             android:textSize="@dimen/tv_size_min" />
 

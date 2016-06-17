@@ -33,14 +33,14 @@
             style="@style/style_tv_white"
             android:layout_alignTop="@id/iv_weather"
             android:layout_toRightOf="@id/iv_weather"
-            android:text="晴天" />
+            />
 
         <TextView
             android:id="@+id/tv_wind"
             style="@style/style_tv_white"
             android:layout_alignBottom="@id/iv_weather"
             android:layout_toRightOf="@id/iv_weather"
-            android:text="3-4级" />
+            />
 
         <TextView
             android:id="@+id/tv_temp"
@@ -48,7 +48,7 @@
             android:layout_alignTop="@id/iv_weather"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/tv_weather_str"
-            android:text="24~18°C" />
+            />
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/ll_home_actionbar"
