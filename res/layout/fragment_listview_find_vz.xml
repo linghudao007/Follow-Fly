@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.suixin.vz.find.LazyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:id="@+id/waterfall_scroll"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
      >
-    <LinearLayout
-        android:id="@+id/waterfall_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@android:color/white"
-        android:orientation="horizontal" >
-    </LinearLayout>
-</com.suixin.vz.find.LazyScrollView>
+
+    <ListView
+        android:id="@+id/lv_find1"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@color/color_listview_bg"
+        android:divider="@color/color_line"
+        android:dividerHeight="2dp"
+        android:scrollbars="none" >
+    </ListView>
+
+    <ListView
+        android:id="@+id/lv_find2"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="@color/color_listview_bg"
+        android:divider="@color/color_line"
+        android:dividerHeight="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        android:scrollbars="none" >
+    </ListView>
+
+</LinearLayout>
