@@ -6,37 +6,30 @@
     android:layout_below="@id/im_btn_jpg"
     android:orientation="horizontal" >
 
-    <ImageView
+    <com.suixin.vy.core.SquareImageView
         android:id="@+id/Iv_no3_1"
         android:layout_width="0dp"
-        android:layout_height="230dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:scaleType="centerCrop"
         android:src="@drawable/default_place" />
 
-    <LinearLayout
+    <com.suixin.vy.core.SquareImageView
+        android:id="@+id/iv_no3_3"
         android:layout_width="0dp"
-        android:layout_height="230dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="2dp"
         android:layout_weight="1"
-        android:orientation="vertical" >
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_place" />
 
-        <ImageView
-            android:id="@+id/iv_no3_3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:src="@drawable/default_place" />
-
-        <ImageView
-            android:id="@+id/Iv_no3_2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:src="@drawable/default_place" />
-    </LinearLayout>
+    <com.suixin.vy.core.SquareImageView
+        android:id="@+id/Iv_no3_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_place" />
 
 </LinearLayout>

@@ -113,61 +113,31 @@
         android:id="@+id/ll_selecttag"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_margin="12dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_margin="12dp"
         android:visibility="gone" >
-
-        <TextView
-            android:id="@+id/tv_tag1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/shape_tv_blue_d_con"
-            android:gravity="center"
-            android:padding="6dp"
-            android:text="明天"
-            android:textColor="@color/color_blue_d"
-            android:textSize="@dimen/tv_size_xm" />
-
-        <TextView
-            android:id="@+id/tv_tag2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/shape_tv_blue_d_con"
-            android:gravity="center"
-            android:padding="6dp"
-            android:text="本周"
-            android:textColor="@color/color_blue_d"
-            android:textSize="@dimen/tv_size_xm" />
-
-        <TextView
-            android:id="@+id/tv_tag3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/shape_tv_blue_d_con"
-            android:gravity="center"
-            android:padding="6dp"
-            android:text="本月"
-            android:textColor="@color/color_blue_d"
-            android:textSize="@dimen/tv_size_xm" />
 
         <ImageView
             android:id="@+id/iv_unfold"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:src="@drawable/expand_filter" />
     </LinearLayout>
-    <ListView 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_line" />
+
+    <ListView
         android:id="@+id/lv_pank"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
- 	    android:divider="@color/color_line"
- 	    android:dividerHeight="10dp"
- 	    android:scrollbars="none" >
-        
+        android:divider="@color/color_line"
+        android:dividerHeight="10dp"
+        android:scrollbars="none" >
     </ListView>
 
 </LinearLayout>
