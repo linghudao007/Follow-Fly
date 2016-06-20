@@ -30,7 +30,7 @@
                 android:layout_marginRight="10dp"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="xxx" />
+               />
 
             <include
                 android:id="@+id/include_picture"

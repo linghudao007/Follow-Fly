@@ -7,7 +7,6 @@ import java.util.Date;
 import android.util.Log;
 
 public class TimeFactory {
-	private String time;
 	
 	public static String format(String time){
 		long now = System.currentTimeMillis()/1000;

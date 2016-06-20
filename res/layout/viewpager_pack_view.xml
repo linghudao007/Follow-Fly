@@ -1,7 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <include android:id="@+id/incl_top" layout="@layout/view_grounpchoice"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_selectable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/ll_outtime"
+            style="@style/style_ll_timeselect" >
+
+            <TextView
+                style="@style/style_tv_timeselect"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1.5"
+                android:text="@string/outtime" />
+
+            <TextView
+                android:id="@+id/tv_tomorrow"
+                style="@style/style_tv_timeselect_hasbg"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:text="@string/tomorrow" />
+
+            <TextView
+                android:id="@+id/tv_thisweek"
+                style="@style/style_tv_timeselect_hasbg"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:text="@string/thisweek" />
+
+            <TextView
+                android:id="@+id/tv_thismonth"
+                style="@style/style_tv_timeselect_hasbg"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:text="@string/thismonth" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/color_line" />
+
+        <LinearLayout
+            android:id="@+id/ll_actclass"
+            style="@style/style_ll_timeselect" >
+
+            <TextView
+                style="@style/style_tv_timeselect"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.9"
+                android:text="@string/actclass" />
+
+            <TextView
+                android:id="@+id/tv_pack"
+                style="@style/style_tv_timeselect_hasbg"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:text="@string/travel_together" />
+
+            <TextView
+                android:id="@+id/tv_samecityact"
+                style="@style/style_tv_timeselect_hasbg"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:text="@string/City" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/color_line" />
+
+        <LinearLayout
+            android:id="@+id/ll_startingoint"
+            style="@style/style_ll_timeselect" >
+
+            <TextView
+                style="@style/style_tv_timeselect"
+                android:layout_weight="1"
+                android:text="@string/startingoint" />
+
+            <EditText
+                android:id="@+id/et_citystart"
+                style="@style/style_tv_cityselect_hasbg"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1.3" />
+
+            <TextView
+                style="@style/style_tv_timeselect"
+                android:layout_weight="1"
+                android:text="@string/destination" />
+
+            <EditText
+                android:id="@+id/et_cityend"
+                style="@style/style_tv_cityselect_hasbg"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1.3" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_selecttag"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/iv_unfold"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/expand_filter" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_line" />
+
+    <ListView
+        android:id="@+id/lv_pank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/color_line"
+        android:dividerHeight="10dp"
+        android:scrollbars="none" >
+    </ListView>
+
+</LinearLayout>

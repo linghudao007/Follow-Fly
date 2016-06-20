@@ -70,8 +70,13 @@ public class RankFragment extends Fragment implements OnClickListener {
 		this.view = view;
 		initData();
 		initRankView(inflater, container);
+		addListener();
 		getJson();
 		return view;
+	}
+
+	private void addListener() {
+		
 	}
 
 	/** 初始化数据 */
@@ -111,6 +116,8 @@ public class RankFragment extends Fragment implements OnClickListener {
 					}
 				});
 	}
+	
+	
 
 	protected void setHeadViewData() {
 		List<DuckrBoradList> sixList = randModel.getData().getDuckrBoradList();

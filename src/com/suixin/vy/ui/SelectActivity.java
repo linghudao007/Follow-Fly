@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -175,16 +177,19 @@ public class SelectActivity extends BaseActivity {
 		if (selected != index) {
 			selected = index;
 			for (int i = 0; i < 3; i++) {
-				if (i == selected) {
+				if (i == selected) {			
+					tv_time[i].setTextColor(Color.parseColor("#7F4802"));
 					tv_time[i]
 							.setBackgroundResource(R.drawable.shape_tv_yell_d_con);
 				} else {
+					tv_time[i].setTextColor(Color.parseColor("#777C73"));
 					tv_time[i]
 							.setBackgroundResource(R.drawable.shape_tv_blue_d_con);
 				}
 			}
 		} else {
 			selected = -1;
+			tv_time[index].setTextColor(Color.parseColor("#777C73"));
 			tv_time[index]
 					.setBackgroundResource(R.drawable.shape_tv_blue_d_con);
 			startDate = "";

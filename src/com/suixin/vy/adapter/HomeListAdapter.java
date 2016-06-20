@@ -1,6 +1,8 @@
 package com.suixin.vy.adapter;
 
 import java.util.List;
+
+import com.suixin.vy.adapter.SelectAdapter.ViewHolder;
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.ui.R;
@@ -24,10 +26,12 @@ import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
 import com.suixin.vy.core.TimeFactory;
 import com.suixin.vy.model.PlanList;
 import com.suixin.vy.model.UserList;
+
 /**
  * 主页列表的适配器
+ * 
  * @author Administrator
- *
+ * 
  */
 public class HomeListAdapter extends BaseAdapter {
 	private List list;
@@ -46,6 +50,7 @@ public class HomeListAdapter extends BaseAdapter {
 	private static final int TOURPIC_8 = 8;
 	private static final int TOURPIC_9 = 9;
 	private static final int PLAN = 0;
+	private static final int PLAN_2 = 11;
 	private static final int USER = 10;
 
 	public HomeListAdapter(List list, List<String> typeList, Context context) {
@@ -108,7 +113,11 @@ public class HomeListAdapter extends BaseAdapter {
 			}
 		}
 		if (typeList.get(position).equals("1")) {
-			type = 0;
+			if (((PlanList) list.get(position)).getType() == 1) {
+				type = 11;
+			} else {
+				type = 0;
+			}
 		}
 		if (typeList.get(position).equals("2")) {
 			type = 10;
@@ -118,7 +127,7 @@ public class HomeListAdapter extends BaseAdapter {
 
 	@Override
 	public int getViewTypeCount() {
-		return 11;
+		return 12;
 	}
 
 	@Override
@@ -226,6 +235,22 @@ public class HomeListAdapter extends BaseAdapter {
 				holder.price = (TextView) v.findViewById(R.id.tv_price);
 				holder.qi = (TextView) v.findViewById(R.id.tv_pepo);
 				break;
+			case PLAN_2:
+				v = inflater.inflate(R.layout.listview_type_pact, null);
+				holder.photos = new ImageView[3];
+				holder.photos[0] = (ImageView) v.findViewById(R.id.Iv_no1);
+				holder.photos[1] = (ImageView) v.findViewById(R.id.Iv_no2);
+				holder.photos[2] = (ImageView) v.findViewById(R.id.Iv_no3);
+				holder.head = (CircleImageView) v.findViewById(R.id.txt2);
+				holder.name = (TextView) v.findViewById(R.id.tv_mon);
+				holder.age = (TextView) v.findViewById(R.id.tv_sexandage);
+				holder.time = (TextView) v.findViewById(R.id.tv_hello);
+				holder.path = (TextView) v.findViewById(R.id.tv_path);
+				holder.describe = (TextView) v.findViewById(R.id.im_btn_jpg);
+				holder.location = (TextView) v.findViewById(R.id.textView1);
+				holder.reviewCount = (TextView) v.findViewById(R.id.tV_1);
+				holder.praiseCount = (TextView) v.findViewById(R.id.tV_2);
+				break;
 			case USER:
 				v = inflater.inflate(R.layout.listview_type_user, null);
 				holder.head = (CircleImageView) v.findViewById(R.id.iv_head);
@@ -255,11 +280,77 @@ public class HomeListAdapter extends BaseAdapter {
 		case PLAN:
 			setPlanContent(position, holder);
 			break;
+		case PLAN_2:
+			PlanList plan = (PlanList) list.get(position);
+			setPersonalContent(holder, plan);
+			break;
 		case USER:
 			setUserContent(position, holder);
 			break;
 		}
 		return v;
+	}
+	private void setPersonalContent(ViewHolder holder, PlanList plan) {
+		bitUtils.display(holder.head, plan.getMemberList().get(0)
+				.getAvatarThumbUrl(), MyBitmapConfig.getConfig(context));
+		holder.name.setText(plan.getMemberList().get(0).getNick());
+		holder.age.setText(plan.getMemberList().get(0).getAge() + "");
+		// 判断男女
+		if (plan.getMemberList().get(0).getSex() != 2) {
+			holder.age.setBackgroundResource(R.drawable.boy);
+		} else {
+			holder.age.setBackgroundResource(R.drawable.girl);
+		}
+		holder.time.setText(TimeFactory.format(plan.getCreatedTime()));
+		String path ="";
+		for(int i = 0;i<plan.getDestinationNames().size();i++){
+			path=path+"-"+plan.getDestinationNames().get(i);
+		}
+		holder.path.setText(plan.getDepartName()+path);
+		holder.describe.setText(plan.getDescription());
+		holder.location.setText(plan.getPublishPlace());
+		if (plan.getCommentNumber() == 0) {
+			holder.reviewCount.setText("评论");
+		} else {
+			holder.reviewCount.setText(plan.getCommentNumber() + "");
+		}
+		if (plan.getIsFavored() != 1) {
+			Drawable left = context.getResources().getDrawable(
+					R.drawable.xiangqu_2);
+			left.setBounds(0, 0, left.getMinimumWidth(),
+					left.getMinimumHeight());
+			holder.praiseCount.setCompoundDrawables(left, null, null, null);
+
+		} else {
+			Drawable left = context.getResources().getDrawable(
+					R.drawable.xiangqu_1);
+			left.setBounds(0, 0, left.getMinimumWidth(),
+					left.getMinimumHeight());
+			holder.praiseCount.setCompoundDrawables(left, null, null, null);
+		}
+		if (plan.getFavorNum() == 0) {
+			holder.praiseCount.setText("赞");
+		} else {
+			holder.praiseCount.setText(plan.getFavorNum() + "");
+		}
+		if (plan.getFirstPhotoUrl().equals("")) {
+			holder.photos[0].setVisibility(View.INVISIBLE);
+		} else {
+			holder.photos[0].setVisibility(View.VISIBLE);
+			bitUtils.display(holder.photos[0], plan.getFirstPhotoUrl());
+		}
+		if (plan.getSecondPhotoUrl().equals("")) {
+			holder.photos[1].setVisibility(View.INVISIBLE);
+		} else {
+			holder.photos[1].setVisibility(View.VISIBLE);
+			bitUtils.display(holder.photos[1], plan.getSecondPhotoUrl());
+		}
+		if (plan.getSecondPhotoUrl().equals("")) {
+			holder.photos[2].setVisibility(View.INVISIBLE);
+		} else {
+			holder.photos[2].setVisibility(View.VISIBLE);
+			bitUtils.display(holder.photos[2], plan.getThirdPhotoUrl());
+		}
 	}
 
 	private void setTourPicContent(ViewHolder holder, TourPicList tourPic) {
@@ -322,7 +413,8 @@ public class HomeListAdapter extends BaseAdapter {
 	/** 设置Plan的显示 */
 	private void setPlanContent(int position, ViewHolder holder) {
 		PlanList plan = (PlanList) list.get(position);
-		bitUtils.display(holder.bg, plan.getFirstPhotoUrl(),MyBitmapConfig.getConfig(context));
+		bitUtils.display(holder.bg, plan.getFirstPhotoUrl(),
+				MyBitmapConfig.getConfig(context));
 		if (plan.getIsFavored() == 0) {
 			holder.isLike.setImageResource(R.drawable.commercial_plan_heart);
 		} else {
@@ -376,7 +468,7 @@ public class HomeListAdapter extends BaseAdapter {
 
 	class ViewHolder {
 		private CircleImageView head;
-		private TextView name, time, age, describe, location, reviewCount,
+		private TextView name, time, age,path, describe, location, reviewCount,
 				praiseCount;
 		private ImageView[] photos;
 		private TextView concern;
