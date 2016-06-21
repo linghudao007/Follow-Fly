@@ -14,7 +14,6 @@ import com.suixin.vy.ui.R;
 import com.suixin.vz.strike.model.StrikeModel;
 import com.suixin.vz.strike.model.TourPicList;
 import com.suixin.vz.ui.adapter.FindAdapter;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,8 +25,8 @@ import android.widget.ListView;
 
 public class FindFragment extends Fragment {
     /** 获取来发现的显示数据 */
-    private List<com.suixin.vz.strike.model.TourPicList> list;
-    private List<com.suixin.vz.strike.model.TourPicList> list2;
+    private List<TourPicList> list;
+    private List<TourPicList> list2;
 
     /** ListView */
     private ListView lv_vz_Strike1, lv_vz_Strike2;
@@ -130,10 +129,5 @@ public class FindFragment extends Fragment {
         adapter.notifyDataSetInvalidated();
         Log.e("ff", adapter + "notifyDa");
     }
-
-    public void setListViewOnTouchAndScrollListener(final ListView listView1,final ListView listView2){
-        
-    }
-        
 
 }

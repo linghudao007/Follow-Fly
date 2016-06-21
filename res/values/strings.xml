@@ -85,4 +85,5 @@
     <string name="smssdk_appkey_hint">请输入您的AppKey</string>
     <string name="smssdk_appsecret">AppSecret</string>
     <string name="smssdk_appsecrethint">请输入您的AppSecret</string>
+    <string name="Being_loaded">正在加载...</string>
 </resources>

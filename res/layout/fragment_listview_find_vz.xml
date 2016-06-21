@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:baselineAligned="false"
-    android:orientation="horizontal"
-     >
+    android:orientation="horizontal" >
 
-    <ListView
-        android:id="@+id/lv_find1"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_listview_bg"
-        android:divider="@color/color_line"
-        android:dividerHeight="2dp"
-        android:scrollbars="none" >
-    </ListView>
+        android:scrollbars="none"
+         >
 
-    <ListView
-        android:id="@+id/lv_find2"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:background="@color/color_listview_bg"
-        android:divider="@color/color_line"
-        android:dividerHeight="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginStart="2dp"
-        android:scrollbars="none" >
-    </ListView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            
+
+            <ListView
+                android:id="@+id/lv_find1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/y480"
+                android:layout_weight="1"
+                android:background="@color/color_listview_bg"
+                android:divider="@color/color_line"
+                android:dividerHeight="2dp"
+                android:scrollbars="none" >
+            </ListView>
+
+            <ListView
+                android:id="@+id/lv_find2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/y480"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:background="@color/color_listview_bg"
+                android:divider="@color/color_line"
+                android:dividerHeight="2dp"
+                android:scrollbars="none" >
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
