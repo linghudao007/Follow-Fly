@@ -3,6 +3,8 @@ package com.suixin.vy.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,12 +15,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.lidroid.xutils.BitmapUtils;
@@ -38,8 +39,9 @@ import com.suixin.vy.model.PlanList;
 import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.UserList;
 import com.suixin.vy.ui.R;
+import com.suixin.vy.ui.ThemeActionActivity;
 
-public class PushFragment extends Fragment {
+public class PushFragment extends Fragment implements OnClickListener {
 	/** ListView */
 	private ListView lv_home;
 	/** 获取来列表的数据 */
@@ -49,6 +51,9 @@ public class PushFragment extends Fragment {
 	private AllModel all;
 	/** 头部布局 */
 	private View lv_home_head;
+	/** 头部控件 */
+	private LinearLayout ll_siftaction, ll_thisrecommend, ll_hottrip,
+			ll_online;
 	/** 头部的轮播部分 */
 	private HeightWarpViewPager vp_home_head_loop;
 	/** 轮播部分的数据源 */
@@ -66,6 +71,13 @@ public class PushFragment extends Fragment {
 	private String tag = "PushFragment";
 	private PushHandler pushHandler;
 	private int loopindex = 1;
+	private Activity activity;
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.activity = activity;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,16 +87,25 @@ public class PushFragment extends Fragment {
 		list_home = new ArrayList();
 		type = new ArrayList<String>();
 		loopList = new ArrayList<BannerList>();
-		bitUtils = new BitmapUtils(getActivity());
+		bitUtils = new BitmapUtils(activity);
 		pushHandler = new PushHandler();
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
 		// 网络请求数据
 		getJson();
 		// 适配列表
-		adapter = new HomeListAdapter(list_home, type, this.getActivity());
+		adapter = new HomeListAdapter(list_home, type, activity);
 		lv_home.setAdapter(adapter);
+		addListener();
 		return view;
+	}
+
+	private void addListener() {
+		vp_home_head_loop.setOnClickListener(this);
+		ll_siftaction.setOnClickListener(this);
+		ll_thisrecommend.setOnClickListener(this);
+		ll_hottrip.setOnClickListener(this);
+		ll_online.setOnClickListener(this);
 	}
 
 	/** 实例化推荐中的控件 */
@@ -104,6 +125,12 @@ public class PushFragment extends Fragment {
 			this.list_loopView.add(loopViews[i]);
 		}
 		lv_home.addHeaderView(lv_home_head);
+		ll_siftaction = (LinearLayout) lv_home_head
+				.findViewById(R.id.ll_siftaction);
+		ll_thisrecommend = (LinearLayout) lv_home_head
+				.findViewById(R.id.ll_thisrecommend);
+		ll_hottrip = (LinearLayout) lv_home_head.findViewById(R.id.ll_hottrip);
+		ll_online = (LinearLayout) lv_home_head.findViewById(R.id.ll_online);
 	}
 
 	/** 通过接口解析JSON */
@@ -179,15 +206,15 @@ public class PushFragment extends Fragment {
 				if (i == 0) {
 					bitUtils.display(iv_show, loopList.get(2)
 							.getCoverThumbUrl(), MyBitmapConfig
-							.getConfig(getActivity()));
+							.getConfig(activity));
 				} else if (i == 4) {
 					bitUtils.display(iv_show, loopList.get(0)
 							.getCoverThumbUrl(), MyBitmapConfig
-							.getConfig(getActivity()));
+							.getConfig(activity));
 				} else {
 					bitUtils.display(iv_show, loopList.get(i - 1)
 							.getCoverThumbUrl(), MyBitmapConfig
-							.getConfig(getActivity()));
+							.getConfig(activity));
 				}
 			}
 		}
@@ -280,5 +307,17 @@ public class PushFragment extends Fragment {
 				break;
 			}
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent = new Intent();
+		switch (v.getId()) {
+		case R.id.ll_siftaction:
+			intent.setClass(activity, ThemeActionActivity.class);
+			activity.startActivity(intent);
+			break;
+		}
+
 	}
 }

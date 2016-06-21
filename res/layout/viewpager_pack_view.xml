@@ -94,7 +94,8 @@
                 android:id="@+id/et_citystart"
                 style="@style/style_tv_cityselect_hasbg"
                 android:layout_marginRight="20dp"
-                android:layout_weight="1.3" />
+                android:layout_weight="1.3" 
+                android:singleLine="true"/>
 
             <TextView
                 style="@style/style_tv_timeselect"
@@ -105,15 +106,16 @@
                 android:id="@+id/et_cityend"
                 style="@style/style_tv_cityselect_hasbg"
                 android:layout_marginRight="20dp"
-                android:layout_weight="1.3" />
+                android:layout_weight="1.3" 
+                android:singleLine="true"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_selecttag"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="12dp"
+        android:layout_height="25dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:visibility="gone" >

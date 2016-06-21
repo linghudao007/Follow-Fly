@@ -75,10 +75,12 @@ public class HomeActivity extends BaseActivity {
 		case 0:
 			if (indexFrag == null) {
 				indexFrag = new IndexFragment();
-				
+
 				ft.add(R.id.ll_fragmentshow, indexFrag);
 			} else {
-				ft.hide(tripFrag);
+				if (tripFrag != null) {
+					ft.hide(tripFrag);
+				}
 				ft.show(indexFrag);
 			}
 			break;

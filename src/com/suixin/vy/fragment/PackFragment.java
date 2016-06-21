@@ -64,11 +64,10 @@ public class PackFragment extends Fragment implements OnClickListener,
 	/** 网络请求 */
 	private HttpUtils http;
 	private BitmapUtils bitUtils;
-	/** 网络请求参数配置 */
-	private RequestParams params;
+	
 	/** 记录用户选择的条件 */
 	private String locName = "北京市", destName, departName, startDate, endDate,
-			orderStr;
+			orderStr,planType;
 	private int startY = 0;
 
 	@Override
@@ -106,11 +105,14 @@ public class PackFragment extends Fragment implements OnClickListener,
 
 		});
 	}
+
 	private void addListener() {
 		iv_unfold.setOnClickListener(this);
 		for (int i = 0; i < tv.length; i++) {
 			tv[i].setOnClickListener(this);
 		}
+		et_citystart.setOnKeyListener(this);
+		et_cityend.setOnKeyListener(this);
 	}
 
 	private void initData() {
@@ -157,7 +159,7 @@ public class PackFragment extends Fragment implements OnClickListener,
 		params.addBodyParameter("EndDate", endDate);
 		params.addBodyParameter("DepartName", departName);
 		params.addBodyParameter("DestName", destName);
-		params.addBodyParameter("PlanType", "2");
+		params.addBodyParameter("PlanType", planType);
 		params.addBodyParameter("LocName", locName);
 		http.send(HttpRequest.HttpMethod.POST,
 				"http://www.duckr.cn/api/v5/plan/search/dest/", params,
@@ -262,9 +264,16 @@ public class PackFragment extends Fragment implements OnClickListener,
 			sclass = -1;
 			tv[index].setTextColor(Color.parseColor("#777C73"));
 			tv[index].setBackgroundResource(R.drawable.shape_tv_blue_d_con);
+			planType = "2";
 			return;
 		}
 		sclass = index;
+		if(index==3){
+			planType = "1";
+		}else{
+			planType = "2";
+		}
+		
 		for (int i = 3; i < 5; i++) {
 			setTvColor(index, i);
 		}
@@ -281,7 +290,13 @@ public class PackFragment extends Fragment implements OnClickListener,
 	}
 
 	@Override
-	public boolean onKey(View v, int arg1, KeyEvent e) {
-		return false;
+	public boolean onKey(View v, int keyCode, KeyEvent e) {
+		if (v.getId() == R.id.et_citystart && keyCode == KeyEvent.KEYCODE_ENTER) {
+			getJson();
+		}
+		if (v.getId() == R.id.et_cityend && keyCode == KeyEvent.KEYCODE_ENTER) {
+			getJson();
+		}
+		return true;
 	}
 }

@@ -1,31 +1,32 @@
 package com.suixin.vy.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.suixin.vy.adapter.SelectAdapter.ViewHolder;
-import com.suixin.vy.core.CircleImageView;
-import com.suixin.vy.core.MyBitmapConfig;
-import com.suixin.vy.ui.R;
-import com.suixin.vy.ui.R.string;
-import com.suixin.vy.model.TourPicList;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.bitmap.BitmapCommonUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.suixin.vy.core.CircleImageView;
+import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.core.TimeFactory;
 import com.suixin.vy.model.PlanList;
+import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.UserList;
+import com.suixin.vy.ui.PhotoFillActivity;
+import com.suixin.vy.ui.R;
 
 /**
  * 主页列表的适配器
@@ -353,7 +354,7 @@ public class HomeListAdapter extends BaseAdapter {
 		}
 	}
 
-	private void setTourPicContent(ViewHolder holder, TourPicList tourPic) {
+	private void setTourPicContent(ViewHolder holder, final TourPicList tourPic) {
 		bitUtils.display(holder.head, tourPic.getCreaterUser()
 				.getAvatarThumbUrl(), bigPicDisplayConfig);
 		holder.name.setText(tourPic.getCreaterUser().getNick());
@@ -394,6 +395,16 @@ public class HomeListAdapter extends BaseAdapter {
 		for (int i = 0; i < tourPic.getThumbPhotoUrls().size(); i++) {
 			bitUtils.display(holder.photos[i],
 					tourPic.getThumbPhotoUrls().get(i));
+			holder.photos[i].setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent();
+					intent.setClass(context, PhotoFillActivity.class);
+					intent.putStringArrayListExtra("photo", (ArrayList<String>) tourPic.getThumbPhotoUrls());
+					context.startActivity(intent);
+					
+				}
+			});
 		}
 	}
 

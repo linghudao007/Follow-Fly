@@ -2,25 +2,15 @@ package com.suixin.vy.adapter;
 
 import java.util.List;
 
-import com.lidroid.xutils.BitmapUtils;
-import com.lidroid.xutils.bitmap.BitmapCommonUtils;
-import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
-import com.suixin.vy.core.HeightWarpViewPager;
-import com.suixin.vy.core.MyBitmapConfig;
-import com.suixin.vy.model.BannerList;
-import com.suixin.vy.ui.R;
-
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.graphics.Bitmap;
+
+import com.suixin.vy.core.HeightWarpViewPager;
+import com.suixin.vy.ui.ThemeActionActivity;
 
 /** 轮播图片的适配器 */
 public class VPLoopAdapter extends PagerAdapter {
@@ -28,10 +18,12 @@ public class VPLoopAdapter extends PagerAdapter {
 	private List<View> list;
 	/** 数据源列表 */
 	private HeightWarpViewPager vp;
+	private Context context;
 
 	public VPLoopAdapter(Context context, List<View> list,
-			 HeightWarpViewPager vp) {
+			HeightWarpViewPager vp) {
 		super();
+		this.context = context;
 		this.list = list;
 		this.vp = vp;
 	}
@@ -44,6 +36,17 @@ public class VPLoopAdapter extends PagerAdapter {
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		View view = list.get(position);
+		view.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent();
+				intent.setClass(context, ThemeActionActivity.class);
+				context.startActivity(intent);
+			}
+
+		});
+
 		container.removeView(list.get(position));
 		container.addView(list.get(position));
 		return view;
