@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.bitmap.BitmapCommonUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.core.TimeFactory;
@@ -395,14 +396,15 @@ public class HomeListAdapter extends BaseAdapter {
 		for (int i = 0; i < tourPic.getThumbPhotoUrls().size(); i++) {
 			bitUtils.display(holder.photos[i],
 					tourPic.getThumbPhotoUrls().get(i));
+			final int j = i;
 			holder.photos[i].setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent();
 					intent.setClass(context, PhotoFillActivity.class);
-					intent.putStringArrayListExtra("photo", (ArrayList<String>) tourPic.getThumbPhotoUrls());
+					intent.putExtra(AppConfig.PHOTOINDEX,j+1);
+					intent.putStringArrayListExtra(AppConfig.PHOTO, (ArrayList<String>) tourPic.getThumbPhotoUrls());
 					context.startActivity(intent);
-					
 				}
 			});
 		}

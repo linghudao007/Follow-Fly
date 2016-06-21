@@ -33,6 +33,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.HomeListAdapter;
 import com.suixin.vy.adapter.VPLoopAdapter;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.HeightWarpViewPager;
 import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.model.AllModel;
@@ -348,6 +349,11 @@ public class PushFragment extends Fragment implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.ll_siftaction:
 			intent.setClass(activity, ThemeActionActivity.class);
+			activity.startActivity(intent);
+			break;
+		case R.id.ll_thisrecommend:
+			intent.setClass(activity, ThemeActionActivity.class);
+			intent.putExtra(AppConfig.TITLE, "本地推荐");
 			activity.startActivity(intent);
 			break;
 		}

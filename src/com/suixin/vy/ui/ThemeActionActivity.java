@@ -21,6 +21,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.PackAdapter;
 import com.suixin.vy.adapter.ThemeAdapter;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.model.theme.PlanList;
 import com.suixin.vy.model.theme.ThemeModel;
@@ -53,6 +54,7 @@ public class ThemeActionActivity extends BaseActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		this.setContentView(R.layout.activity_themeaction);
+
 		initView();
 		addListener();
 		getJson();
@@ -61,13 +63,16 @@ public class ThemeActionActivity extends BaseActivity {
 	@Override
 	protected void initView() {
 		iv_back = (ImageView) findViewById(R.id.iv_back);
-		tv_title = (TextView)findViewById(R.id.tv_title);
+		tv_title = (TextView) findViewById(R.id.tv_title);
+		if (this.getIntent().getStringExtra("title") != null) {
+			tv_title.setText(this.getIntent().getStringExtra(AppConfig.TITLE));
+		}
 		lv_themeactivity = (ListView) findViewById(R.id.lv_themeactivity);
 		http = new HttpUtils();
 		themeList = new ArrayList<PlanList>();
 		themeAdapter = new ThemeAdapter(this, themeList);
 		lv_themeactivity.setAdapter(themeAdapter);
-		orderStr="";
+		orderStr = "";
 	}
 
 	@Override
@@ -89,7 +94,7 @@ public class ThemeActionActivity extends BaseActivity {
 						if (responseInfo == null) {
 							return;
 						}
-						
+
 						themeModel = JSON.parseObject(responseInfo.result,
 								ThemeModel.class);
 						Log.e("ss", themeModel.toString());
@@ -119,8 +124,6 @@ public class ThemeActionActivity extends BaseActivity {
 	protected void getData() {
 		themeList.clear();
 		themeList.addAll(themeModel.getData().getPlanList());
-		Log.e("ss", themeModel.getData().getPlanList().size()+"");
 		themeAdapter.notifyDataSetChanged();
-		Log.e("ss", "notifyDataSetInvalidated");
 	}
 }
