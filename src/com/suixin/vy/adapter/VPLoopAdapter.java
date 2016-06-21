@@ -39,7 +39,7 @@ public class VPLoopAdapter extends PagerAdapter {
 		view.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View v) {
 				Intent intent = new Intent();
 				intent.setClass(context, ThemeActionActivity.class);
 				context.startActivity(intent);

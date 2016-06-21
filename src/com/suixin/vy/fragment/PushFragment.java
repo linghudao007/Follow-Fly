@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -58,12 +60,14 @@ public class PushFragment extends Fragment implements OnClickListener {
 	private HeightWarpViewPager vp_home_head_loop;
 	/** 轮播部分的数据源 */
 	private List<BannerList> loopList;
-	/** 轮播图的三个布局 */
+	/** 轮播图的N个布局 */
 	private List<View> list_loopView;
 	/** 轮播适配器 */
 	private VPLoopAdapter loopAdapter;
-	/** 轮播器上的小点 */
-	private View[] points;
+	/** 轮播器上的小点所在的布局 */
+	private LinearLayout ll_point;
+	/** 小点们 */
+	private List<View> points;
 	private BitmapUtils bitUtils;
 	private View view;
 	private LayoutInflater inflater;
@@ -89,6 +93,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 		loopList = new ArrayList<BannerList>();
 		bitUtils = new BitmapUtils(activity);
 		pushHandler = new PushHandler();
+
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
 		// 网络请求数据
@@ -114,16 +119,10 @@ public class PushFragment extends Fragment implements OnClickListener {
 		lv_home_head = inflater.inflate(R.layout.head_listview_home, null);
 		vp_home_head_loop = (HeightWarpViewPager) this.lv_home_head
 				.findViewById(R.id.vp_home);
-		points = new View[3];
-		points[0] = (View) lv_home_head.findViewById(R.id.v_frag1);
-		points[1] = (View) lv_home_head.findViewById(R.id.v_frag2);
-		points[2] = (View) lv_home_head.findViewById(R.id.v_frag3);
+		ll_point = (LinearLayout) lv_home_head.findViewById(R.id.ll_vvv);
+		points = new ArrayList<View>();
 		this.list_loopView = new ArrayList<View>();
-		View[] loopViews = new View[5];
-		for (int i = 0; i < loopViews.length; i++) {
-			loopViews[i] = inflater.inflate(R.layout.viewpager_loop_view, null);
-			this.list_loopView.add(loopViews[i]);
-		}
+
 		lv_home.addHeaderView(lv_home_head);
 		ll_siftaction = (LinearLayout) lv_home_head
 				.findViewById(R.id.ll_siftaction);
@@ -188,13 +187,40 @@ public class PushFragment extends Fragment implements OnClickListener {
 				m++;
 			}
 		}
+
+		View[] loopViews = new View[bannerList.size() + 2];
+		for (int i = 0; i < loopViews.length; i++) {
+			loopViews[i] = inflater.inflate(R.layout.viewpager_loop_view, null);
+			this.list_loopView.add(loopViews[i]);
+		}
+		Log.e("ss", bannerList.size() + "");
 		loopList.clear();
 		for (int i = 0; i < bannerList.size(); i++) {
 			loopList.add(bannerList.get(i));
 		}
+		initPoint();
 		setLoop();
 		// 刷新主页列表
 		adapter.notifyDataSetInvalidated();
+	}
+
+	private void initPoint() {
+		if (loopList != null && loopList.size() > 0) {
+			for (int i = 0; i < loopList.size(); i++) {
+				View v = new View(activity);
+				WindowManager wm = (WindowManager) activity
+						.getSystemService(activity.WINDOW_SERVICE);
+				int width = wm.getDefaultDisplay().getWidth();
+				v.setLayoutParams(new LayoutParams(width / 21, width / 21));
+				if (i == 0) {
+					v.setBackgroundResource(R.drawable.icon_like_y);
+				} else {
+					v.setBackgroundResource(R.drawable.unicon_like);
+				}
+				ll_point.addView(v);
+				points.add(v);
+			}
+		}
 	}
 
 	/** 设置轮播功能 */
@@ -204,10 +230,10 @@ public class PushFragment extends Fragment implements OnClickListener {
 					R.id.iv_show);
 			if (loopList != null && loopList.size() > 0) {
 				if (i == 0) {
-					bitUtils.display(iv_show, loopList.get(2)
+					bitUtils.display(iv_show, loopList.get(loopList.size() - 1)
 							.getCoverThumbUrl(), MyBitmapConfig
 							.getConfig(activity));
-				} else if (i == 4) {
+				} else if (i == list_loopView.size() - 1) {
 					bitUtils.display(iv_show, loopList.get(0)
 							.getCoverThumbUrl(), MyBitmapConfig
 							.getConfig(activity));
@@ -218,6 +244,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 				}
 			}
 		}
+
 		loopAdapter = new VPLoopAdapter(this.getActivity(), list_loopView,
 				vp_home_head_loop);
 		vp_home_head_loop.setAdapter(loopAdapter);
@@ -265,31 +292,37 @@ public class PushFragment extends Fragment implements OnClickListener {
 	/** 设置轮播图片点的显示 */
 	private void setPointShow(int position) {
 		loopindex = position;
-		if (position == 4) {
-			points[0]
-					.setBackgroundResource(R.drawable.abc_list_longpressed_holoy);
-			points[1]
-					.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
-			points[2]
-					.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
+		if (position == list_loopView.size()) {
+			for (int i = 0; i < loopList.size(); i++) {
+				if (i == 0) {
+					points.get(i).setBackgroundResource(
+							R.drawable.icon_like_y);
+				} else {
+					points.get(i).setBackgroundResource(
+							R.drawable.unicon_like);
+				}
+			}
 			return;
 		}
 		if (position == 0) {
-			points[2]
-					.setBackgroundResource(R.drawable.abc_list_longpressed_holoy);
-			points[1]
-					.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
-			points[0]
-					.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
+			for (int i = 0; i < loopList.size(); i++) {
+				if (i == loopList.size()) {
+					points.get(i).setBackgroundResource(
+							R.drawable.icon_like_y);
+				} else {
+					points.get(i).setBackgroundResource(
+							R.drawable.unicon_like);
+				}
+			}
 			return;
 		}
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < loopList.size(); i++) {
 			if (position == (i + 1)) {
-				points[i]
-						.setBackgroundResource(R.drawable.abc_list_longpressed_holoy);
+				points.get(i).setBackgroundResource(
+						R.drawable.icon_like_y);
 			} else {
-				points[i]
-						.setBackgroundResource(R.drawable.abc_list_pressed_holo_dark);
+				points.get(i).setBackgroundResource(
+						R.drawable.unicon_like);
 			}
 		}
 	}

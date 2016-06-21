@@ -17,25 +17,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
         android:orientation="horizontal" >
-        <View
-            android:id="@+id/v_frag1"
-            android:layout_width="5dp"
-            android:layout_height="5dp"
-            android:background="@drawable/abc_list_longpressed_holoy" />
-
-        <View
-            android:id="@+id/v_frag2"
-            android:layout_width="5dp"
-            android:layout_height="5dp"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/abc_list_pressed_holo_dark" />
-
-        <View
-            android:id="@+id/v_frag3"
-            android:layout_width="5dp"
-            android:layout_height="5dp"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/abc_list_pressed_holo_dark" />
     </LinearLayout>
 
     <LinearLayout
