@@ -24,6 +24,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.SelectAdapter;
 import com.suixin.vy.core.BaseActivity;
+import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.model.select.PlanList;
 import com.suixin.vy.model.select.SelectModel;
 
@@ -118,6 +119,9 @@ public class SelectActivity extends BaseActivity {
 	}
 
 	private void getJson() {
+		if(!JudgeNET.isNetable(this)){
+			return;
+		}
 		RequestParams params = new RequestParams();
 		// 这是cookie里的参数
 		params.addQueryStringParameter("AppVer", "2.0");

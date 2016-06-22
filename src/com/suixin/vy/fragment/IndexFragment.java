@@ -3,6 +3,7 @@ package com.suixin.vy.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,7 +34,13 @@ public class IndexFragment extends Fragment implements OnClickListener {
 	private ViewPager vp_home;
 	private Fragment v_home, v_currcity, v_pack, v_rank;
 	private List<Fragment> list;
-	
+	private Activity activity;
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.activity = activity;
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

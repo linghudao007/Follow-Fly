@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.suixin.vy.core.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rfl_ref"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+	
  	<ListView
  	    android:id="@+id/lv_home"
  	    android:layout_width="match_parent"
@@ -12,4 +13,4 @@
  	    android:dividerHeight="10dp"
  	    android:scrollbars="none" />
 
-</LinearLayout>
+</com.suixin.vy.core.RefreshLayout>

@@ -15,11 +15,12 @@ import com.lidroid.xutils.BitmapUtils;
 import com.suixin.vy.adapter.PhotoAdapter;
 import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.BaseActivity;
+import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.core.MyBitmapConfig;
 
 /**
  * 照片大图显示页面
- * 
+ * 需要intent 传进一个照片int 下标数（从0计算），和照片网址列表
  * @author yxy
  * 
  */
@@ -101,6 +102,9 @@ public class PhotoFillActivity extends BaseActivity {
 
 	@Override
 	protected void getData() {
+		if(!JudgeNET.isNetable(this)){
+			return;
+		}
 		for (int i = 0; i < photocount; i++) {
 			View v = inflater.inflate(R.layout.viewpager_photo, null);
 			ImageView iv = (ImageView)v.findViewById(R.id.iv_photofill);

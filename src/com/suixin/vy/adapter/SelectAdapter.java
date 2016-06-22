@@ -1,22 +1,27 @@
 package com.suixin.vy.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 import com.lidroid.xutils.BitmapUtils;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.core.TimeFactory;
 import com.suixin.vy.model.select.PlanList;
+import com.suixin.vy.ui.PhotoFillActivity;
 import com.suixin.vy.ui.R;
 
 public class SelectAdapter extends BaseAdapter {
@@ -109,7 +114,7 @@ public class SelectAdapter extends BaseAdapter {
 		return v;
 	}
 
-	private void setPersonalContent(ViewHolder holder, PlanList plan) {
+	private void setPersonalContent(ViewHolder holder, final PlanList plan) {
 		bitUtils.display(holder.head, plan.getMemberList().get(0)
 				.getAvatarThumbUrl(), MyBitmapConfig.getConfig(context));
 		holder.name.setText(plan.getMemberList().get(0).getNick());
@@ -157,21 +162,62 @@ public class SelectAdapter extends BaseAdapter {
 		} else {
 			holder.photos[0].setVisibility(View.VISIBLE);
 			bitUtils.display(holder.photos[0], plan.getFirstPhotoUrl());
+			holder.photos[0].setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					startActivity(plan, 1);
+				}
+
+			});
 		}
 		if (plan.getSecondPhotoUrl().equals("")) {
 			holder.photos[1].setVisibility(View.INVISIBLE);
 		} else {
 			holder.photos[1].setVisibility(View.VISIBLE);
 			bitUtils.display(holder.photos[1], plan.getSecondPhotoUrl());
+			holder.photos[1].setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					startActivity(plan, 2);
+				}
+
+			});
 		}
-		if (plan.getSecondPhotoUrl().equals("")) {
+		if (plan.getThirdPhotoUrl().equals("")) {
 			holder.photos[2].setVisibility(View.INVISIBLE);
 		} else {
 			holder.photos[2].setVisibility(View.VISIBLE);
 			bitUtils.display(holder.photos[2], plan.getThirdPhotoUrl());
+			holder.photos[2].setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					startActivity(plan, 3);
+				}
+
+			});
 		}
 	}
-
+	/**启动照片大图显示页面*/
+	private void startActivity(final PlanList plan, int i) {
+		Intent intent = new Intent();
+		intent.setClass(context, PhotoFillActivity.class);
+		intent.putExtra(AppConfig.PHOTOINDEX, i);
+		ArrayList<String> arr = new ArrayList<String>();
+		if (!plan.getFirstPhotoUrl().equals("")) {
+			arr.add(plan.getFirstPhotoUrl());
+		}
+		if (!plan.getSecondPhotoUrl().equals("")) {
+			arr.add(plan.getSecondPhotoUrl());
+		}
+		if (!plan.getThirdPhotoUrl().equals("")) {
+			arr.add(plan.getThirdPhotoUrl());
+		}
+		intent.putStringArrayListExtra(AppConfig.PHOTO, arr);
+		context.startActivity(intent);
+	}
 	/** 设置Plan的显示 */
 	private void setPlanContent(ViewHolder holder, PlanList plan) {
 		bitUtils.display(holder.bg, plan.getFirstPhotoUrl(),MyBitmapConfig.getConfig(context));

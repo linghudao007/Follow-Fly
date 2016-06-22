@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TasksCompletedView">
+        <attr name="radius" format="dimension" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="circleColor" format="color" />
+    </declare-styleable>
+    <!-- 参考Seekbar -->
+    <attr name="circlecolor" format="color"></attr>
+    <attr name="half" format="dimension"></attr>
+
+    <declare-styleable name="myCircleImage">
+        <attr name="circlecolor"></attr>
+        <attr name="half"></attr>
+    </declare-styleable>
+
+</resources>

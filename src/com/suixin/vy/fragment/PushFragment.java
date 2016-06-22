@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,7 +36,10 @@ import com.suixin.vy.adapter.HomeListAdapter;
 import com.suixin.vy.adapter.VPLoopAdapter;
 import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.HeightWarpViewPager;
+import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.core.MyBitmapConfig;
+import com.suixin.vy.core.RefreshLayout;
+import com.suixin.vy.core.RefreshLayout.PullToRefreshListener;
 import com.suixin.vy.model.AllModel;
 import com.suixin.vy.model.BannerList;
 import com.suixin.vy.model.PlanList;
@@ -45,6 +49,8 @@ import com.suixin.vy.ui.R;
 import com.suixin.vy.ui.ThemeActionActivity;
 
 public class PushFragment extends Fragment implements OnClickListener {
+	/** 刷新布局 */
+	private RefreshLayout reflayout;
 	/** ListView */
 	private ListView lv_home;
 	/** 获取来列表的数据 */
@@ -104,6 +110,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 		lv_home.setAdapter(adapter);
 		addListener();
 		return view;
+
 	}
 
 	private void addListener() {
@@ -112,10 +119,25 @@ public class PushFragment extends Fragment implements OnClickListener {
 		ll_thisrecommend.setOnClickListener(this);
 		ll_hottrip.setOnClickListener(this);
 		ll_online.setOnClickListener(this);
+		reflayout.setOnRefreshListener(new PullToRefreshListener() {
+			@Override
+			public void onRefresh() {
+				
+				// 网络请求数据
+				getJson();
+				try {  
+		            Thread.sleep(2500);  
+		        } catch (InterruptedException e) {  
+		            e.printStackTrace();  
+		        }  
+				reflayout.finishRefreshing();
+			}
+		}, 0);
 	}
 
 	/** 实例化推荐中的控件 */
 	private void initLv_home(LayoutInflater inflater, ViewGroup container) {
+		reflayout = (RefreshLayout) view.findViewById(R.id.rfl_ref);
 		lv_home = (ListView) view.findViewById(R.id.lv_home);
 		lv_home_head = inflater.inflate(R.layout.head_listview_home, null);
 		vp_home_head_loop = (HeightWarpViewPager) this.lv_home_head
@@ -135,6 +157,9 @@ public class PushFragment extends Fragment implements OnClickListener {
 
 	/** 通过接口解析JSON */
 	private void getJson() {
+		if (!JudgeNET.isNetable(activity)) {
+			return;
+		}
 		RequestParams params = new RequestParams();
 		// 这是cookie里的参数
 		params.addQueryStringParameter("AppVer", "2.0");
@@ -170,6 +195,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 		List<String> mixedList = all.getData().getMixedList();
 		type.clear();
 		type.addAll(mixedList);
+		list_home.clear();
 		List<BannerList> bannerList = all.getData().getBannerList();
 		List<UserList> userList = all.getData().getUserList();
 		List<TourPicList> tourPicList = all.getData().getTourPicList();
@@ -188,7 +214,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 				m++;
 			}
 		}
-
+		this.list_loopView.clear();
 		View[] loopViews = new View[bannerList.size() + 2];
 		for (int i = 0; i < loopViews.length; i++) {
 			loopViews[i] = inflater.inflate(R.layout.viewpager_loop_view, null);
@@ -206,6 +232,8 @@ public class PushFragment extends Fragment implements OnClickListener {
 	}
 
 	private void initPoint() {
+		ll_point.removeAllViews();
+		points.clear();
 		if (loopList != null && loopList.size() > 0) {
 			for (int i = 0; i < loopList.size(); i++) {
 				View v = new View(activity);
@@ -287,7 +315,11 @@ public class PushFragment extends Fragment implements OnClickListener {
 		// 设置轮播的初始显示页面位置
 		vp_home_head_loop.setCurrentItem(1, false);
 		// 开始计时器
-		pushHandler.sendEmptyMessageDelayed(1, 2000);
+		if (pushHandler.hasMessages(1)) {
+			pushHandler.removeMessages(1);
+		}else{
+			pushHandler.sendEmptyMessageDelayed(1, 2000);
+		}
 	}
 
 	/** 设置轮播图片点的显示 */
@@ -296,11 +328,9 @@ public class PushFragment extends Fragment implements OnClickListener {
 		if (position == list_loopView.size()) {
 			for (int i = 0; i < loopList.size(); i++) {
 				if (i == 0) {
-					points.get(i).setBackgroundResource(
-							R.drawable.icon_like_y);
+					points.get(i).setBackgroundResource(R.drawable.icon_like_y);
 				} else {
-					points.get(i).setBackgroundResource(
-							R.drawable.unicon_like);
+					points.get(i).setBackgroundResource(R.drawable.unicon_like);
 				}
 			}
 			return;
@@ -308,22 +338,18 @@ public class PushFragment extends Fragment implements OnClickListener {
 		if (position == 0) {
 			for (int i = 0; i < loopList.size(); i++) {
 				if (i == loopList.size()) {
-					points.get(i).setBackgroundResource(
-							R.drawable.icon_like_y);
+					points.get(i).setBackgroundResource(R.drawable.icon_like_y);
 				} else {
-					points.get(i).setBackgroundResource(
-							R.drawable.unicon_like);
+					points.get(i).setBackgroundResource(R.drawable.unicon_like);
 				}
 			}
 			return;
 		}
 		for (int i = 0; i < loopList.size(); i++) {
 			if (position == (i + 1)) {
-				points.get(i).setBackgroundResource(
-						R.drawable.icon_like_y);
+				points.get(i).setBackgroundResource(R.drawable.icon_like_y);
 			} else {
-				points.get(i).setBackgroundResource(
-						R.drawable.unicon_like);
+				points.get(i).setBackgroundResource(R.drawable.unicon_like);
 			}
 		}
 	}

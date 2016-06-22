@@ -23,6 +23,7 @@ import com.suixin.vy.adapter.PackAdapter;
 import com.suixin.vy.adapter.ThemeAdapter;
 import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.BaseActivity;
+import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.model.theme.PlanList;
 import com.suixin.vy.model.theme.ThemeModel;
 
@@ -81,6 +82,9 @@ public class ThemeActionActivity extends BaseActivity {
 	}
 
 	private void getJson() {
+		if(!JudgeNET.isNetable(this)){
+			return;
+		}
 		RequestParams params = new RequestParams();
 		// 这是cookie里的参数
 		params.addQueryStringParameter("AppVer", "2.0");
