@@ -16,14 +16,14 @@ public class MyAdapter extends BaseAdapter {
 
 	public static final String KEY = "key";
 	public static final String VALUE = "value";
-
-	public static final int listvit_item_one = 0;// 7种不同的布局
+	public static final int listvit_item_one = 0;// 8种不同的布局
 	public static final int listvit_item_tow = 1;
 	public static final int listvit_item_photo = 2;
 	public static final int listvit_item_sex = 3;
 	public static final int listvit_item_foot = 4;
 	public static final int listvit_item_head_tow = 5;
 	public static final int listvit_item_head_one = 6;
+	public static final int listvit_tow_lee = 7;
 	private LayoutInflater mInflater;
 
 	private List<Message> myList;
@@ -105,8 +105,13 @@ public class MyAdapter extends BaseAdapter {
 				convertView = mInflater.inflate(
 						R.layout.listview_item_head_one, null);
 				break;
+			case listvit_tow_lee:
+
+				convertView = mInflater.inflate(
+						R.layout.listview_tow_lee, null);
+				break;
+				
 				default:
-					Log.e("sss", "foot");
 					break;
 			}
 
