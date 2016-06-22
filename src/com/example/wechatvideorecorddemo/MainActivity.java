@@ -3,6 +3,7 @@ package com.example.wechatvideorecorddemo;
 import com.example.wechatvideorecorddemo.MovieRecorderView.OnRecordFinishListener;
 import com.suixin.vy.ui.R;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,7 +47,7 @@ public class MainActivity extends Activity {
 						// if (mRecorderView.getVecordFile() != null)
 						//	mRecorderView.getVecordFile().delete();
 						mRecorderView.stop();
-						Toast.makeText(MainActivity.this, "ÊÓÆµÂ¼ÖÆÊ±¼äÌ«¶Ì",
+						Toast.makeText(MainActivity.this, "ï¿½ï¿½ÆµÂ¼ï¿½ï¿½Ê±ï¿½ï¿½Ì«ï¿½ï¿½",
 								Toast.LENGTH_SHORT).show();
 					}
 				}
@@ -93,7 +94,7 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * Â¼ÖÆÍê³É»Øµ÷
+	 * Â¼ï¿½ï¿½ï¿½ï¿½É»Øµï¿½
 	 * 
 	 * @author liuyinjun
 	 * 

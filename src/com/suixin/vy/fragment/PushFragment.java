@@ -128,6 +128,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 				try {  
 		            Thread.sleep(2500);  
 		        } catch (InterruptedException e) {  
+		        	
 		            e.printStackTrace();  
 		        }  
 				reflayout.finishRefreshing();

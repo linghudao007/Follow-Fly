@@ -29,15 +29,7 @@ public class MainActivity_Lee extends Activity {
 				startActivity(intent);
 			}
 		});
-		btn_1.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				Intent intent = new Intent(MainActivity_Lee.this,
-						MainActivity.class);
-				startActivity(intent);
-			}
-		});
+		
 
 	}
 
