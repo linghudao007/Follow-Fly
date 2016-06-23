@@ -13,40 +13,39 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.ui.R;
 import com.suixin.vz.strike.model.StrikeModel;
 import com.suixin.vz.strike.model.TourPicList;
-import com.suixin.vz.ui.adapter.FindAdapter;
+import com.suixin.vz.ui.adapter.MRecyclerAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 public class FindFragment extends Fragment {
+    /** ListView */
+    private RecyclerView rlv_find;
+
     /** 获取来发现的显示数据 */
     private List<TourPicList> list;
-    private List<TourPicList> list2;
 
-    /** ListView */
-    private ListView lv_vz_Strike1, lv_vz_Strike2;
+    private MRecyclerAdapter adapter;
 
     /** 获取来的发现总数据 */
     private StrikeModel Strike;
 
     private View view;
 
-    private FindAdapter adapter;
-    private FindAdapter adapters;
+    private Activity activity;
 
     private String tag = "FindFragment";
-
-    private Activity activity;
 
     public void onAttach(android.app.Activity activity) {
         this.activity = activity;
         super.onAttach(activity);
-    };
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,34 +53,30 @@ public class FindFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_listview_find_vz,
                 container, false);
         this.view = view;
-        list = new ArrayList<TourPicList>();
-        list2 = new ArrayList<TourPicList>();
-        Log.e("ff", "list");
         // 实例化发现中的控件
         initLv_find(inflater, container);
         getJson();
-        Log.e("ff", "getJson");
-        adapters = new FindAdapter(list, this.activity);
-        lv_vz_Strike1.setAdapter(adapters);
-        adapter = new FindAdapter(list2, this.activity);
-        lv_vz_Strike2.setAdapter(adapter);
-        Log.e("ff", "lv_vz_Strike");
         return view;
     }
 
     /** 实例化发现中的控件 */
     private void initLv_find(LayoutInflater inflater, ViewGroup container) {
-        lv_vz_Strike1 = (ListView) view.findViewById(R.id.lv_find1);
-        lv_vz_Strike2 = (ListView) view.findViewById(R.id.lv_find2);
+        rlv_find = (RecyclerView) view.findViewById(R.id.rlv_find);
+        list = new ArrayList<TourPicList>();
+        // 设置adapter
+        adapter = new MRecyclerAdapter(list, activity);
+        rlv_find.setAdapter(adapter);
+        // 设置layoutManager 参数含义显而易见，2就是2列，第二个参数是垂直方向
+        rlv_find.setLayoutManager(new StaggeredGridLayoutManager(2,
+                StaggeredGridLayoutManager.VERTICAL));
+        // 设置item之间的间隔
     }
 
     // 解析发现
     private void getJson() {
         RequestParams params = new RequestParams();
         params.addBodyParameter("OrderStr", "");
-        Log.e("ff", "params");
         HttpUtils http = new HttpUtils();
-        Log.e("ff", http + "");
         http.send(HttpRequest.HttpMethod.POST,
                 "http://www.duckr.cn/api/v5/tourpic/sequare/list/", params,
                 new RequestCallBack<String>() {
@@ -118,16 +113,9 @@ public class FindFragment extends Fragment {
 
     private void getHotListViewData() {
         List<TourPicList> tourPicList = Strike.getData().getTourPicList();
-        int spit = (int) Math.ceil(tourPicList.size()/2);
-        Log.i("getHotListViewData", spit+"");
-        
         list.clear();
-        list.addAll(tourPicList.subList(0, spit));
-        
-        list2.clear();
-        list2.addAll(tourPicList.subList(spit, tourPicList.size()));
-        adapter.notifyDataSetInvalidated();
+        list.addAll(tourPicList);
+        adapter.notifyDataSetChanged();
         Log.e("ff", adapter + "notifyDa");
     }
-
 }

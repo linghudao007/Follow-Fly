@@ -67,6 +67,7 @@ public class TripFragment extends Fragment implements OnClickListener {
     }
 
     private void addListener() {
+        fragment_hot_listview_vz.setOnClickListener(this);
         fragment_listview_find_vz.setOnClickListener(this);
         fragment_attention_vz.setOnClickListener(this);
         pager.setOnPageChangeListener(new OnPageChangeListener() {
