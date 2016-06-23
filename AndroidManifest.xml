@@ -13,7 +13,6 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -51,6 +50,10 @@
         <activity android:name="com.suixin.vy.ui.ThemeActionActivity" >
         </activity>
         <activity android:name="com.suixin.vy.ui.PhotoFillActivity" >
+        </activity>
+        <activity android:name="com.example.girdviewtest.MainActivity" >
+        </activity>
+         <activity android:name="com.example.wechatvideorecorddemo.MainActivity" >
         </activity>
         <activity
             android:name=".ActivityLoging"

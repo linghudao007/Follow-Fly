@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.bitmap.BitmapCommonUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.core.TimeFactory;
@@ -291,7 +292,8 @@ public class HomeListAdapter extends BaseAdapter {
 		}
 		return v;
 	}
-	private void setPersonalContent(ViewHolder holder, PlanList plan) {
+
+	private void setPersonalContent(ViewHolder holder, final PlanList plan) {
 		bitUtils.display(holder.head, plan.getMemberList().get(0)
 				.getAvatarThumbUrl(), MyBitmapConfig.getConfig(context));
 		holder.name.setText(plan.getMemberList().get(0).getNick());
@@ -303,11 +305,11 @@ public class HomeListAdapter extends BaseAdapter {
 			holder.age.setBackgroundResource(R.drawable.girl);
 		}
 		holder.time.setText(TimeFactory.format(plan.getCreatedTime()));
-		String path ="";
-		for(int i = 0;i<plan.getDestinationNames().size();i++){
-			path=path+"-"+plan.getDestinationNames().get(i);
+		String path = "";
+		for (int i = 0; i < plan.getDestinationNames().size(); i++) {
+			path = path + "-" + plan.getDestinationNames().get(i);
 		}
-		holder.path.setText(plan.getDepartName()+path);
+		holder.path.setText(plan.getDepartName() + path);
 		holder.describe.setText(plan.getDescription());
 		holder.location.setText(plan.getPublishPlace());
 		if (plan.getCommentNumber() == 0) {
@@ -339,19 +341,61 @@ public class HomeListAdapter extends BaseAdapter {
 		} else {
 			holder.photos[0].setVisibility(View.VISIBLE);
 			bitUtils.display(holder.photos[0], plan.getFirstPhotoUrl());
+			holder.photos[0].setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					startActivity(plan, 1);
+				}
+
+			});
 		}
 		if (plan.getSecondPhotoUrl().equals("")) {
 			holder.photos[1].setVisibility(View.INVISIBLE);
 		} else {
 			holder.photos[1].setVisibility(View.VISIBLE);
 			bitUtils.display(holder.photos[1], plan.getSecondPhotoUrl());
+			holder.photos[1].setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					startActivity(plan, 2);
+				}
+
+			});
 		}
-		if (plan.getSecondPhotoUrl().equals("")) {
+		if (plan.getThirdPhotoUrl().equals("")) {
 			holder.photos[2].setVisibility(View.INVISIBLE);
 		} else {
 			holder.photos[2].setVisibility(View.VISIBLE);
 			bitUtils.display(holder.photos[2], plan.getThirdPhotoUrl());
+			holder.photos[2].setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					startActivity(plan, 3);
+				}
+
+			});
 		}
+	}
+
+	private void startActivity(final PlanList plan, int i) {
+		Intent intent = new Intent();
+		intent.setClass(context, PhotoFillActivity.class);
+		intent.putExtra(AppConfig.PHOTOINDEX, i);
+		ArrayList<String> arr = new ArrayList<String>();
+		if (!plan.getFirstPhotoUrl().equals("")) {
+			arr.add(plan.getFirstPhotoUrl());
+		}
+		if (!plan.getSecondPhotoUrl().equals("")) {
+			arr.add(plan.getSecondPhotoUrl());
+		}
+		if (!plan.getThirdPhotoUrl().equals("")) {
+			arr.add(plan.getThirdPhotoUrl());
+		}
+		intent.putStringArrayListExtra(AppConfig.PHOTO, arr);
+		context.startActivity(intent);
 	}
 
 	private void setTourPicContent(ViewHolder holder, final TourPicList tourPic) {
@@ -395,14 +439,16 @@ public class HomeListAdapter extends BaseAdapter {
 		for (int i = 0; i < tourPic.getThumbPhotoUrls().size(); i++) {
 			bitUtils.display(holder.photos[i],
 					tourPic.getThumbPhotoUrls().get(i));
-			holder.photos[i].setOnClickListener(new OnClickListener(){
+			final int j = i;
+			holder.photos[i].setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent();
 					intent.setClass(context, PhotoFillActivity.class);
-					intent.putStringArrayListExtra("photo", (ArrayList<String>) tourPic.getThumbPhotoUrls());
+					intent.putExtra(AppConfig.PHOTOINDEX, j + 1);
+					intent.putStringArrayListExtra(AppConfig.PHOTO,
+							(ArrayList<String>) tourPic.getThumbPhotoUrls());
 					context.startActivity(intent);
-					
 				}
 			});
 		}
@@ -479,8 +525,8 @@ public class HomeListAdapter extends BaseAdapter {
 
 	class ViewHolder {
 		private CircleImageView head;
-		private TextView name, time, age,path, describe, location, reviewCount,
-				praiseCount;
+		private TextView name, time, age, path, describe, location,
+				reviewCount, praiseCount;
 		private ImageView[] photos;
 		private TextView concern;
 		private ImageView bg, isLike;

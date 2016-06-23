@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.PackAdapter;
+import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.model.pack.PackModel;
 import com.suixin.vy.model.pack.PlanList;
 import com.suixin.vy.ui.R;
@@ -69,7 +71,13 @@ public class PackFragment extends Fragment implements OnClickListener,
 	private String locName = "北京市", destName, departName, startDate, endDate,
 			orderStr,planType;
 	private int startY = 0;
+	private Activity activity;
 
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.activity = activity;
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -144,6 +152,9 @@ public class PackFragment extends Fragment implements OnClickListener,
 	}
 
 	private void getJson() {
+		if(!JudgeNET.isNetable(activity)){
+			return;
+		}
 		departName = et_citystart.getText().toString().trim();
 		destName = et_cityend.getText().toString().trim();
 		setTime();

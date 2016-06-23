@@ -3,6 +3,7 @@ package com.suixin.vy.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.RankListAdapter;
+import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.core.MyBitmapConfig;
 import com.suixin.vy.model.rank.DuckrBoradList;
 import com.suixin.vy.model.rank.HotDuckrList;
@@ -61,7 +63,13 @@ public class RankFragment extends Fragment implements OnClickListener {
 
 	private static final String URLSTR = "http://www.duckr.cn/api/v5/homepage/duckr/";
 	private static final int SIX = 6;
+	private Activity activity;
 
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.activity = activity;
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -89,6 +97,9 @@ public class RankFragment extends Fragment implements OnClickListener {
 	}
 
 	private void getJson() {
+		if(!JudgeNET.isNetable(activity)){
+			return;
+		}
 		// 这是cookie里的参数
 		params.addQueryStringParameter("AppVer", "2.0");
 		params.addQueryStringParameter("DeviceType", "1");

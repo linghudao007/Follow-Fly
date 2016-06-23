@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f7f5"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/tow_rlt1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:color/white" >
+
+        <Button
+            android:id="@+id/retreat"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:contentDescription="@string/action_settings"
+            android:text="取消" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发布旅图"
+            android:textSize="20sp" />
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:text="发布"
+            android:textColor="#706b66"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        android:layout_marginTop="1dp"
+        android:background="#ffffff"
+        android:gravity="top"
+        android:hint="分享此刻"
+        android:inputType="textMultiLine"
+        android:paddingLeft="14dp"
+        android:paddingTop="14dp"
+        android:textColorHint="#aba7a2"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <GridView
+            android:id="@+id/GridView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff"
+            android:numColumns="4" >
+        </GridView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tow_rlt2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff" >
+
+        <RelativeLayout
+            android:id="@+id/tow_rlt3"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:background="#ffffff" >
+
+            <ImageView
+                android:id="@+id/tow_imav1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:background="#ffffff"
+                android:src="@drawable/ic_launcher" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/tow_rlt3"
+            android:background="#ffffff"
+            android:text="标记这是哪里"
+            android:textColor="#7f7f7f"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tow_rlt4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#f7f7f5" >
+
+        <RelativeLayout
+            android:id="@+id/tow_rlt5"
+            android:layout_width="48dp"
+            android:layout_height="50dp"
+            android:background="#ffffff" >
+
+            <ImageView
+                android:id="@+id/tow_imav2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="#ffffff"
+                android:src="@drawable/ic_launcher" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlt6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@id/tow_rlt5"
+            android:background="#ffffff" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="#ffffff"
+                android:text="关联到那次活动"
+                android:textColor="#7f7f7f"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.girdviewtest.MainActivity;
 import com.suixin.vlee.ui.MainActivity_Lee;
 import com.suixin.vy.adapter.GVBottomAdapter;
 import com.suixin.vy.core.BaseActivity;
@@ -121,6 +122,14 @@ public class HomeActivity extends BaseActivity {
 		case R.id.iv_invite:
 			Intent intent = new Intent(this, MainActivity_Lee.class);
 			this.startActivity(intent);
+			break;
+		case R.id.iv_showtrip:
+			Intent intent_2 = new Intent(this, com.example.girdviewtest.MainActivity.class);
+			this.startActivity(intent_2);
+			break;
+		case R.id.iv_video:
+			Intent intent_3 = new Intent(this, com.example.wechatvideorecorddemo.MainActivity.class);
+			this.startActivity(intent_3);
 			break;
 		default:
 			break;
@@ -243,6 +252,8 @@ public class HomeActivity extends BaseActivity {
 		btn_home.setOnClickListener(this);
 
 		iv_invite.setOnClickListener(this);
+		iv_showtrip.setOnClickListener(this);
+		iv_video.setOnClickListener(this);
 	}
 
 	@Override

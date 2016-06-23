@@ -3,6 +3,7 @@ package com.suixin.vy.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.HomeListAdapter;
+import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.model.PlanList;
 import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.curr.CurrCityModel;
@@ -60,7 +62,13 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 	/** 网络请求 */
 	private HttpUtils http;
 	private BitmapUtils bitUtils;
+	private Activity activity;
 
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.activity = activity;
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -84,6 +92,9 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 	}
 
 	private void getJson() {
+		if(!JudgeNET.isNetable(activity)){
+			return;
+		}
 		// 这是cookie里的参数
 		params.addQueryStringParameter("AppVer", "2.0");
 		params.addQueryStringParameter("DeviceType", "1");

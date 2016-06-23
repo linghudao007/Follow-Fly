@@ -29,4 +29,7 @@
    	<color name="color_blue_s">#F1F6ED</color>
    	<color name="action_press" >#aaff0000</color>
     <color name="action_normal">#44ff0000</color>
+     <color name="title_txt_color">#f1f1f3</color>
+    <color name="circle_color">#323a45</color>
+    <color name="ring_color">#14b9d6</color>
 </resources>
