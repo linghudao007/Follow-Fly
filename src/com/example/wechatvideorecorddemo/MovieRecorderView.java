@@ -28,9 +28,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 /**
- * ÊÓÆµ²¥·Å¿Ø¼ş
+ * è§†é¢‘æ’­æ”¾æ§ä»¶
  * 
- * @name lee
+ * @author liuyinjun  http://www.oschina.net/code/snippet_1460984_46115
  * 
  * @date 2015-2-5
  */
@@ -42,15 +42,15 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 
 	private MediaRecorder mMediaRecorder;
 	private Camera mCamera;
-	private Timer mTimer;// ¼ÆÊ±Æ÷
-	private OnRecordFinishListener mOnRecordFinishListener;// Â¼ÖÆÍê³É»Øµ÷½Ó¿Ú
+	private Timer mTimer;// è®¡æ—¶å™¨
+	private OnRecordFinishListener mOnRecordFinishListener;// å½•åˆ¶å®Œæˆå›è°ƒæ¥å£
 
-	private int mWidth;// ÊÓÆµ·Ö±æÂÊ¿í¶È
-	private int mHeight;// ÊÓÆµ·Ö±æÂÊ¸ß¶È
-	private boolean isOpenCamera;// ÊÇ·ñÒ»¿ªÊ¼¾Í´ò¿ªÉãÏñÍ·
-	private int mRecordMaxTime;// Ò»´ÎÅÄÉã×î³¤Ê±¼ä
-	private int mTimeCount;// Ê±¼ä¼ÆÊı
-	private File mVecordFile = null;// ÎÄ¼ş
+	private int mWidth;// è§†é¢‘åˆ†è¾¨ç‡å®½åº¦
+	private int mHeight;// è§†é¢‘åˆ†è¾¨ç‡é«˜åº¦
+	private boolean isOpenCamera;// æ˜¯å¦ä¸€å¼€å§‹å°±æ‰“å¼€æ‘„åƒå¤´
+	private int mRecordMaxTime;// ä¸€æ¬¡æ‹æ‘„æœ€é•¿æ—¶é—´
+	private int mTimeCount;// æ—¶é—´è®¡æ•°
+	private File mVecordFile = null;// æ–‡ä»¶
 
 	public MovieRecorderView(Context context) {
 		this(context, null);
@@ -65,19 +65,19 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 
 		TypedArray a = context.obtainStyledAttributes(attrs,
 				R.styleable.MovieRecorderView, defStyle, 0);
-		mWidth = a.getInteger(R.styleable.MovieRecorderView_width, 320);// Ä¬ÈÏ320
-		mHeight = a.getInteger(R.styleable.MovieRecorderView_height, 240);// Ä¬ÈÏ240
+		mWidth = a.getInteger(R.styleable.MovieRecorderView_width, 320);// é»˜è®¤320
+		mHeight = a.getInteger(R.styleable.MovieRecorderView_height, 240);// é»˜è®¤240
 
 		isOpenCamera = a.getBoolean(
-				R.styleable.MovieRecorderView_is_open_camera, true);// Ä¬ÈÏ´ò¿ª
+				R.styleable.MovieRecorderView_is_open_camera, true);// é»˜è®¤æ‰“å¼€
 		mRecordMaxTime = a.getInteger(
-				R.styleable.MovieRecorderView_record_max_time, 10);// Ä¬ÈÏÎª10
+				R.styleable.MovieRecorderView_record_max_time, 10);// é»˜è®¤ä¸º10
 
 		LayoutInflater.from(context)
 				.inflate(R.layout.movie_recorder_view_lee, this);
 		mSurfaceView = (SurfaceView) findViewById(R.id.surfaceview);
 		mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-		mProgressBar.setMax(mRecordMaxTime);// ÉèÖÃ½ø¶ÈÌõ×î´óÁ¿
+		mProgressBar.setMax(mRecordMaxTime);// è®¾ç½®è¿›åº¦æ¡æœ€å¤§é‡
 
 		mSurfaceHolder = mSurfaceView.getHolder();
 		mSurfaceHolder.addCallback(new CustomCallBack());
@@ -122,7 +122,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 	}
 
 	/**
-	 * ³õÊ¼»¯ÉãÏñÍ·
+	 * åˆå§‹åŒ–æ‘„åƒå¤´
 	 * 
 	 * @author liuyinjun
 	 * @date 2015-2-5
@@ -149,7 +149,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 	}
 
 	/**
-	 * ÉèÖÃÉãÏñÍ·ÎªÊúÆÁ
+	 * è®¾ç½®æ‘„åƒå¤´ä¸ºç«–å±
 	 * 
 	 * @author liuyinjun
 	 * @date 2015-2-5
@@ -163,7 +163,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 	}
 
 	/**
-	 * ÊÍ·ÅÉãÏñÍ·×ÊÔ´
+	 * é‡Šæ”¾æ‘„åƒå¤´èµ„æº
 	 * 
 	 * @author liuyinjun
 	 * @date 2015-2-5
@@ -185,16 +185,16 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 			sampleDir.mkdirs();
 		}
 		File vecordDir = sampleDir;
-		// ´´½¨ÎÄ¼ş
+		// åˆ›å»ºæ–‡ä»¶
 		try {
-			mVecordFile = File.createTempFile("recording", ".mp4", vecordDir);// mp4¸ñÊ½
+			mVecordFile = File.createTempFile("recording", ".mp4", vecordDir);// mp4æ ¼å¼
 			// LogUtils.i(mVecordFile.getAbsolutePath());
 		} catch (IOException e) {
 		}
 	}
 
 	/**
-	 * ³õÊ¼»¯
+	 * åˆå§‹åŒ–
 	 * 
 	 * @author liuyinjun
 	 * @date 2015-2-5
@@ -207,15 +207,15 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 			mMediaRecorder.setCamera(mCamera);
 		mMediaRecorder.setOnErrorListener(this);
 		mMediaRecorder.setPreviewDisplay(mSurfaceHolder.getSurface());
-		mMediaRecorder.setVideoSource(VideoSource.CAMERA);// ÊÓÆµÔ´
-		mMediaRecorder.setAudioSource(AudioSource.MIC);// ÒôÆµÔ´
-		mMediaRecorder.setOutputFormat(OutputFormat.MPEG_4);// ÊÓÆµÊä³ö¸ñÊ½
-		mMediaRecorder.setAudioEncoder(AudioEncoder.AMR_NB);// ÒôÆµ¸ñÊ½
-		mMediaRecorder.setVideoSize(mWidth, mHeight);// ÉèÖÃ·Ö±æÂÊ£º
-		// mMediaRecorder.setVideoFrameRate(16);// Õâ¸öÎÒ°ÑËüÈ¥µôÁË£¬¸Ğ¾õÃ»Ê²Ã´ÓÃ
-		mMediaRecorder.setVideoEncodingBitRate(1 * 1024 * 512 * 2);// ÉèÖÃÖ¡ÆµÂÊ£¬È»ºó¾ÍÇåÎúÁË
-		mMediaRecorder.setOrientationHint(90);// Êä³öĞı×ª90¶È£¬±£³ÖÊúÆÁÂ¼ÖÆ
-		mMediaRecorder.setVideoEncoder(VideoEncoder.MPEG_4_SP);// ÊÓÆµÂ¼ÖÆ¸ñÊ½
+		mMediaRecorder.setVideoSource(VideoSource.CAMERA);// è§†é¢‘æº
+		mMediaRecorder.setAudioSource(AudioSource.MIC);// éŸ³é¢‘æº
+		mMediaRecorder.setOutputFormat(OutputFormat.MPEG_4);// è§†é¢‘è¾“å‡ºæ ¼å¼
+		mMediaRecorder.setAudioEncoder(AudioEncoder.AMR_NB);// éŸ³é¢‘æ ¼å¼
+		mMediaRecorder.setVideoSize(mWidth, mHeight);// è®¾ç½®åˆ†è¾¨ç‡ï¼š
+		// mMediaRecorder.setVideoFrameRate(16);// è¿™ä¸ªæˆ‘æŠŠå®ƒå»æ‰äº†ï¼Œæ„Ÿè§‰æ²¡ä»€ä¹ˆç”¨
+		mMediaRecorder.setVideoEncodingBitRate(1 * 1024 * 512 * 2);// è®¾ç½®å¸§é¢‘ç‡ï¼Œç„¶åå°±æ¸…æ™°äº†
+		mMediaRecorder.setOrientationHint(90);// è¾“å‡ºæ—‹è½¬90åº¦ï¼Œä¿æŒç«–å±å½•åˆ¶
+		mMediaRecorder.setVideoEncoder(VideoEncoder.MPEG_4_SP);// è§†é¢‘å½•åˆ¶æ ¼å¼
 		// mediaRecorder.setMaxDuration(Constant.MAXVEDIOTIME * 1000);
 		mMediaRecorder.setOutputFile(mVecordFile.getAbsolutePath());
 		mMediaRecorder.prepare();
@@ -231,23 +231,23 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 	}
 
 	/**
-	 * ¿ªÊ¼Â¼ÖÆÊÓÆµ
+	 * å¼€å§‹å½•åˆ¶è§†é¢‘
 	 * 
 	 * @author liuyinjun
 	 * @date 2015-2-5
 	 * @param fileName
-	 *            ÊÓÆµ´¢´æÎ»ÖÃ
+	 *            è§†é¢‘å‚¨å­˜ä½ç½®
 	 * @param onRecordFinishListener
-	 *            ´ïµ½Ö¸¶¨Ê±¼äÖ®ºó»Øµ÷½Ó¿Ú
+	 *            è¾¾åˆ°æŒ‡å®šæ—¶é—´ä¹‹åå›è°ƒæ¥å£
 	 */
 	public void record(final OnRecordFinishListener onRecordFinishListener) {
 		this.mOnRecordFinishListener = onRecordFinishListener;
 		createRecordDir();
 		try {
-			if (!isOpenCamera)// Èç¹ûÎ´´ò¿ªÉãÏñÍ·£¬Ôò´ò¿ª
+			if (!isOpenCamera)// å¦‚æœæœªæ‰“å¼€æ‘„åƒå¤´ï¼Œåˆ™æ‰“å¼€
 				initCamera();
 			initRecord();
-			mTimeCount = 0;// Ê±¼ä¼ÆÊıÆ÷ÖØĞÂ¸³Öµ
+			mTimeCount = 0;// æ—¶é—´è®¡æ•°å™¨é‡æ–°èµ‹å€¼
 			mTimer = new Timer();
 			mTimer.schedule(new TimerTask() {
 
@@ -255,8 +255,8 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 				public void run() {
 					// TODO Auto-generated method stub
 					mTimeCount++;
-					mProgressBar.setProgress(mTimeCount);// ÉèÖÃ½ø¶ÈÌõ
-					if (mTimeCount == mRecordMaxTime) {// ´ïµ½Ö¸¶¨Ê±¼ä£¬Í£Ö¹ÅÄÉã
+					mProgressBar.setProgress(mTimeCount);// è®¾ç½®è¿›åº¦æ¡
+					if (mTimeCount == mRecordMaxTime) {// è¾¾åˆ°æŒ‡å®šæ—¶é—´ï¼Œåœæ­¢æ‹æ‘„
 						stop();
 						if (mOnRecordFinishListener != null)
 							mOnRecordFinishListener.onRecordFinish();
@@ -269,7 +269,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 	}
 
 	/**
-	 * Í£Ö¹ÅÄÉã
+	 * åœæ­¢æ‹æ‘„
 	 * 
 	 * @author liuyinjun
 	 * @date 2015-2-5
@@ -281,7 +281,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 	}
 
 	/**
-	 * Í£Ö¹Â¼ÖÆ
+	 * åœæ­¢å½•åˆ¶
 	 * 
 	 * @author liuyinjun
 	 * @date 2015-2-5
@@ -291,7 +291,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 		if (mTimer != null)
 			mTimer.cancel();
 		if (mMediaRecorder != null) {
-			// ÉèÖÃºó²»»á±À
+			// è®¾ç½®åä¸ä¼šå´©
 			mMediaRecorder.setOnErrorListener(null);
 			mMediaRecorder.setPreviewDisplay(null);
 			try {
@@ -307,7 +307,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 	}
 
 	/**
-	 * ÊÍ·Å×ÊÔ´
+	 * é‡Šæ”¾èµ„æº
 	 * 
 	 * @author liuyinjun
 	 * @date 2015-2-5
@@ -338,7 +338,7 @@ public class MovieRecorderView extends LinearLayout implements OnErrorListener {
 	}
 
 	/**
-	 * Â¼ÖÆÍê³É»Øµ÷½Ó¿Ú
+	 * å½•åˆ¶å®Œæˆå›è°ƒæ¥å£
 	 * 
 	 * @author liuyinjun
 	 * 
