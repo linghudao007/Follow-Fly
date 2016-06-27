@@ -14,5 +14,6 @@
     <dimen name="tv_size_min">10sp</dimen>
     <dimen name="tv_size_m">12sp</dimen>
     <dimen name="tv_size_xm">13sp</dimen>
+    <dimen name="space">2sp</dimen>
     
 </resources>

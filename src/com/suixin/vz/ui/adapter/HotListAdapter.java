@@ -1,21 +1,26 @@
 package com.suixin.vz.ui.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.bitmap.BitmapCommonUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.CircleImageView;
 import com.suixin.vy.core.TimeFactory;
+import com.suixin.vy.ui.PhotoFillActivity;
 import com.suixin.vy.ui.R;
 import com.suixin.vz.model.TourPicList;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,7 +62,8 @@ public class HotListAdapter extends BaseAdapter {
         bitUtils = new BitmapUtils(context);
         bigPicDisplayConfig = new BitmapDisplayConfig();
         bigPicDisplayConfig.setBitmapConfig(Bitmap.Config.RGB_565);
-        bigPicDisplayConfig.setBitmapMaxSize(BitmapCommonUtils.getScreenSize(context));
+        bigPicDisplayConfig
+                .setBitmapMaxSize(BitmapCommonUtils.getScreenSize(context));
     }
 
     @Override
@@ -206,8 +212,7 @@ public class HotListAdapter extends BaseAdapter {
                 break;
             }
             v.setTag(holder);
-        } 
-            else {
+        } else {
             holder = (ViewHolder) v.getTag();
         }
         switch (type) {
@@ -227,7 +232,8 @@ public class HotListAdapter extends BaseAdapter {
         return v;
     }
 
-    private void setTourPicContent(ViewHolder holder, TourPicList tourPic) {
+    private void setTourPicContent(ViewHolder holder,
+            final TourPicList tourPic) {
         bitUtils.display(holder.head,
                 tourPic.getCreaterUser().getAvatarThumbUrl(),
                 bigPicDisplayConfig);
@@ -270,6 +276,18 @@ public class HotListAdapter extends BaseAdapter {
         for (int i = 0; i < tourPic.getThumbPhotoUrls().size(); i++) {
             bitUtils.display(holder.photos[i],
                     tourPic.getThumbPhotoUrls().get(i));
+            final int j = i;
+            holder.photos[i].setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(context, PhotoFillActivity.class);
+                    intent.putExtra(AppConfig.PHOTOINDEX, j + 1);
+                    intent.putStringArrayListExtra(AppConfig.PHOTO,
+                            (ArrayList<String>) tourPic.getThumbPhotoUrls());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

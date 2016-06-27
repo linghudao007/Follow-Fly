@@ -28,6 +28,7 @@ public class MRecyclerAdapter extends RecyclerView.Adapter<MRecyclerAdapter.MyHo
             heart = (ImageView) itemView.findViewById(R.id.iv_heart);
             describe = (TextView) itemView.findViewById(R.id.tv_describe);
             number = (TextView) itemView.findViewById(R.id.tv_number);
+            
         }
     }
 
