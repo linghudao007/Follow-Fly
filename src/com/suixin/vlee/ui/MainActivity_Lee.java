@@ -2,6 +2,7 @@ package com.suixin.vlee.ui;
 
 import com.example.girdviewtest.MainActivity;
 import com.suixin.vy.ui.R;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,8 @@ public class MainActivity_Lee extends Activity {
 	private Button but_next;
 	private Button btn_1;
 
-	@Override
+	@SuppressLint("WrongViewCast")
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_one);

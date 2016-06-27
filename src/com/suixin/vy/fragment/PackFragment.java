@@ -90,7 +90,7 @@ public class PackFragment extends Fragment implements OnClickListener,
 		initPackView(inflater, container);
 		addListener();
 		listViewListener();
-		getJson();
+		//getJson();
 		return view;
 	}
 
