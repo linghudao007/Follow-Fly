@@ -22,7 +22,6 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-import com.suixin.vy.adapter.BundleView;
 import com.suixin.vy.adapter.DetAdapter;
 import com.suixin.vy.adapter.ThemeAdapter;
 import com.suixin.vy.core.AppConfig;
@@ -30,7 +29,6 @@ import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.model.details.CommentList;
 import com.suixin.vy.model.details.DetModel;
-import com.suixin.vy.model.details.PartnerPlan;
 import com.suixin.vy.model.details.y.DetModel_y;
 import com.suixin.vy.model.theme.PlanList;
 import com.suixin.vy.model.theme.ThemeModel;
@@ -173,10 +171,7 @@ public class DetailsActivity extends BaseActivity {
 		// 这是cookie里的参数
 		params.addQueryStringParameter("AppVer", "2.0");
 		params.addQueryStringParameter("DeviceType", "1");
-		// 这是post请求参数,OrderStr为上次请求到哪里，
-		params.addBodyParameter("OrderStr", orderStr);
-		params.addBodyParameter("PlanGuid", planGuid);
-		http.send(HttpRequest.HttpMethod.POST, URLSTR_L, params,
+		http.send(HttpRequest.HttpMethod.GET, URLSTR_L+planGuid, params,
 				new RequestCallBack<String>() {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -200,8 +195,8 @@ public class DetailsActivity extends BaseActivity {
 	@Override
 	protected void getData() {
 		commentList.clear();
-		if (detModel.getData().getPartnerPlan().getCommentList() != null) {
-			commentList.addAll(detModel.getData().getPartnerPlan().getCommentList());
+		if (detModel.getData().getTourPic().getCommentList() != null) {
+			commentList.addAll(detModel.getData().getTourPic().getCommentList());
 			detAdapter.notifyDataSetChanged();
 		}
 	}

@@ -32,4 +32,6 @@
      <color name="title_txt_color">#f1f1f3</color>
     <color name="circle_color">#323a45</color>
     <color name="ring_color">#14b9d6</color>
+    <color name="refresh_1">#15A0F5</color>
+     <color name="refresh_2">#2AB042</color>
 </resources>

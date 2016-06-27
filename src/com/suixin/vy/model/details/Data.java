@@ -3,15 +3,15 @@ package com.suixin.vy.model.details;
 import java.io.Serializable;
 import java.util.List;
 
-public class Data implements Serializable{	private static final long serialVersionUID = 1035978754L;	private PartnerPlan partnerPlan;	private List<Object> tourPicList;
-	public PartnerPlan getPartnerPlan() {		return this.partnerPlan;	}
-	public void setPartnerPlan(PartnerPlan partnerPlan) {		this.partnerPlan = partnerPlan;	}
-	public List<Object> getTourPicList() {		return this.tourPicList;	}
-	public void setTourPicList(List<Object> tourPicList) {		this.tourPicList = tourPicList;	}
+public class Data implements Serializable{	private static final long serialVersionUID = 801468626L;	private List<Object> partnerPlan;	private TourPic tourPic;
+	public List<Object> getPartnerPlan() {		return this.partnerPlan;	}
+	public void setPartnerPlan(List<Object> partnerPlan) {		this.partnerPlan = partnerPlan;	}
+	public TourPic getTourPic() {		return this.tourPic;	}
+	public void setTourPic(TourPic tourPic) {		this.tourPic = tourPic;	}
 	public Data() {}
-	public Data(PartnerPlan partnerPlan, List<Object> tourPicList){
-		super();		this.partnerPlan = partnerPlan;		this.tourPicList = tourPicList;
+	public Data(List<Object> partnerPlan, TourPic tourPic){
+		super();		this.partnerPlan = partnerPlan;		this.tourPic = tourPic;
 	}
 	public String toString() {
-		return "Data [partnerPlan = " + partnerPlan + ", tourPicList = " + tourPicList + "]";	}
+		return "Data [partnerPlan = " + partnerPlan + ", tourPic = " + tourPic + "]";	}
 }

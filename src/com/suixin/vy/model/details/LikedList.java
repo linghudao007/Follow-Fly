@@ -3,7 +3,7 @@ package com.suixin.vy.model.details;
 import java.io.Serializable;
 import java.util.List;
 
-public class User implements Serializable{	private static final long serialVersionUID = 482702821L;	private long fansNum;	private long age;	private String livingPlace;	private long isFavored;	private String avatarThumbUrl;	private String openfireAccount;	private String professional;	private String nick;	private long isIdentify;	private long favorNum;	private long sex;	private String uUID;	private String signature;	private long isTourGuideVerify;	private String telephone;	private long isValid;	private long isCarVerify;
+public class LikedList implements Serializable{	private static final long serialVersionUID = 2076168947L;	private long fansNum;	private long age;	private String livingPlace;	private long isFavored;	private String avatarThumbUrl;	private String openfireAccount;	private String professional;	private String nick;	private long isIdentify;	private long favorNum;	private long sex;	private String uUID;	private String signature;	private long isTourGuideVerify;	private String telephone;	private long isValid;	private long isCarVerify;
 	public long getFansNum() {		return this.fansNum;	}
 	public void setFansNum(long fansNum) {		this.fansNum = fansNum;	}
 	public long getAge() {		return this.age;	}
@@ -38,10 +38,10 @@ public class User implements Serializable{	private static final long serialVers
 	public void setIsValid(long isValid) {		this.isValid = isValid;	}
 	public long getIsCarVerify() {		return this.isCarVerify;	}
 	public void setIsCarVerify(long isCarVerify) {		this.isCarVerify = isCarVerify;	}
-	public User() {}
-	public User(long fansNum, long age, String livingPlace, long isFavored, String avatarThumbUrl, String openfireAccount, String professional, String nick, long isIdentify, long favorNum, long sex, String uUID, String signature, long isTourGuideVerify, String telephone, long isValid, long isCarVerify){
+	public LikedList() {}
+	public LikedList(long fansNum, long age, String livingPlace, long isFavored, String avatarThumbUrl, String openfireAccount, String professional, String nick, long isIdentify, long favorNum, long sex, String uUID, String signature, long isTourGuideVerify, String telephone, long isValid, long isCarVerify){
 		super();		this.fansNum = fansNum;		this.age = age;		this.livingPlace = livingPlace;		this.isFavored = isFavored;		this.avatarThumbUrl = avatarThumbUrl;		this.openfireAccount = openfireAccount;		this.professional = professional;		this.nick = nick;		this.isIdentify = isIdentify;		this.favorNum = favorNum;		this.sex = sex;		this.uUID = uUID;		this.signature = signature;		this.isTourGuideVerify = isTourGuideVerify;		this.telephone = telephone;		this.isValid = isValid;		this.isCarVerify = isCarVerify;
 	}
 	public String toString() {
-		return "User [fansNum = " + fansNum + ", age = " + age + ", livingPlace = " + livingPlace + ", isFavored = " + isFavored + ", avatarThumbUrl = " + avatarThumbUrl + ", openfireAccount = " + openfireAccount + ", professional = " + professional + ", nick = " + nick + ", isIdentify = " + isIdentify + ", favorNum = " + favorNum + ", sex = " + sex + ", uUID = " + uUID + ", signature = " + signature + ", isTourGuideVerify = " + isTourGuideVerify + ", telephone = " + telephone + ", isValid = " + isValid + ", isCarVerify = " + isCarVerify + "]";	}
+		return "LikedList [fansNum = " + fansNum + ", age = " + age + ", livingPlace = " + livingPlace + ", isFavored = " + isFavored + ", avatarThumbUrl = " + avatarThumbUrl + ", openfireAccount = " + openfireAccount + ", professional = " + professional + ", nick = " + nick + ", isIdentify = " + isIdentify + ", favorNum = " + favorNum + ", sex = " + sex + ", uUID = " + uUID + ", signature = " + signature + ", isTourGuideVerify = " + isTourGuideVerify + ", telephone = " + telephone + ", isValid = " + isValid + ", isCarVerify = " + isCarVerify + "]";	}
 }

@@ -3,7 +3,7 @@ package com.suixin.vy.model.details;
 import java.io.Serializable;
 import java.util.List;
 
-public class DetModel implements Serializable{	private static final long serialVersionUID = 634179342L;	private String msg;	private Data data;	private long status;
+public class DetModel implements Serializable{	private static final long serialVersionUID = 22672974L;	private String msg;	private Data data;	private long status;
 	public String getMsg() {		return this.msg;	}
 	public void setMsg(String msg) {		this.msg = msg;	}
 	public Data getData() {		return this.data;	}

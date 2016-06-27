@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.simple.eventbus.EventBus;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +21,8 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,9 +39,12 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.PackAdapter;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.JudgeNET;
+import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.pack.PackModel;
 import com.suixin.vy.model.pack.PlanList;
+import com.suixin.vy.ui.DetailsActivity;
 import com.suixin.vy.ui.R;
 
 public class PackFragment extends Fragment implements OnClickListener,
@@ -67,10 +75,10 @@ public class PackFragment extends Fragment implements OnClickListener,
 	/** 网络请求 */
 	private HttpUtils http;
 	private BitmapUtils bitUtils;
-	
+
 	/** 记录用户选择的条件 */
 	private String locName = "北京市", destName, departName, startDate, endDate,
-			orderStr,planType;
+			orderStr, planType;
 	private int startY = 0;
 	private Activity activity;
 
@@ -79,18 +87,19 @@ public class PackFragment extends Fragment implements OnClickListener,
 		super.onAttach(activity);
 		this.activity = activity;
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
 		View view = inflater.inflate(R.layout.viewpager_pack_view, container,
 				false);
+		EventBus.getDefault().register(this);
 		this.view = view;
 		initData();
 		initPackView(inflater, container);
 		addListener();
 		listViewListener();
-		//getJson();
+		getJson();
 		return view;
 	}
 
@@ -111,7 +120,24 @@ public class PackFragment extends Fragment implements OnClickListener,
 				}
 				return false;
 			}
+		});
+		lv_pank.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent();
+				long type = packList.get(position).getType();
+				if (type == 1||type == 2) {
+					// 打开约伴详情页面
+					EventBus.getDefault().postSticky(view, AppConfig.DetView);
+					intent.setClass(activity, DetailsActivity.class);
+					intent.putExtra(AppConfig.TITLE, "约伴详情");
+					intent.putExtra("planGuid",
+							(packList.get(position)).getPlanGuid());
+					activity.startActivity(intent);
+				}
+			}
 		});
 	}
 
@@ -153,7 +179,7 @@ public class PackFragment extends Fragment implements OnClickListener,
 	}
 
 	private void getJson() {
-		if(!JudgeNET.isNetable(activity)){
+		if (!JudgeNET.isNetable(activity)) {
 			return;
 		}
 		departName = et_citystart.getText().toString().trim();
@@ -181,14 +207,14 @@ public class PackFragment extends Fragment implements OnClickListener,
 						if (responseInfo == null) {
 							return;
 						}
-						try{
-						packModel = JSON.parseObject(responseInfo.result,
-								PackModel.class);
-						}catch(Exception e){
+						try {
+							packModel = JSON.parseObject(responseInfo.result,
+									PackModel.class);
+						} catch (Exception e) {
 							Log.e("ss", e.getMessage());
 						}
 						// 判断是否获取成功
-						if (packModel!=null&&packModel.getStatus() == 0) {
+						if (packModel != null && packModel.getStatus() == 0) {
 							getData();
 						}
 					}
@@ -283,12 +309,12 @@ public class PackFragment extends Fragment implements OnClickListener,
 			return;
 		}
 		sclass = index;
-		if(index==3){
+		if (index == 3) {
 			planType = "1";
-		}else{
+		} else {
 			planType = "2";
 		}
-		
+
 		for (int i = 3; i < 5; i++) {
 			setTvColor(index, i);
 		}

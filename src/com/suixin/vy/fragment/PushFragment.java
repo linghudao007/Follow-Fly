@@ -8,11 +8,14 @@ import org.simple.eventbus.EventBus;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -37,7 +40,6 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-import com.suixin.vy.adapter.BundleView;
 import com.suixin.vy.adapter.HomeListAdapter;
 import com.suixin.vy.adapter.VPLoopAdapter;
 import com.suixin.vy.core.AppConfig;
@@ -56,9 +58,9 @@ import com.suixin.vy.ui.R;
 import com.suixin.vy.ui.ThemeActionActivity;
 
 public class PushFragment extends Fragment implements OnClickListener,
-		OnItemClickListener {
+		OnItemClickListener, OnRefreshListener {
 	/** 刷新布局 */
-	private RefreshLayout reflayout;
+	private SwipeRefreshLayout reflayout;
 	/** ListView */
 	private ListView lv_home;
 	/** 获取来列表的数据 */
@@ -111,12 +113,14 @@ public class PushFragment extends Fragment implements OnClickListener,
 		EventBus.getDefault().register(this);
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
+		addListener();
 		// 网络请求数据
-		getJson();
+		//getJson();
+		this.onRefresh();
+		reflayout.setRefreshing(true);
 		// 适配列表
 		adapter = new HomeListAdapter(list_home, type, activity);
 		lv_home.setAdapter(adapter);
-		addListener();
 		return view;
 
 	}
@@ -127,28 +131,14 @@ public class PushFragment extends Fragment implements OnClickListener,
 		ll_thisrecommend.setOnClickListener(this);
 		ll_hottrip.setOnClickListener(this);
 		ll_online.setOnClickListener(this);
-		reflayout.setOnRefreshListener(new PullToRefreshListener() {
-			@Override
-			public void onRefresh() {
-
-				// 网络请求数据
-				getJson();
-				try {
-					Thread.sleep(2500);
-				} catch (InterruptedException e) {
-
-					e.printStackTrace();
-				}
-				reflayout.finishRefreshing();
-			}
-		}, 0);
+		reflayout.setOnRefreshListener(this);
 
 		lv_home.setOnItemClickListener(this);
 	}
 
 	/** 实例化推荐中的控件 */
 	private void initLv_home(LayoutInflater inflater, ViewGroup container) {
-		reflayout = (RefreshLayout) view.findViewById(R.id.rfl_ref);
+		reflayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_ref);
 		lv_home = (ListView) view.findViewById(R.id.lv_home);
 		lv_home_head = inflater.inflate(R.layout.head_listview_home, null);
 		vp_home_head_loop = (HeightWarpViewPager) this.lv_home_head
@@ -164,6 +154,9 @@ public class PushFragment extends Fragment implements OnClickListener,
 				.findViewById(R.id.ll_thisrecommend);
 		ll_hottrip = (LinearLayout) lv_home_head.findViewById(R.id.ll_hottrip);
 		ll_online = (LinearLayout) lv_home_head.findViewById(R.id.ll_online);
+		reflayout.setColorSchemeResources(R.color.refresh_1,
+				R.color.refresh_2);
+		reflayout.setSize(SwipeRefreshLayout.DEFAULT);
 	}
 
 	/** 通过接口解析JSON */
@@ -183,7 +176,7 @@ public class PushFragment extends Fragment implements OnClickListener,
 				new RequestCallBack<String>() {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
-
+						reflayout.setRefreshing(false);
 						all = JSON.parseObject(responseInfo.result,
 								AllModel.class);
 						// 判断是否获取成功
@@ -196,6 +189,7 @@ public class PushFragment extends Fragment implements OnClickListener,
 
 					@Override
 					public void onFailure(HttpException error, String msg) {
+						reflayout.setRefreshing(false);
 						Log.e("ss", error.getExceptionCode() + ":" + msg);
 					}
 				});
@@ -397,29 +391,36 @@ public class PushFragment extends Fragment implements OnClickListener,
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent,View view, int position,
+	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		Intent intent = new Intent();
-		if (type.get(position-1).equals("0")) {
-			//打开旅途详情页面
+		if (type.get(position - 1).equals("0")) {
+			// 打开旅途详情页面
 			EventBus.getDefault().postSticky(view, AppConfig.DetView);
 			intent.setClass(activity, DetailsActivity.class);
 			intent.putExtra(AppConfig.TITLE, "旅途详情");
-			intent.putExtra("planGuid",((TourPicList)list_home.get(position-1)).getGuid());
+			intent.putExtra("planGuid",
+					((TourPicList) list_home.get(position - 1)).getGuid());
 			activity.startActivity(intent);
 
-		} else if (type.get(position-1).equals("1")
-				&& ((PlanList)list_home.get(position-1)).getType()==1) {
-			//打开约伴详情页面
+		} else if (type.get(position - 1).equals("1")
+				&& ((PlanList) list_home.get(position - 1)).getType() == 1) {
+			// 打开约伴详情页面
 			EventBus.getDefault().postSticky(view, AppConfig.DetView);
 			intent.setClass(activity, DetailsActivity.class);
 			intent.putExtra(AppConfig.TITLE, "约伴详情");
-			intent.putExtra("planGuid",((PlanList)list_home.get(position-1)).getPlanGuid());
+			intent.putExtra("planGuid",
+					((PlanList) list_home.get(position - 1)).getPlanGuid());
 			activity.startActivity(intent);
-		} else if (type.get(position-1).equals("1")) {
+		} else if (type.get(position - 1).equals("1")) {
 
-		} else if (type.get(position-1).equals("2")) {
+		} else if (type.get(position - 1).equals("2")) {
 
 		}
+	}
+
+	@Override
+	public void onRefresh() {
+		getJson();
 	}
 }

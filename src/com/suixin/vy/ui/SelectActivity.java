@@ -5,10 +5,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.simple.eventbus.EventBus;
+
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,7 +28,9 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.suixin.vlee.ui.MainActivity_Lee;
 import com.suixin.vy.adapter.SelectAdapter;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.core.JudgeNET;
 import com.suixin.vy.model.select.PlanList;
@@ -34,7 +42,7 @@ import com.suixin.vy.model.select.SelectModel;
  * @author yxy
  * 
  */
-public class SelectActivity extends BaseActivity {
+public class SelectActivity extends BaseActivity implements OnItemClickListener {
 	/** 返回按钮 */
 	private ImageView iv_back;
 	/** 用户输入的目的地，出发地 */
@@ -60,6 +68,8 @@ public class SelectActivity extends BaseActivity {
 	private LinearLayout selectemptyview;
 	/** 列表适配器 */
 	private SelectAdapter sAdapter;
+	/** 发布约伴按钮 */
+	private Button btn_send;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -90,6 +100,10 @@ public class SelectActivity extends BaseActivity {
 			setTime();
 			getJson();
 			break;
+		case R.id.btn_send:
+			Intent intent = new Intent(this, MainActivity_Lee.class);
+			this.startActivity(intent);
+			break;
 		}
 	}
 
@@ -119,7 +133,7 @@ public class SelectActivity extends BaseActivity {
 	}
 
 	private void getJson() {
-		if(!JudgeNET.isNetable(this)){
+		if (!JudgeNET.isNetable(this)) {
 			return;
 		}
 		RequestParams params = new RequestParams();
@@ -181,7 +195,7 @@ public class SelectActivity extends BaseActivity {
 		if (selected != index) {
 			selected = index;
 			for (int i = 0; i < 3; i++) {
-				if (i == selected) {			
+				if (i == selected) {
 					tv_time[i].setTextColor(Color.parseColor("#7F4802"));
 					tv_time[i]
 							.setBackgroundResource(R.drawable.shape_tv_yell_d_con);
@@ -223,6 +237,7 @@ public class SelectActivity extends BaseActivity {
 		endDate = "";
 		destName = "";
 		departName = "";
+		btn_send = (Button) findViewById(R.id.btn_send);
 
 	}
 
@@ -233,5 +248,23 @@ public class SelectActivity extends BaseActivity {
 		tv_time[1].setOnClickListener(this);
 		tv_time[2].setOnClickListener(this);
 		iv_select.setOnClickListener(this);
+		lv_select.setOnItemClickListener(this);
+		btn_send.setOnClickListener(this);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		Intent intent = new Intent();
+		long type = selectList.get(position).getType();
+		if (type == 1 || type == 2) {
+			// 打开约伴详情页面
+			EventBus.getDefault().postSticky(view, AppConfig.DetView);
+			intent.setClass(this, DetailsActivity.class);
+			intent.putExtra(AppConfig.TITLE, "约伴详情");
+			intent.putExtra("planGuid",
+					(selectList.get(position)).getPlanGuid());
+			startActivity(intent);
+		}
 	}
 }
