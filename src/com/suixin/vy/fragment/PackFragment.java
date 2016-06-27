@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -180,13 +181,16 @@ public class PackFragment extends Fragment implements OnClickListener,
 						if (responseInfo == null) {
 							return;
 						}
+						try{
 						packModel = JSON.parseObject(responseInfo.result,
 								PackModel.class);
+						}catch(Exception e){
+							Log.e("ss", e.getMessage());
+						}
 						// 判断是否获取成功
-						if (packModel.getStatus() == 0) {
+						if (packModel!=null&&packModel.getStatus() == 0) {
 							getData();
 						}
-
 					}
 
 					@Override
@@ -201,7 +205,7 @@ public class PackFragment extends Fragment implements OnClickListener,
 		if (packList.size() == 0) {
 			Toast.makeText(getActivity(), "还没有您筛选的约伴", 1000).show();
 		}
-		packAdapter.notifyDataSetInvalidated();
+		packAdapter.notifyDataSetChanged();
 	}
 
 	/** 设置时间参数 */

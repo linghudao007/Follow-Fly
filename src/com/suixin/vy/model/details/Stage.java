@@ -1,9 +1,9 @@
-package com.suixin.vy.model.pack;
+package com.suixin.vy.model.details;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class Stage implements Serializable{	private static final long serialVersionUID = 2129915336L;	private String planGuid;	private long earnest;	private long isMember;	private String startTime;	private long totalNumber;	private String endTime;	private long joinNumber;	private long price;
+public class Stage implements Serializable{	private static final long serialVersionUID = 358555492L;	private String planGuid;	private long earnest;	private long isMember;	private String startTime;	private long totalNumber;	private String endTime;	private long joinNumber;	private long price;
 	public String getPlanGuid() {		return this.planGuid;	}
 	public void setPlanGuid(String planGuid) {		this.planGuid = planGuid;	}
 	public long getEarnest() {		return this.earnest;	}

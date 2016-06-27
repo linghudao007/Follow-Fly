@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.suixin.vy.adapter.VPHomeAdapter;
+
 import com.suixin.vy.ui.R;
 import com.suixin.vy.ui.SelectActivity;
 

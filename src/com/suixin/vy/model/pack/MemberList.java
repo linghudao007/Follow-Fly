@@ -3,7 +3,7 @@ package com.suixin.vy.model.pack;
 import java.io.Serializable;
 import java.util.List;
 
-public class MemberList implements Serializable{	private static final long serialVersionUID = 273840575L;	private long fansNum;	private long age;	private String livingPlace;	private long isFavored;	private String avatarThumbUrl;	private String openfireAccount;	private String professional;	private String nick;	private long isIdentify;	private long favorNum;	private long sex;	private String uUID;	private String signature;	private long isTourGuideVerify;	private String telephone;	private long isValid;	private long isCarVerify;
+public class MemberList implements Serializable{	private static final long serialVersionUID = 687460090L;	private long fansNum;	private long age;	private String livingPlace;	private long isFavored;	private String avatarThumbUrl;	private String openfireAccount;	private String professional;	private String nick;	private long isIdentify;	private long favorNum;	private long sex;	private String uUID;	private String signature;	private long isTourGuideVerify;	private String telephone;	private long isValid;	private long isCarVerify;
 	public long getFansNum() {		return this.fansNum;	}
 	public void setFansNum(long fansNum) {		this.fansNum = fansNum;	}
 	public long getAge() {		return this.age;	}

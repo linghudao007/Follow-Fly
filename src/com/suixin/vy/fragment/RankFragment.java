@@ -144,7 +144,7 @@ public class RankFragment extends Fragment implements OnClickListener {
 	protected void getRankListViewData() {
 		rankList.clear();
 		rankList.addAll(randModel.getData().getHotDuckrList());
-		rankAdapter.notifyDataSetInvalidated();
+		rankAdapter.notifyDataSetChanged();
 	}
 
 	/** 实例化本地城市页面控件 */

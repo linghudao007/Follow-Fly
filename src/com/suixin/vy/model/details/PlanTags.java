@@ -1,9 +1,9 @@
-package com.suixin.vy.model.pack;
+package com.suixin.vy.model.details;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class TourThemes implements Serializable{	private static final long serialVersionUID = 913279296L;	private String title;	private String themeDesc;	private String coverThumbUrl;	private long tourThemeId;	private String coverUrl;
+public class PlanTags implements Serializable{	private static final long serialVersionUID = 1854026707L;	private String title;	private String themeDesc;	private String coverThumbUrl;	private long tourThemeId;	private String coverUrl;
 	public String getTitle() {		return this.title;	}
 	public void setTitle(String title) {		this.title = title;	}
 	public String getThemeDesc() {		return this.themeDesc;	}
@@ -14,10 +14,10 @@ public class TourThemes implements Serializable{	private static final long seri
 	public void setTourThemeId(long tourThemeId) {		this.tourThemeId = tourThemeId;	}
 	public String getCoverUrl() {		return this.coverUrl;	}
 	public void setCoverUrl(String coverUrl) {		this.coverUrl = coverUrl;	}
-	public TourThemes() {}
-	public TourThemes(String title, String themeDesc, String coverThumbUrl, long tourThemeId, String coverUrl){
+	public PlanTags() {}
+	public PlanTags(String title, String themeDesc, String coverThumbUrl, long tourThemeId, String coverUrl){
 		super();		this.title = title;		this.themeDesc = themeDesc;		this.coverThumbUrl = coverThumbUrl;		this.tourThemeId = tourThemeId;		this.coverUrl = coverUrl;
 	}
 	public String toString() {
-		return "TourThemes [title = " + title + ", themeDesc = " + themeDesc + ", coverThumbUrl = " + coverThumbUrl + ", tourThemeId = " + tourThemeId + ", coverUrl = " + coverUrl + "]";	}
+		return "PlanTags [title = " + title + ", themeDesc = " + themeDesc + ", coverThumbUrl = " + coverThumbUrl + ", tourThemeId = " + tourThemeId + ", coverUrl = " + coverUrl + "]";	}
 }

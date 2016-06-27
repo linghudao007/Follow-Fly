@@ -3,7 +3,7 @@ package com.suixin.vy.model.pack;
 import java.io.Serializable;
 import java.util.List;
 
-public class Data implements Serializable{	private static final long serialVersionUID = 439350410L;	private String orderStr;	private List<PlanList> planList;
+public class Data implements Serializable{	private static final long serialVersionUID = 824304323L;	private String orderStr;	private List<PlanList> planList;
 	public String getOrderStr() {		return this.orderStr;	}
 	public void setOrderStr(String orderStr) {		this.orderStr = orderStr;	}
 	public List<PlanList> getPlanList() {		return this.planList;	}
