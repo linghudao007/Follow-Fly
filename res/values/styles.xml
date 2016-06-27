@@ -8,8 +8,10 @@
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
+<<<<<<< HEAD
             backward-compatibility can go here.
         -->
+    
     </style>
 
     <!-- Application theme. -->

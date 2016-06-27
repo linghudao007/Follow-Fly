@@ -3,7 +3,7 @@ package com.suixin.vy.model.pack;
 import java.io.Serializable;
 import java.util.List;
 
-public class PlanTags implements Serializable{	private static final long serialVersionUID = 1589648317L;	private String title;	private String themeDesc;	private String coverThumbUrl;	private long tourThemeId;	private String coverUrl;
+public class PlanTags implements Serializable{	private static final long serialVersionUID = 19179473L;	private String title;	private String themeDesc;	private String coverThumbUrl;	private long tourThemeId;	private String coverUrl;
 	public String getTitle() {		return this.title;	}
 	public void setTitle(String title) {		this.title = title;	}
 	public String getThemeDesc() {		return this.themeDesc;	}

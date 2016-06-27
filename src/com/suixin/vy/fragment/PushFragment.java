@@ -1,7 +1,10 @@
 package com.suixin.vy.fragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.simple.eventbus.EventBus;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +23,8 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -32,6 +37,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.suixin.vy.adapter.BundleView;
 import com.suixin.vy.adapter.HomeListAdapter;
 import com.suixin.vy.adapter.VPLoopAdapter;
 import com.suixin.vy.core.AppConfig;
@@ -45,10 +51,12 @@ import com.suixin.vy.model.BannerList;
 import com.suixin.vy.model.PlanList;
 import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.UserList;
+import com.suixin.vy.ui.DetailsActivity;
 import com.suixin.vy.ui.R;
 import com.suixin.vy.ui.ThemeActionActivity;
 
-public class PushFragment extends Fragment implements OnClickListener {
+public class PushFragment extends Fragment implements OnClickListener,
+		OnItemClickListener {
 	/** 刷新布局 */
 	private RefreshLayout reflayout;
 	/** ListView */
@@ -100,7 +108,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 		loopList = new ArrayList<BannerList>();
 		bitUtils = new BitmapUtils(activity);
 		pushHandler = new PushHandler();
-
+		EventBus.getDefault().register(this);
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
 		// 网络请求数据
@@ -122,18 +130,20 @@ public class PushFragment extends Fragment implements OnClickListener {
 		reflayout.setOnRefreshListener(new PullToRefreshListener() {
 			@Override
 			public void onRefresh() {
-				
+
 				// 网络请求数据
 				getJson();
-				try {  
-		            Thread.sleep(2500);  
-		        } catch (InterruptedException e) {  
-		        	
-		            e.printStackTrace();  
-		        }  
+				try {
+					Thread.sleep(2500);
+				} catch (InterruptedException e) {
+
+					e.printStackTrace();
+				}
 				reflayout.finishRefreshing();
 			}
 		}, 0);
+
+		lv_home.setOnItemClickListener(this);
 	}
 
 	/** 实例化推荐中的控件 */
@@ -221,7 +231,6 @@ public class PushFragment extends Fragment implements OnClickListener {
 			loopViews[i] = inflater.inflate(R.layout.viewpager_loop_view, null);
 			this.list_loopView.add(loopViews[i]);
 		}
-		Log.e("ss", bannerList.size() + "");
 		loopList.clear();
 		for (int i = 0; i < bannerList.size(); i++) {
 			loopList.add(bannerList.get(i));
@@ -229,7 +238,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 		initPoint();
 		setLoop();
 		// 刷新主页列表
-		adapter.notifyDataSetInvalidated();
+		adapter.notifyDataSetChanged();
 	}
 
 	private void initPoint() {
@@ -318,7 +327,7 @@ public class PushFragment extends Fragment implements OnClickListener {
 		// 开始计时器
 		if (pushHandler.hasMessages(1)) {
 			pushHandler.removeMessages(1);
-		}else{
+		} else {
 			pushHandler.sendEmptyMessageDelayed(1, 2000);
 		}
 	}
@@ -385,5 +394,32 @@ public class PushFragment extends Fragment implements OnClickListener {
 			break;
 		}
 
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent,View view, int position,
+			long id) {
+		Intent intent = new Intent();
+		if (type.get(position-1).equals("0")) {
+			//打开旅途详情页面
+			EventBus.getDefault().postSticky(view, AppConfig.DetView);
+			intent.setClass(activity, DetailsActivity.class);
+			intent.putExtra(AppConfig.TITLE, "旅途详情");
+			intent.putExtra("planGuid",((TourPicList)list_home.get(position-1)).getGuid());
+			activity.startActivity(intent);
+
+		} else if (type.get(position-1).equals("1")
+				&& ((PlanList)list_home.get(position-1)).getType()==1) {
+			//打开约伴详情页面
+			EventBus.getDefault().postSticky(view, AppConfig.DetView);
+			intent.setClass(activity, DetailsActivity.class);
+			intent.putExtra(AppConfig.TITLE, "约伴详情");
+			intent.putExtra("planGuid",((PlanList)list_home.get(position-1)).getPlanGuid());
+			activity.startActivity(intent);
+		} else if (type.get(position-1).equals("1")) {
+
+		} else if (type.get(position-1).equals("2")) {
+
+		}
 	}
 }

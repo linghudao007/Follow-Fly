@@ -1,6 +1,7 @@
 package com.suixin.vlee.ui;
 
 import com.suixin.vy.ui.R;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,8 @@ public class MainActivity_Lee extends Activity {
 	private Button btn_1;
 	private Button btn_quxiao;
 
-	@Override
+	@SuppressLint("WrongViewCast")
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_one);

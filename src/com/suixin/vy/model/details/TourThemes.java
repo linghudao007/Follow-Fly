@@ -1,9 +1,9 @@
-package com.suixin.vy.model.pack;
+package com.suixin.vy.model.details;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class TourThemes implements Serializable{	private static final long serialVersionUID = 913279296L;	private String title;	private String themeDesc;	private String coverThumbUrl;	private long tourThemeId;	private String coverUrl;
+public class TourThemes implements Serializable{	private static final long serialVersionUID = 257502150L;	private String title;	private String themeDesc;	private String coverThumbUrl;	private long tourThemeId;	private String coverUrl;
 	public String getTitle() {		return this.title;	}
 	public void setTitle(String title) {		this.title = title;	}
 	public String getThemeDesc() {		return this.themeDesc;	}

@@ -101,7 +101,6 @@ public class ThemeActionActivity extends BaseActivity {
 
 						themeModel = JSON.parseObject(responseInfo.result,
 								ThemeModel.class);
-						Log.e("ss", themeModel.toString());
 						// 判断是否获取成功
 						if (themeModel.getStatus() == 0) {
 							getData();

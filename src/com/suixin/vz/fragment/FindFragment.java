@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class FindFragment extends Fragment {
-    /** ListView */
+    /** RecyclerView */
     private RecyclerView rlv_find;
 
     /** 获取来发现的显示数据 */
@@ -63,13 +64,28 @@ public class FindFragment extends Fragment {
     private void initLv_find(LayoutInflater inflater, ViewGroup container) {
         rlv_find = (RecyclerView) view.findViewById(R.id.rlv_find);
         list = new ArrayList<TourPicList>();
+
+        // 设置layoutManager 参数含义显而易见，2就是2列，第二个参数是垂直方向
+        final StaggeredGridLayoutManager sg = new StaggeredGridLayoutManager(2,
+                StaggeredGridLayoutManager.VERTICAL);
+        sg.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        rlv_find.setLayoutManager(sg);
         // 设置adapter
         adapter = new MRecyclerAdapter(list, activity);
         rlv_find.setAdapter(adapter);
-        // 设置layoutManager 参数含义显而易见，2就是2列，第二个参数是垂直方向
-        rlv_find.setLayoutManager(new StaggeredGridLayoutManager(2,
-                StaggeredGridLayoutManager.VERTICAL));
+        rlv_find.addOnScrollListener(new OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView,
+                    int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                sg.invalidateSpanAssignments();
+            }
+
+        });
+
         // 设置item之间的间隔
+        rlv_find.addItemDecoration(new DividerItemDecoration(activity,DividerItemDecoration.VERTICAL_LIST));
+        rlv_find.addItemDecoration(new DividerItemDecoration(activity,DividerItemDecoration.HORIZONTAL_LIST));
     }
 
     // 解析发现
@@ -118,4 +134,5 @@ public class FindFragment extends Fragment {
         adapter.notifyDataSetChanged();
         Log.e("ff", adapter + "notifyDa");
     }
+
 }

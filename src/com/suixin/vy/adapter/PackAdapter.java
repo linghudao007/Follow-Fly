@@ -60,7 +60,6 @@ public class PackAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View v, ViewGroup arg2) {
-		Log.e("ss", "getView");
 		int type = getItemViewType(position);
 		ViewHolder holder = null;
 		if (v == null) {
@@ -253,6 +252,7 @@ public class PackAdapter extends BaseAdapter {
 			type = PERSONAL;
 			break;
 		case 4:
+		case 3:
 			type = OFFICIAL;
 			break;
 		}

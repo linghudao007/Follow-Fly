@@ -49,7 +49,6 @@ public class ThemeAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View v, ViewGroup arg2) {
-		Log.e("ss", "getView");
 		ViewHolder holder = null;
 		if (v == null) {
 			holder = new ViewHolder();
