@@ -2,9 +2,7 @@ package com.example.girdviewtest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import com.suixin.vy.ui.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -38,12 +36,15 @@ public class MainActivity extends Activity {
 	private Bitmap bmp;                               //导入临时图片
 	private ArrayList<HashMap<String, Object>> imageItem;
 	private SimpleAdapter simpleAdapter;     //适配器
-
+	private Button btn_retreat;                 //取消按钮
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_lee);
+        
+        btn_retreat = (Button) findViewById(R.id.retreat);
+        
         /*
          * 防止键盘挡住输入框
          * 不希望遮挡设置activity属性 android:windowSoftInputMode="adjustPan"
@@ -112,7 +113,7 @@ public class MainActivity extends Activity {
   	                //通过onResume()刷新数据
   				}
   				else {
-  					dialog(position);
+  					showAlertDialog(position);
   					//Toast.makeText(MainActivity.this, "点击第" + (position + 1) + " 号图片", 
   					//		Toast.LENGTH_SHORT).show();
   				}
@@ -120,7 +121,7 @@ public class MainActivity extends Activity {
 			}
   		});  
     }
-    
+       
     //获取图片路径 响应startActivityForResult  
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
         super.onActivityResult(requestCode, resultCode, data);        
@@ -182,8 +183,8 @@ public class MainActivity extends Activity {
      * Dialog对话框提示用户删除操作
      * position为删除图片位置
      */
-    protected void dialog(final int position) {
-    	AlertDialog.Builder builder = new Builder(MainActivity.this);
+    protected void showAlertDialog(final int position) {
+		com.custom.lee.CustomDialog.Builder builder = new com.custom.lee.CustomDialog.Builder(this);
     	builder.setMessage("确认移除已添加图片吗？");
     	builder.setTitle("提示");
     	builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
@@ -202,5 +203,28 @@ public class MainActivity extends Activity {
     		});
     	builder.create().show();
     }
+    
+    public void showAlertDialog(View view) {
+
+		com.custom.lee.CustomDialog.Builder builder = new com.custom.lee.CustomDialog.Builder(this);
+		builder.setMessage("确定要退出编辑吗");
+		builder.setTitle("提示");
+		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				//设置你的操作事项
+			}
+		});
+
+		builder.setNegativeButton("取消",
+				new android.content.DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+
+		builder.create().show();
+
+	}
 
 }

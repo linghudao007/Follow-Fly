@@ -3,7 +3,6 @@ package com.example.wechatvideorecorddemo;
 import com.example.wechatvideorecorddemo.MovieRecorderView.OnRecordFinishListener;
 import com.suixin.vy.ui.R;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +22,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_camera_lee);
 		mRecorderView = (MovieRecorderView) findViewById(R.id.movieRecorderView);
 		mShootBtn = (Button) findViewById(R.id.shoot_button);
 
@@ -47,7 +46,7 @@ public class MainActivity extends Activity {
 						// if (mRecorderView.getVecordFile() != null)
 						//	mRecorderView.getVecordFile().delete();
 						mRecorderView.stop();
-						Toast.makeText(MainActivity.this, "��Ƶ¼��ʱ��̫��",
+						Toast.makeText(MainActivity.this, "视频录制时间太短",
 								Toast.LENGTH_SHORT).show();
 					}
 				}
@@ -94,15 +93,15 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * ¼����ɻص�
+	 * 录制完成回调
 	 * 
 	 * @author liuyinjun
 	 * 
 	 * @date 2015-2-9
 	 */
-	 public interface OnShootCompletionListener {
-	 public void OnShootSuccess(String path, int second);
-	
-	 public void OnShootFailure();
-	 }
+//	 public interface OnShootCompletionListener {
+//	 public void OnShootSuccess(String path, int second);
+//	
+//	 public void OnShootFailure();
+//	 }
 }

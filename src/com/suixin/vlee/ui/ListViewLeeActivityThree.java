@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.suixin.vy.ui.R;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -64,5 +65,26 @@ public class ListViewLeeActivityThree extends Activity {
 		return msgList;
 
 	}
+	 public void showAlertDialog(View view) {
 
+			com.custom.lee.CustomDialog.Builder builder = new com.custom.lee.CustomDialog.Builder(this);
+			builder.setMessage("确定要退出编辑吗");
+			builder.setTitle("提示");
+			builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					//设置你的操作事项
+				}
+			});
+
+			builder.setNegativeButton("取消",
+					new android.content.DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
+
+			builder.create().show();
+
+		}
 }

@@ -1,6 +1,5 @@
 package com.suixin.vlee.ui;
 
-import com.example.girdviewtest.MainActivity;
 import com.suixin.vy.ui.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,6 +12,7 @@ import android.widget.Button;
 public class MainActivity_Lee extends Activity {
 	private Button but_next;
 	private Button btn_1;
+	private Button btn_quxiao;
 
 	@SuppressLint("WrongViewCast")
     @Override
@@ -22,6 +22,7 @@ public class MainActivity_Lee extends Activity {
 
 		but_next = (Button) findViewById(R.id.but_next);
 		btn_1 = (Button) findViewById(R.id.btn_1);
+		btn_quxiao =(Button) findViewById(R.id.btn_quxiao);
 		but_next.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -30,9 +31,15 @@ public class MainActivity_Lee extends Activity {
 						ListViewLeeActivity.class);
 				startActivity(intent);
 			}
+		});		
+		btn_quxiao.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				finish();
+				
+			}
 		});
-		
-
 	}
 
 }
