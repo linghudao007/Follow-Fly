@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">随心而飞</string>
+    <string name="app_name">随心旅行</string>
     <string name="use_attention">+关注</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>

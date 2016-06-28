@@ -11,26 +11,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewCompat;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.example.girdviewtest.MainActivity;
 import com.suixin.vlee.ui.MainActivity_Lee;
+import com.suixin.vq.ui.UserFragment;
 import com.suixin.vy.adapter.GVBottomAdapter;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.fragment.IndexFragment;
@@ -48,7 +42,7 @@ public class HomeActivity extends BaseActivity {
 	private LinearLayout ll_addshow;
 	private FragmentManager fm;
 	private FragmentTransaction ft;
-	private Fragment indexFrag, tripFrag;
+	private Fragment indexFrag, tripFrag, userFrag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,24 +68,41 @@ public class HomeActivity extends BaseActivity {
 		ft = fm.beginTransaction();
 		switch (witch) {
 		case 0:
+			if (tripFrag != null) {
+				ft.hide(tripFrag);
+			}
+			if (userFrag != null) {
+				ft.hide(userFrag);
+			}
 			if (indexFrag == null) {
 				indexFrag = new IndexFragment();
-
 				ft.add(R.id.ll_fragmentshow, indexFrag);
 			} else {
-				if (tripFrag != null) {
-					ft.hide(tripFrag);
-				}
 				ft.show(indexFrag);
 			}
 			break;
 		case 1:
 			ft.hide(indexFrag);
+			if (userFrag != null) {
+				ft.hide(userFrag);
+			}
 			if (tripFrag == null) {
 				tripFrag = new TripFragment();
 				ft.add(R.id.ll_fragmentshow, tripFrag);
 			} else {
 				ft.show(tripFrag);
+			}
+			break;
+		case 4:
+			ft.hide(indexFrag);
+			if (tripFrag != null) {
+				ft.hide(tripFrag);
+			}
+			if (userFrag == null) {
+				userFrag = new UserFragment();
+				ft.add(R.id.ll_fragmentshow, userFrag);
+			} else {
+				ft.show(userFrag);
 			}
 			break;
 		}
@@ -124,16 +135,24 @@ public class HomeActivity extends BaseActivity {
 			this.startActivity(intent);
 			break;
 		case R.id.iv_showtrip:
-			Intent intent_2 = new Intent(this, com.example.girdviewtest.MainActivity.class);
+			Intent intent_2 = new Intent(this,
+					com.example.girdviewtest.MainActivity.class);
 			this.startActivity(intent_2);
 			break;
 		case R.id.iv_video:
-			Intent intent_3 = new Intent(this, com.example.wechatvideorecorddemo.MainActivity.class);
+			Intent intent_3 = new Intent(this,
+					com.example.wechatvideorecorddemo.MainActivity.class);
 			this.startActivity(intent_3);
 			break;
 		default:
 			break;
 		}
+	}
+
+	@Override
+	protected void onPause() {
+		closeAdd();
+		super.onPause();
 	}
 
 	/** 打开加号按钮 */
@@ -227,30 +246,14 @@ public class HomeActivity extends BaseActivity {
 		gv_bottom.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
 				gvbAdapter.notifyDataSetChanged();
-				Toast.makeText(HomeActivity.this, arg2 + "", 1000).show();
-				switch (arg2) {
-				case 0:
-					switchFragment(arg2);
-					break;
-				case 1:
-					switchFragment(arg2);
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-				default:
-					break;
-				}
-
+				switchFragment(position);
 			}
 
 		});
 		btn_home.setOnClickListener(this);
-
 		iv_invite.setOnClickListener(this);
 		iv_showtrip.setOnClickListener(this);
 		iv_video.setOnClickListener(this);

@@ -2,6 +2,120 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
+       <RelativeLayout
+           android:id="@+id/r1"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentTop="true" >
+
+           <ImageButton
+               android:id="@+id/imageButton1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerVertical="true"
+               android:layout_marginLeft="11dp"
+               android:background="@android:color/transparent"
+               android:src="@drawable/small_arrow_left"
+/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+               android:text="我的旅图"
+               android:textColor="#706B66"
+               android:textSize="30sp" />
+
+           <ImageButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
+               android:background="@android:color/transparent"
+               android:src="@drawable/push_msg" 
+               android:layout_marginRight="18dp"/>
+       </RelativeLayout>
+
+                   <RelativeLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_below="@+id/r1" >
+
+                       <RelativeLayout
+                           android:id="@+id/relativeLayout1"
+                           android:layout_width="match_parent"
+                           android:layout_height="170dp" >
+
+                           <ImageView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentLeft="true"
+                               android:layout_alignParentTop="true"
+                               android:background="@drawable/add_friend_header" />
+                       </RelativeLayout>
+
+                       <RelativeLayout
+                           android:id="@+id/relativeLayout3"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_below="@+id/relativeLayout2" >
+
+                           <ImageButton
+                               android:id="@+id/i1"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentTop="true"
+                               android:layout_marginLeft="15dp"
+                               android:layout_toRightOf="@+id/textView2"
+                               android:src="@drawable/up_pic_default"
+                                android:background="@android:color/transparent"
+/>
+
+                           <TextView
+                               android:id="@+id/textView2"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentLeft="true"
+                               android:layout_alignParentTop="true"
+                               android:layout_marginLeft="25dp"
+                               android:layout_marginTop="15dp"
+                               android:text="今天"
+                               android:textColor="#706b66"
+                               android:textSize="30sp" />
+
+                       </RelativeLayout>
+
+                       <TextView
+                           android:id="@+id/textView1"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_below="@+id/relativeLayout1"
+                           android:layout_centerHorizontal="true"
+                           android:text="leleel"
+                           android:textSize="30sp" />
+
+                       <RelativeLayout
+                           android:id="@+id/relativeLayout2"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true"
+                           android:layout_marginTop="112dp"
+                           android:layout_toLeftOf="@+id/textView1"
+                           android:background="@drawable/welcome_aboard" >
+                       </RelativeLayout>
+                          <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/relativeLayout3"
+                android:background="#E8E4DD" />
+                       
+                   </RelativeLayout>
+
+</RelativeLayout>
 </RelativeLayout>
