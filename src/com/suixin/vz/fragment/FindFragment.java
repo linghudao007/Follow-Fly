@@ -17,6 +17,7 @@ import com.suixin.vz.ui.adapter.MRecyclerAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -28,6 +29,8 @@ import android.view.ViewGroup;
 public class FindFragment extends Fragment {
     /** RecyclerView */
     private RecyclerView rlv_find;
+
+    private SwipeRefreshLayout swipe_refresh;
 
     /** 获取来发现的显示数据 */
     private List<TourPicList> list;
@@ -64,7 +67,6 @@ public class FindFragment extends Fragment {
     private void initLv_find(LayoutInflater inflater, ViewGroup container) {
         rlv_find = (RecyclerView) view.findViewById(R.id.rlv_find);
         list = new ArrayList<TourPicList>();
-
         // 设置layoutManager 参数含义显而易见，2就是2列，第二个参数是垂直方向
         final StaggeredGridLayoutManager sg = new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL);
@@ -84,8 +86,24 @@ public class FindFragment extends Fragment {
         });
 
         // 设置item之间的间隔
-        rlv_find.addItemDecoration(new DividerItemDecoration(activity,DividerItemDecoration.VERTICAL_LIST));
-        rlv_find.addItemDecoration(new DividerItemDecoration(activity,DividerItemDecoration.HORIZONTAL_LIST));
+        rlv_find.addItemDecoration(new DividerItemDecoration(activity,
+                DividerItemDecoration.VERTICAL_LIST));
+        rlv_find.addItemDecoration(new DividerItemDecoration(activity,
+                DividerItemDecoration.HORIZONTAL_LIST));
+
+        SwipeRefreshLayout swipe_refresh = (SwipeRefreshLayout) view
+                .findViewById(R.id.swipe_refresh);
+        swipe_refresh.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+        swipe_refresh.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        getJson();
+                    }
+                });
     }
 
     // 解析发现
@@ -117,12 +135,14 @@ public class FindFragment extends Fragment {
                         // 判断是否获取成功
                         if (Strike.getStatus() == 0) {
                             getHotListViewData();
+                            //swipe_refresh.setRefreshing(false);
                         }
                     }
 
                     @Override
                     public void onFailure(HttpException error, String msg) {
                         Log.e("xx", error.getExceptionCode() + ":" + msg);
+                        swipe_refresh.setRefreshing(false);
                     }
                 });
     }
