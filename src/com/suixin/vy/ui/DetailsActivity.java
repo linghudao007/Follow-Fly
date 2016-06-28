@@ -37,8 +37,9 @@ import com.suixin.vy.model.theme.ThemeModel;
  * 详细信息展示 页面 intent需要三个参数 2.标题 3.请求参数planGuid 用EventBus传递进来View
  */
 public class DetailsActivity extends BaseActivity {
-	private ImageView iv_back;
+	private ImageView iv_back,iv_share;
 	private TextView tv_title;
+	
 	/** 评论listView */
 	private ListView lv_comment;
 	/** 约伴评论的接口地址 PSOT */
@@ -92,12 +93,20 @@ public class DetailsActivity extends BaseActivity {
 		case R.id.iv_back:
 			this.finish();
 			break;
+		case R.id.iv_share:
+			share();
+			break;
 		}
+	}
+	/**分享*/
+	private void share() {
+		
 	}
 
 	@Override
 	protected void initView() {
 		iv_back = (ImageView) findViewById(R.id.iv_back);
+		iv_share=(ImageView)findViewById(R.id.iv_share);
 		tv_title = (TextView) findViewById(R.id.tv_title);
 		String tit = this.getIntent().getStringExtra(AppConfig.TITLE);
 		planGuid = this.getIntent().getStringExtra("planGuid");
@@ -121,6 +130,7 @@ public class DetailsActivity extends BaseActivity {
 	@Override
 	protected void addListener() {
 		iv_back.setOnClickListener(this);
+		iv_share.setOnClickListener(this);
 	}
 
 	private void getJson_y() {
