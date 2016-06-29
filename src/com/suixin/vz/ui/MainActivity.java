@@ -1,5 +1,6 @@
 package com.suixin.vz.ui;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import com.suixin.vz.ui.adapter.ViewPagerAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -36,6 +39,10 @@ public class MainActivity extends Activity
     private List<View> viewPoints = new ArrayList<View>();// 保存小圆点
 
     private Button btn_open;// 进入主界面
+    
+    private SharedPreferences preferences;  
+    private Editor editor;  
+    private OutputStream os;  
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +50,19 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
         pager = (ViewPager) findViewById(R.id.vp_view_pager);
         layout = (LinearLayout) findViewById(R.id.ll_points);
-
+        
+        preferences = getSharedPreferences("phone", this.MODE_PRIVATE);  
+        //判断是不是首次登录，  
+        if (preferences.getBoolean("firststart", true)) {  
+         editor = preferences.edit();  
+         //将登录标志位设置为false，下次登录时不在显示首次登录界面  
+         editor.putBoolean("firststart", false);  
+         editor.commit();  
+         Intent intent = new Intent("com.suixin.vy.ui.HomeActivity");  
+         startActivity(intent);
+         finish();
+        }
+        
         initData();
         adapter = new ViewPagerAdapter(this, data);
         pager.setAdapter(adapter);

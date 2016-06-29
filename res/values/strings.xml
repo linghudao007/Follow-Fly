@@ -91,4 +91,6 @@
     <string name="updated_just_now">刚刚更新</string>  
     <string name="time_error">时间有问题</string>  
     <string name="tv_details">约伴详情</string>
+    <string name="Small_new">小新</string>
+    <string name="send_vz">发送</string>
 </resources>

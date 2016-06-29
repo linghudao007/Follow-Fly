@@ -124,7 +124,7 @@ public class DetailsActivity extends BaseActivity {
 	    // site是分享此内容的网站名称，仅在QQ空间使用
 	    oks.setSite(getString(R.string.app_name));
 	    // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-	    oks.setSiteUrl("http://im.qq.com");
+	    oks.setSiteUrl("http://im.qq.com/");
 
 	   // 启动分享GUI
 	    oks.show(this);
