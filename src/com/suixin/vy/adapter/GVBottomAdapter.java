@@ -61,7 +61,6 @@ public class GVBottomAdapter extends BaseAdapter {
 			holder.tv_tab = (TextView) convertView.findViewById(R.id.tv_tab);
 			holder.rl_tab=(RelativeLayout)convertView.findViewById(R.id.rl_tab);
 			convertView.setTag(holder);
-
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}

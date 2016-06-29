@@ -24,8 +24,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.suixin.vlee.ui.MainActivity_Lee;
+import com.suixin.vq.ui.UserFragment;
 import com.suixin.vy.adapter.GVBottomAdapter;
 import com.suixin.vy.core.BaseActivity;
+import com.suixin.vy.core.MyApplication;
 import com.suixin.vy.fragment.IndexFragment;
 import com.suixin.vy.model.GVBottomModel;
 import com.suixin.vz.fragment.TripFragment;
@@ -41,7 +43,7 @@ public class HomeActivity extends BaseActivity {
 	private LinearLayout ll_addshow;
 	private FragmentManager fm;
 	private FragmentTransaction ft;
-	private Fragment indexFrag, tripFrag;
+	private Fragment indexFrag, tripFrag, userFrag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,24 +69,48 @@ public class HomeActivity extends BaseActivity {
 		ft = fm.beginTransaction();
 		switch (witch) {
 		case 0:
+			if (tripFrag != null) {
+				ft.hide(tripFrag);
+			}
+			if (userFrag != null) {
+				ft.hide(userFrag);
+			}
 			if (indexFrag == null) {
 				indexFrag = new IndexFragment();
-
 				ft.add(R.id.ll_fragmentshow, indexFrag);
 			} else {
-				if (tripFrag != null) {
-					ft.hide(tripFrag);
-				}
 				ft.show(indexFrag);
 			}
 			break;
 		case 1:
 			ft.hide(indexFrag);
+			if (userFrag != null) {
+				ft.hide(userFrag);
+			}
 			if (tripFrag == null) {
 				tripFrag = new TripFragment();
 				ft.add(R.id.ll_fragmentshow, tripFrag);
 			} else {
 				ft.show(tripFrag);
+			}
+			break;
+		case 4:
+			// 判断是否登录
+			MyApplication appState = ((MyApplication) getApplicationContext());
+			if (!appState.isLogin()) {
+				Intent intent = new Intent(this, LoginActivity.class);
+				this.startActivity(intent);
+				return;
+			}
+			ft.hide(indexFrag);
+			if (tripFrag != null) {
+				ft.hide(tripFrag);
+			}
+			if (userFrag == null) {
+				userFrag = new UserFragment();
+				ft.add(R.id.ll_fragmentshow, userFrag);
+			} else {
+				ft.show(userFrag);
 			}
 			break;
 		}
@@ -102,6 +128,13 @@ public class HomeActivity extends BaseActivity {
 
 		switch (v.getId()) {
 		case R.id.btn_home:
+			// 判断是否登录
+			MyApplication appState = ((MyApplication) getApplicationContext());
+			if (!appState.isLogin()) {
+				Intent intent = new Intent(this, LoginActivity.class);
+				this.startActivity(intent);
+				return;
+			}
 			// 判断加号按钮是否打开
 			if (this.isOpneBtn_home) {
 				closeAdd();
@@ -117,16 +150,24 @@ public class HomeActivity extends BaseActivity {
 			this.startActivity(intent);
 			break;
 		case R.id.iv_showtrip:
-			Intent intent_2 = new Intent(this, com.example.girdviewtest.MainActivity.class);
+			Intent intent_2 = new Intent(this,
+					com.example.girdviewtest.MainActivity.class);
 			this.startActivity(intent_2);
 			break;
 		case R.id.iv_video:
-			Intent intent_3 = new Intent(this, com.example.wechatvideorecorddemo.MainActivity.class);
+			Intent intent_3 = new Intent(this,
+					com.example.wechatvideorecorddemo.MainActivity.class);
 			this.startActivity(intent_3);
 			break;
 		default:
 			break;
 		}
+	}
+
+	@Override
+	protected void onPause() {
+		closeAdd();
+		super.onPause();
 	}
 
 	/** 打开加号按钮 */
@@ -220,30 +261,14 @@ public class HomeActivity extends BaseActivity {
 		gv_bottom.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
 				gvbAdapter.notifyDataSetChanged();
-				Toast.makeText(HomeActivity.this, arg2 + "", 1000).show();
-				switch (arg2) {
-				case 0:
-					switchFragment(arg2);
-					break;
-				case 1:
-					switchFragment(arg2);
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-				default:
-					break;
-				}
-
+				switchFragment(position);
 			}
 
 		});
 		btn_home.setOnClickListener(this);
-
 		iv_invite.setOnClickListener(this);
 		iv_showtrip.setOnClickListener(this);
 		iv_video.setOnClickListener(this);

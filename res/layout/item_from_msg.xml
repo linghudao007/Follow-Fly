@@ -29,7 +29,7 @@
             <ImageView
                 android:layout_width="49dp"
                 android:layout_height="49dp"
-                android:src="@drawable/icon" />
+                android:src="@drawable/ic_suixin" />
 
         </LinearLayout>
 
