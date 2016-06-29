@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -26,7 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FindFragment extends Fragment {
+public class FindFragment extends Fragment implements OnRefreshListener{
     /** RecyclerView */
     private RecyclerView rlv_find;
 
@@ -59,6 +60,7 @@ public class FindFragment extends Fragment {
         this.view = view;
         // 实例化发现中的控件
         initLv_find(inflater, container);
+        swipe_refresh.setRefreshing(true);
         getJson();
         return view;
     }
@@ -91,19 +93,16 @@ public class FindFragment extends Fragment {
         rlv_find.addItemDecoration(new DividerItemDecoration(activity,
                 DividerItemDecoration.HORIZONTAL_LIST));
 
-        SwipeRefreshLayout swipe_refresh = (SwipeRefreshLayout) view
-                .findViewById(R.id.swipe_refresh);
+        swipe_refresh = (SwipeRefreshLayout) view
+                .findViewById(R.id.refresh);
         swipe_refresh.setColorSchemeResources(android.R.color.holo_blue_light,
                 android.R.color.holo_red_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_green_light);
-        swipe_refresh.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        getJson();
-                    }
-                });
+        swipe_refresh.setProgressViewOffset(true, 0, 100);
+        swipe_refresh.setSize(SwipeRefreshLayout.DEFAULT);
+        swipe_refresh.setOnRefreshListener(this);
+        
     }
 
     // 解析发现
@@ -117,6 +116,7 @@ public class FindFragment extends Fragment {
                     @Override
                     public void onStart() {
                         Log.e("ff", "onStart");
+                        //swipe_refresh.setRefreshing(true);
                     }
 
                     @Override
@@ -153,6 +153,18 @@ public class FindFragment extends Fragment {
         list.addAll(tourPicList);
         adapter.notifyDataSetChanged();
         Log.e("ff", adapter + "notifyDa");
+        if(swipe_refresh != null) {
+            Log.e("ff", "setRefreshing");
+            swipe_refresh.setRefreshing(false);
+            swipe_refresh.invalidate();
+        }
+           
+      
+    }
+
+    @Override
+    public void onRefresh() {
+        getJson();        
     }
 
 }

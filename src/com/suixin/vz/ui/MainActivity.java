@@ -58,9 +58,11 @@ public class MainActivity extends Activity
          //将登录标志位设置为false，下次登录时不在显示首次登录界面  
          editor.putBoolean("firststart", false);  
          editor.commit();  
-         Intent intent = new Intent("com.suixin.vy.ui.HomeActivity");  
-         startActivity(intent);
-         finish();
+
+        }else {
+            Intent intent = new Intent("com.suixin.vy.ui.HomeActivity");  
+            startActivity(intent);
+            finish();
         }
         
         initData();

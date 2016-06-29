@@ -107,8 +107,8 @@ public class HomeActivity extends BaseActivity {
 				ft.hide(userFrag);
 			}
 			if (chatFrag == null) {
-				//chatFrag = new FragmentLoging();
-				//ft.add(R.id.ll_fragmentshow, chatFrag);
+				chatFrag = new FragmentLoging();
+				ft.add(R.id.ll_fragmentshow, chatFrag);
 			} else {
 				ft.show(chatFrag);
 			}

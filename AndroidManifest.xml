@@ -54,6 +54,11 @@
             </intent-filter>
         </activity>
         <activity android:name="com.suixin.vy.ui.HomeActivity" >
+         <intent-filter>
+                <action android:name="com.suixin.vy.ui.HomeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity android:name="com.suixin.vlee.ui.MainActivity_Lee" >
         </activity>

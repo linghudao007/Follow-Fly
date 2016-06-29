@@ -63,16 +63,12 @@ public class FragmentLoging extends Fragment {
                 container, false);
         this.view = view;
      // 实例化发现中的控件
+        
+       
+        initLv_find(inflater, container); 
         initDatas();
         initListener();
-        initLv_find(inflater, container);
         return view;
-    }
-
-    private void initLv_find(LayoutInflater inflater, ViewGroup container) {
-        mMsgs = (ListView) view.findViewById(R.id.id_listview_msgs);
-        mInputMsg = (EditText) view.findViewById(R.id.id_input_msg);
-        mSendMsg = (Button) view.findViewById(R.id.id_send_msg);
     }
 
     private void initListener() {
@@ -113,6 +109,12 @@ public class FragmentLoging extends Fragment {
         mDatas.add(new ChatMessage("您好", Type.INCOMING, new Date()));
         mAdapter = new ChatMessageAdapter(activity, mDatas);
         mMsgs.setAdapter(mAdapter);
+    }
+
+    private void initLv_find(LayoutInflater inflater, ViewGroup container) {
+        mMsgs = (ListView) view.findViewById(R.id.id_listview_msgs);
+        mInputMsg = (EditText) view.findViewById(R.id.id_input_msg);
+        mSendMsg = (Button) view.findViewById(R.id.id_send_msg);
     }
 
 }

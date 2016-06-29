@@ -2,14 +2,26 @@ package com.suixin.vz.bean;
 
 import java.util.Date;
 
+import com.suixin.vy.core.MyApplication;
+
 public class ChatMessage
 {
 	private String name;
 	private String msg;
 	private Type type;
 	private Date date;
+	private String headPath;
 
-	public enum Type
+	public String getHeadPath() {
+        return headPath;
+    }
+
+
+
+    public void setHeadPath(String headPath) {
+        this.headPath = headPath;
+    }
+    public enum Type
 	{
 		INCOMING, OUTCOMING
 	}
@@ -26,6 +38,8 @@ public class ChatMessage
 		this.msg = msg;
 		this.type = type;
 		this.date = date;
+		if(MyApplication.headPath !=null)
+		    setHeadPath(MyApplication.headPath);
 	}
 
 

@@ -6,7 +6,7 @@ import java.util.List;
 import com.suixin.vy.ui.R;
 import com.suixin.vz.bean.ChatMessage;
 import com.suixin.vz.bean.ChatMessage.Type;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,13 +56,13 @@ public class ChatMessageAdapter extends BaseAdapter
 		return 2;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent)
+	@SuppressLint("SimpleDateFormat")
+    public View getView(int position, View convertView, ViewGroup parent)
 	{
 		ChatMessage chatMessage = mDatas.get(position);
 		ViewHolder viewHolder = null;
 		if (convertView == null)
 		{
-			// ͨ��ItemType���ò�ͬ�Ĳ���
 			if (getItemViewType(position) == 0)
 			{
 				convertView = mInflater.inflate(R.layout.item_from_msg, parent,
@@ -87,7 +87,6 @@ public class ChatMessageAdapter extends BaseAdapter
 		{
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		// ��������
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		viewHolder.mDate.setText(df.format(chatMessage.getDate()));
 		viewHolder.mMsg.setText(chatMessage.getMsg());

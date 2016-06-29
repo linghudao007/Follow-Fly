@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class MyApplication extends Application{
+    public static String headPath; 
 	
 	public boolean isLogin() {
 		SharedPreferences sp = this.getSharedPreferences("AppConfig",Context.MODE_PRIVATE);
