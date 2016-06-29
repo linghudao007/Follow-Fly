@@ -78,7 +78,7 @@
     <string name="tv_rank_name">name</string>
     <string name="tv_rank_description">description</string>
     <string name="vy_handpick">精选活动</string>
-	<string name="smssdk_bind_mobile_show">注册</string>
+    <string name="smssdk_bind_mobile_show">注册</string>
     <string name="smssdk_contact">通讯录好友</string>
     <string name="smssdk_appkey_dialog_title">请输入您的应用信息</string>
     <string name="smssdk_appkey">AppKey</string>
@@ -86,16 +86,19 @@
     <string name="smssdk_appsecret">AppSecret</string>
     <string name="smssdk_appsecrethint">请输入您的AppSecret</string>
     <string name="Being_loaded">正在加载...</string>
-    <string name="not_updated_yet">暂未更新过</string>  
-    <string name="updated_at">上次更新于%1$s前</string>  
-    <string name="updated_just_now">刚刚更新</string>  
-    <string name="time_error">时间有问题</string>  
+    <string name="not_updated_yet">暂未更新过</string>
+    <string name="updated_at">上次更新于%1$s前</string>
+    <string name="updated_just_now">刚刚更新</string>
+    <string name="time_error">时间有问题</string>
     <string name="tv_details">约伴详情</string>
-   	<string name="tv_wel">欢迎使用随心旅行</string>
-   	<string name="tv_wel_det">为了方便您的使用，进行下一步操作前</string>
-	<string name="tv_wel_det_2">请您注册一个随心账号。</string>
-	<string name="tv_login">登录</string>
-	<string name="tv_regist">注册</string>
-	<string name="et_inputtel">请输入您的手机号</string>
-	<string name="et_inputpass">输入密码</string>
+    <string name="Small_new">小新</string>
+    <string name="send_vz">发送</string>
+    <string name="tv_wel">欢迎使用随心旅行</string>
+    <string name="tv_wel_det">为了方便您的使用，进行下一步操作前</string>
+    <string name="tv_wel_det_2">请您注册一个随心账号。</string>
+    <string name="tv_login">登录</string>
+    <string name="tv_regist">注册</string>
+    <string name="et_inputtel">请输入您的手机号</string>
+    <string name="et_inputpass">输入密码</string>
+
 </resources>
