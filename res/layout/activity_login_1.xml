@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="183dp" >
 
         <RelativeLayout
             android:id="@+id/rl_logining"
@@ -17,7 +17,8 @@
             android:layout_width="320dp"
             android:layout_height="170dp"
             android:layout_marginLeft="13dp"
-            android:layout_marginRight="13dp" >
+            android:layout_marginRight="13dp"
+            android:layout_alignParentBottom="true">
 
             <EditText
                 android:id="@+id/et_tel"
@@ -65,8 +66,7 @@
             android:id="@+id/iv_close"
             android:layout_width="27dp"
             android:layout_height="27dp"
-            android:layout_alignTop="@id/rl_logining"
-            android:layout_marginTop="-13dp"
+            android:layout_alignParentTop="true"
             android:clickable="true"
             android:src="@drawable/register_delete" />
     </RelativeLayout>

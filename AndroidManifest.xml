@@ -121,7 +121,8 @@
         </activity>
         <activity
             android:name="com.suixin.vy.ui.LoginingActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name="com.suixin.vy.ui.RegistActivity"

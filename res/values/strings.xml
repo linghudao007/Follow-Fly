@@ -100,5 +100,8 @@
     <string name="tv_regist">注册</string>
     <string name="et_inputtel">请输入您的手机号</string>
     <string name="et_inputpass">输入密码</string>
+    <string name="verify_hint">我们已将验证码发送至</string>
+    <string name="input_verify">请输入验证码</string>
+    <string name="back">上一步</string>
 
 </resources>
