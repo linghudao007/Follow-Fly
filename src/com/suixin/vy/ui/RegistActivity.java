@@ -13,8 +13,9 @@ public class RegistActivity extends BaseActivity {
 	private ImageView close;
 	private LinearLayout bg;
 	private TextView next;
-	private EditText uname,upass;
+	private EditText uname, upass;
 	private static final String APPLICATION_ID = "1d48b3e46be2dcf7dbe14b8458205487";
+	private String name, pass;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -32,8 +33,15 @@ public class RegistActivity extends BaseActivity {
 			this.finish();
 			break;
 		case R.id.tv_next:
+			regist();
 			break;
 		}
+	}
+
+	/** 注册 */
+	private void regist() {
+		name = uname.getText().toString().trim();
+		pass = upass.getText().toString().trim();
 	}
 
 	@Override
@@ -41,8 +49,8 @@ public class RegistActivity extends BaseActivity {
 		close = (ImageView) findViewById(R.id.iv_close);
 		next = (TextView) findViewById(R.id.tv_next);
 		bg = (LinearLayout) findViewById(R.id.rl_background);
-		uname=(EditText)findViewById(R.id.et_tel);
-		upass=(EditText)findViewById(R.id.et_pass);
+		uname = (EditText) findViewById(R.id.et_tel);
+		upass = (EditText) findViewById(R.id.et_pass);
 	}
 
 	@Override
@@ -50,7 +58,7 @@ public class RegistActivity extends BaseActivity {
 		bg.setOnClickListener(this);
 		close.setOnClickListener(this);
 		next.setOnClickListener(this);
-		
+
 	}
 
 	@Override

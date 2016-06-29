@@ -91,6 +91,9 @@ public class HomeActivity extends BaseActivity {
 			if (userFrag != null) {
 				ft.hide(userFrag);
 			}
+			if (chatFrag != null) {
+				ft.hide(chatFrag);
+			}
 			if (tripFrag == null) {
 				tripFrag = new TripFragment();
 				ft.add(R.id.ll_fragmentshow, tripFrag);
