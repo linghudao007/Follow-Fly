@@ -31,6 +31,7 @@ import com.suixin.vy.core.MyApplication;
 import com.suixin.vy.fragment.IndexFragment;
 import com.suixin.vy.model.GVBottomModel;
 import com.suixin.vz.fragment.TripFragment;
+import com.suixin.vz.turing.FragmentLoging;
 
 public class HomeActivity extends BaseActivity {
 	private GridView gv_bottom;
@@ -43,7 +44,7 @@ public class HomeActivity extends BaseActivity {
 	private LinearLayout ll_addshow;
 	private FragmentManager fm;
 	private FragmentTransaction ft;
-	private Fragment indexFrag, tripFrag, userFrag;
+	private Fragment indexFrag, tripFrag, userFrag,chatFrag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,9 @@ public class HomeActivity extends BaseActivity {
 			if (userFrag != null) {
 				ft.hide(userFrag);
 			}
+			if (chatFrag != null) {
+				ft.hide(chatFrag);
+			}
 			if (indexFrag == null) {
 				indexFrag = new IndexFragment();
 				ft.add(R.id.ll_fragmentshow, indexFrag);
@@ -94,6 +98,21 @@ public class HomeActivity extends BaseActivity {
 				ft.show(tripFrag);
 			}
 			break;
+		case 3:
+			ft.hide(indexFrag);
+			if (tripFrag != null) {
+				ft.hide(tripFrag);
+			}
+			if (userFrag != null) {
+				ft.hide(userFrag);
+			}
+			if (chatFrag == null) {
+				//chatFrag = new FragmentLoging();
+				//ft.add(R.id.ll_fragmentshow, chatFrag);
+			} else {
+				ft.show(chatFrag);
+			}
+			break;
 		case 4:
 			// 判断是否登录
 			MyApplication appState = ((MyApplication) getApplicationContext());
@@ -105,6 +124,9 @@ public class HomeActivity extends BaseActivity {
 			ft.hide(indexFrag);
 			if (tripFrag != null) {
 				ft.hide(tripFrag);
+			}
+			if (chatFrag != null) {
+				ft.hide(chatFrag);
 			}
 			if (userFrag == null) {
 				userFrag = new UserFragment();

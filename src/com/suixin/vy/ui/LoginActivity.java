@@ -39,6 +39,9 @@ public class LoginActivity extends BaseActivity{
 			this.finish();
 			break;
 		case R.id.tv_regist:
+			Intent intent_r = new Intent(this,RegistActivity.class);
+			this.startActivity(intent_r);
+			this.finish();
 			break;
 		}
 	}
