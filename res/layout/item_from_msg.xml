@@ -39,8 +39,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/chatfrom_bg_normal"
             android:gravity="center_vertical"
-            android:textSize="16sp"
-            android:text="你好" />
-    </LinearLayout>
+            android:text=""
+            android:textSize="16sp" />
+</LinearLayout>
 
 </LinearLayout>
