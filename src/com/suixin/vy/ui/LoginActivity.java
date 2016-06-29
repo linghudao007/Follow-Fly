@@ -3,6 +3,7 @@ package com.suixin.vy.ui;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +19,6 @@ public class LoginActivity extends BaseActivity{
 	private RelativeLayout bg;
 	private TextView login,regist;
 	
-	private static final String APPLICATION_ID="1d48b3e46be2dcf7dbe14b8458205487";
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -26,28 +26,7 @@ public class LoginActivity extends BaseActivity{
 		setContentView(R.layout.activity_login);
 		initView();
 		addListener();
-		//yanz();
 	}
-
-	private void yanz() {
-		BmobSMS.initialize(this,APPLICATION_ID);
-		SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String sendTime = format.format(new Date());
-		BmobSMS.requestSMS(this, "这里不知道填啥", "审核通过后的短信内容",null,new RequestSMSCodeListener() {
-
-		    @Override
-		    public void done(Integer smsId,BmobException ex) {
-		        // TODO Auto-generated method stub
-		        if(ex==null){//
-		            Log.i("bmob","短信发送成功，短信id："+smsId);//用于查询本次短信发送详情
-		        }else{
-		            Log.i("bmob","errorCode = "+ex.getErrorCode()+",errorMsg = "+ex.getLocalizedMessage());
-		        }
-		    }
-
-		});
-	}
-
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
@@ -55,6 +34,9 @@ public class LoginActivity extends BaseActivity{
 			this.finish();
 			break;
 		case R.id.tv_login:
+			Intent intent = new Intent(this,LoginingActivity.class);
+			this.startActivity(intent);
+			this.finish();
 			break;
 		case R.id.tv_regist:
 			break;
