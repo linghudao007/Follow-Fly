@@ -27,6 +27,7 @@ import com.suixin.vlee.ui.MainActivity_Lee;
 import com.suixin.vq.ui.UserFragment;
 import com.suixin.vy.adapter.GVBottomAdapter;
 import com.suixin.vy.core.BaseActivity;
+import com.suixin.vy.core.MyApplication;
 import com.suixin.vy.fragment.IndexFragment;
 import com.suixin.vy.model.GVBottomModel;
 import com.suixin.vz.fragment.TripFragment;
@@ -94,6 +95,13 @@ public class HomeActivity extends BaseActivity {
 			}
 			break;
 		case 4:
+			// 判断是否登录
+			MyApplication appState = ((MyApplication) getApplicationContext());
+			if (!appState.isLogin()) {
+				Intent intent = new Intent(this, LoginActivity.class);
+				this.startActivity(intent);
+				return;
+			}
 			ft.hide(indexFrag);
 			if (tripFrag != null) {
 				ft.hide(tripFrag);
@@ -120,6 +128,13 @@ public class HomeActivity extends BaseActivity {
 
 		switch (v.getId()) {
 		case R.id.btn_home:
+			// 判断是否登录
+			MyApplication appState = ((MyApplication) getApplicationContext());
+			if (!appState.isLogin()) {
+				Intent intent = new Intent(this, LoginActivity.class);
+				this.startActivity(intent);
+				return;
+			}
 			// 判断加号按钮是否打开
 			if (this.isOpneBtn_home) {
 				closeAdd();
