@@ -40,14 +40,11 @@ public class AttentionFragment extends Fragment {
                 container, false);
         this.view=view;
         list = new ArrayList<TourPicList>();
-        Log.e("aa", "list");
         // 实例化关注中的控件
         initLv_attention(inflater, container);
         getJson();
-        Log.e("aa", "getJson");
         adapter = new AttentionListAdapter(list, this.getActivity());
         lv_vz_att_home.setAdapter(adapter);
-        Log.e("aa", "lv_vz_home");
         return view;
     }
     
@@ -94,6 +91,5 @@ public class AttentionFragment extends Fragment {
         list.clear();
         list.addAll(tourPicList);
         adapter.notifyDataSetInvalidated();
-        Log.e("aa",adapter+"attentionifyDa");
     }
 }

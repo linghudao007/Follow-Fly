@@ -41,14 +41,11 @@ public class HotFragment extends Fragment {
                 container, false);
         this.view=view;
         list = new ArrayList<com.suixin.vz.model.TourPicList>();
-        Log.e("xx", "list");
         // 实例化热门中的控件
         initLv_hot(inflater, container);
         getJson();
-        Log.e("xx", "getJson");
         adapter = new HotListAdapter(list, this.getActivity());
         lv_vz_home.setAdapter(adapter);
-        Log.e("xx", "lv_vz_home");
         return view;
     }
     
@@ -60,15 +57,12 @@ public class HotFragment extends Fragment {
     private void getJson() {
         RequestParams params = new RequestParams();
         params.addBodyParameter("OrderStr", "");
-        Log.e("xx", "params");
         HttpUtils http = new HttpUtils();
-        Log.e("xx", http + "");
         http.send(HttpRequest.HttpMethod.POST,
                 "http://www.duckr.cn/api/v5/tourpic/popular/list/", params,
                 new RequestCallBack<String>() {
                     @Override
                     public void onStart() {
-                        Log.e("xx", "onStart");
                     }
                     @Override
                     public void onLoading(long total, long current,
@@ -86,7 +80,6 @@ public class HotFragment extends Fragment {
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         hot = JSON.parseObject(responseInfo.result,
                                 HotModel.class);
-                        Log.e("xx", "数据获取成功");
                         // 判断是否获取成功
                         if (hot.getStatus() == 0 ) {
                             getHotListViewData();
@@ -95,7 +88,6 @@ public class HotFragment extends Fragment {
 
                     @Override
                     public void onFailure(HttpException error, String msg) {
-                        Log.e("xx", error.getExceptionCode() + ":" + msg);
                     }
                 });
     }
@@ -104,6 +96,5 @@ public class HotFragment extends Fragment {
         list.clear();
         list.addAll(tourPicList);
         adapter.notifyDataSetInvalidated();
-        Log.e("xx",adapter+"notifyDa");
     }
 }

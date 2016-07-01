@@ -24,14 +24,14 @@
 
         <ImageView
             android:id="@+id/iv_heart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignBottom="@+id/iv_fill"
             android:layout_alignRight="@id/iv_fill"
             android:layout_alignEnd="@id/iv_fill"
-            android:layout_marginBottom="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:contentDescription="@string/hello_world"
             android:src="@drawable/commercial_plan_heart" />
 
@@ -41,29 +41,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/iv_heart"
-            android:layout_marginLeft="14dp"
-            android:layout_marginStart="14dp"
+            android:layout_alignBottom="@+id/iv_fill"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toLeftOf="@id/iv_heart"
+            android:layout_toStartOf="@id/iv_heart"
             android:ellipsize="end"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingStart="10dp"
+            android:layout_marginBottom="10dp"
             android:singleLine="true"
-            android:text=""
             android:textColor="@android:color/white"
-            android:textSize="@dimen/tv_size_title" />
+            android:textSize="@dimen/tv_size_xm" />
 
         <TextView
             android:id="@+id/tv_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/iv_heart"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/iv_heart"
-            android:layout_marginTop="26dp"
-            android:text=""
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/latout_textsize_m" />
+            android:textSize="@dimen/tv_size_m" />
     </RelativeLayout>
 
 </LinearLayout>
