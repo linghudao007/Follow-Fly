@@ -99,8 +99,8 @@ public class FindFragment extends Fragment implements OnRefreshListener{
                 android.R.color.holo_red_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_green_light);
-        swipe_refresh.setProgressViewOffset(true, 0, 100);
-        swipe_refresh.setSize(SwipeRefreshLayout.DEFAULT);
+        swipe_refresh.setProgressViewOffset(true,0, 100);
+        swipe_refresh.setSize(SwipeRefreshLayout.LARGE);
         swipe_refresh.setOnRefreshListener(this);
         
     }
@@ -115,8 +115,6 @@ public class FindFragment extends Fragment implements OnRefreshListener{
                 new RequestCallBack<String>() {
                     @Override
                     public void onStart() {
-                        Log.e("ff", "onStart");
-                        //swipe_refresh.setRefreshing(true);
                     }
 
                     @Override
@@ -131,7 +129,6 @@ public class FindFragment extends Fragment implements OnRefreshListener{
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         Strike = JSON.parseObject(responseInfo.result,
                                 StrikeModel.class);
-                        Log.e("xx", "数据获取成功");
                         // 判断是否获取成功
                         if (Strike.getStatus() == 0) {
                             getHotListViewData();
@@ -141,7 +138,6 @@ public class FindFragment extends Fragment implements OnRefreshListener{
 
                     @Override
                     public void onFailure(HttpException error, String msg) {
-                        Log.e("xx", error.getExceptionCode() + ":" + msg);
                         swipe_refresh.setRefreshing(false);
                     }
                 });
@@ -152,7 +148,6 @@ public class FindFragment extends Fragment implements OnRefreshListener{
         list.clear();
         list.addAll(tourPicList);
         adapter.notifyDataSetChanged();
-        Log.e("ff", adapter + "notifyDa");
         if(swipe_refresh != null) {
             Log.e("ff", "setRefreshing");
             swipe_refresh.setRefreshing(false);

@@ -66,6 +66,7 @@ public class TripFragment extends Fragment implements OnClickListener {
                 getResources().getColor(android.R.color.holo_blue_light));
     }
 
+    @SuppressWarnings("deprecation")
     private void addListener() {
         fragment_hot_listview_vz.setOnClickListener(this);
         fragment_listview_find_vz.setOnClickListener(this);
@@ -74,7 +75,6 @@ public class TripFragment extends Fragment implements OnClickListener {
 
             public void onPageSelected(int arg0) {
                 currentPagerIndex = arg0;
-                Toast.makeText(getActivity(), arg0 + "", 500).show();
                 setTabTextViewColor(currentPagerIndex);
             }
 

@@ -6,7 +6,7 @@ import java.util.List;
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
 import org.simple.eventbus.ThreadMode;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -38,6 +38,7 @@ import com.suixin.vy.model.theme.ThemeModel;
 /**
  * 详细信息展示 页面 intent需要三个参数 2.标题 3.请求参数planGuid 用EventBus传递进来View
  */
+@SuppressLint("SdCardPath")
 public class DetailsActivity extends BaseActivity {
 	private ImageView iv_back,iv_share;
 	private TextView tv_title;
@@ -107,25 +108,22 @@ public class DetailsActivity extends BaseActivity {
 	    //关闭sso授权
 	    oks.disableSSOWhenAuthorize(); 
 
-	   // 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
-	    //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
 	    // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
 	    oks.setTitle(getString(R.string.app_name));
 	    // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-	    oks.setTitleUrl("http://wap.qq.com/");
+	    oks.setTitleUrl("http://suixinfly.bmob.cn/");
 	    // text是分享文本，所有平台都需要这个字段
-	    oks.setText("我是分享文本");
+	    oks.setText("随心旅行官方®");
 	    // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
 	    //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
 	    // url仅在微信（包括好友和朋友圈）中使用
-	    oks.setUrl("http://weixin.qq.com/");
+	    oks.setUrl("http://suixinfly.bmob.cn/");
 	    // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-	    oks.setComment("我是测试评论文本");
+	    oks.setComment("随心旅行官方®");
 	    // site是分享此内容的网站名称，仅在QQ空间使用
 	    oks.setSite(getString(R.string.app_name));
 	    // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-	    oks.setSiteUrl("http://im.qq.com/");
-
+	    oks.setSiteUrl("http://suixinfly.bmob.cn/");
 	   // 启动分享GUI
 	    oks.show(this);
 	    }
