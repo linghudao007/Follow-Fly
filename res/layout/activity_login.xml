@@ -2,10 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#88000000"
-    android:layoutAnimation="@anim/anim_layout"
-    >
+    android:layout_height="wrap_content" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +11,7 @@
         <RelativeLayout
             android:id="@+id/rl"
             style="@style/login_bg"
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="220dp" >
 
             <TextView
