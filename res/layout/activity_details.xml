@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white" >
+    android:background="@android:color/white"
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,26 +28,34 @@
             android:layout_marginTop="16dp"
             android:text="@string/tv_details"
             android:textSize="@dimen/tv_size_title" />
-         <ImageView
+
+        <ImageView
             android:id="@+id/iv_share"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/tv_bar_height"
             android:layout_alignParentRight="true"
             android:paddingBottom="16dp"
+            android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="16dp"
-            android:paddingLeft="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/share" />
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/lv_content"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_ref"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/color_line"
-        android:dividerHeight="1px"
-        android:scrollbars="none" >
-    </ListView>
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/lv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/color_line"
+            android:dividerHeight="1px"
+            android:listSelector="@drawable/listview_selector"
+            android:scrollbars="none" >
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
