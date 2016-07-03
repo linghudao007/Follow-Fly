@@ -26,6 +26,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.core.MyApplication;
 import com.suixin.vy.model.UserModel;
@@ -36,7 +37,6 @@ public class RegistActivity extends BaseActivity {
 	private RelativeLayout rl_1, rl_2;// 切换布局显示
 	private TextView next, back, counttime, finish;// 下一步，上一步,完成注册（重新发送，显示倒计时）
 	private EditText uname, upass, verify;// 用户名，密码，验证码输入框
-	private static final String APPLICATION_ID = "1d48b3e46be2dcf7dbe14b8458205487";
 	private String name, pass, smsCode;// 用户名，密码，验证码字符串
 	private TextView tv_hint_tel;// 显示+86用户
 	private long now;
@@ -48,7 +48,7 @@ public class RegistActivity extends BaseActivity {
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_login_2);
 		// 第一：默认初始化
-		Bmob.initialize(this, APPLICATION_ID);
+		Bmob.initialize(this, AppConfig.BMOB_APPLICATION_ID);
 		initView();
 		addListener();
 	}
@@ -107,7 +107,7 @@ public class RegistActivity extends BaseActivity {
 		name = uname.getText().toString().trim();
 		pass = upass.getText().toString().trim();
 		if (name.equals("") || pass.equals("")) {
-			toast("用户名密码不能为空");
+			toast("用户名或密码不能为空");
 			return false;
 		}
 		if (pass.toCharArray().length < 6) {
@@ -151,7 +151,7 @@ public class RegistActivity extends BaseActivity {
 
 	/** 提交注册信息,获取验证码 */
 	private void commitRegistInfo() {
-		BmobSMS.initialize(this, APPLICATION_ID);
+		BmobSMS.initialize(this, AppConfig.BMOB_APPLICATION_ID);
 		BmobSMS.requestSMSCode(this, name, "注册验证码",
 				new RequestSMSCodeListener() {
 					@Override

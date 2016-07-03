@@ -79,7 +79,7 @@ public class RankFragment extends Fragment implements OnClickListener {
 		initData();
 		initRankView(inflater, container);
 		addListener();
-		getJson();
+		//getJson();
 		return view;
 	}
 

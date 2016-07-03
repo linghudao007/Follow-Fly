@@ -114,17 +114,22 @@ public class PushFragment extends Fragment implements OnClickListener,
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
 		addListener();
-		// 网络请求数据
-		//getJson();
-		this.onRefresh();
-		reflayout.setRefreshing(true);
+		//第一次进页面先刷新一次
+		reflayout.post(new Runnable() {
+            @Override
+            public void run() {
+            	reflayout.setRefreshing(true);
+            	// 网络请求数据
+            	getJson();
+            }
+        });
 		// 适配列表
 		adapter = new HomeListAdapter(list_home, type, activity);
 		lv_home.setAdapter(adapter);
 		return view;
 
 	}
-
+	
 	private void addListener() {
 		vp_home_head_loop.setOnClickListener(this);
 		ll_siftaction.setOnClickListener(this);
@@ -132,7 +137,6 @@ public class PushFragment extends Fragment implements OnClickListener,
 		ll_hottrip.setOnClickListener(this);
 		ll_online.setOnClickListener(this);
 		reflayout.setOnRefreshListener(this);
-
 		lv_home.setOnItemClickListener(this);
 	}
 
@@ -156,7 +160,8 @@ public class PushFragment extends Fragment implements OnClickListener,
 		ll_online = (LinearLayout) lv_home_head.findViewById(R.id.ll_online);
 		reflayout.setColorSchemeResources(R.color.refresh_1,
 				R.color.refresh_2);
-		reflayout.setSize(SwipeRefreshLayout.DEFAULT);
+		//reflayout.setProgressViewOffset(true, 0, 100);
+		reflayout.setSize(SwipeRefreshLayout.LARGE);
 	}
 
 	/** 通过接口解析JSON */
@@ -421,6 +426,7 @@ public class PushFragment extends Fragment implements OnClickListener,
 
 	@Override
 	public void onRefresh() {
+		reflayout.setRefreshing(true);
 		getJson();
 	}
 }

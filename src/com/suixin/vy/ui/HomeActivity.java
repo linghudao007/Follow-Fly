@@ -3,6 +3,7 @@ package com.suixin.vy.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 import com.suixin.vlee.ui.MainActivity_Lee;
 import com.suixin.vq.ui.UserFragment;
 import com.suixin.vy.adapter.GVBottomAdapter;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.core.MyApplication;
 import com.suixin.vy.fragment.IndexFragment;
@@ -44,7 +47,8 @@ public class HomeActivity extends BaseActivity {
 	private LinearLayout ll_addshow;
 	private FragmentManager fm;
 	private FragmentTransaction ft;
-	private Fragment indexFrag, tripFrag, userFrag,chatFrag;
+	private Fragment indexFrag, tripFrag, userFrag, chatFrag;
+	private long firstTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +125,7 @@ public class HomeActivity extends BaseActivity {
 			MyApplication appState = ((MyApplication) getApplicationContext());
 			if (!appState.isLogin()) {
 				Intent intent = new Intent(this, LoginActivity.class);
-				this.startActivity(intent);
+				this.startActivityForResult(intent,100);
 				return;
 			}
 			ft.hide(indexFrag);
@@ -157,7 +161,7 @@ public class HomeActivity extends BaseActivity {
 			MyApplication appState = ((MyApplication) getApplicationContext());
 			if (!appState.isLogin()) {
 				Intent intent = new Intent(this, LoginActivity.class);
-				this.startActivity(intent);
+				this.startActivityForResult(intent,100);
 				return;
 			}
 			// 判断加号按钮是否打开
@@ -191,7 +195,9 @@ public class HomeActivity extends BaseActivity {
 
 	@Override
 	protected void onPause() {
-		closeAdd();
+		if (this.isOpneBtn_home) {
+			closeAdd();
+		}
 		super.onPause();
 	}
 
@@ -319,8 +325,24 @@ public class HomeActivity extends BaseActivity {
 		if (this.isOpneBtn_home) {
 			closeAdd();
 		} else {
-			super.onBackPressed();
+			long secondTime = System.currentTimeMillis() / 1000;
+			if (secondTime - firstTime < 2) {
+				super.onBackPressed();
+			} else {
+				Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+				firstTime = secondTime;
+			}
 		}
 	}
 
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+		super.onActivityResult(arg0, arg1, arg2);
+		if(arg0==100&&arg1==10){
+			switchFragment(0);
+			gv_bottom.setItemChecked(0, true);
+		}
+	}
+	
+	
 }

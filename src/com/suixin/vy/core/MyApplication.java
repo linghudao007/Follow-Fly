@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.suixin.vy.model.UserModel;
+import com.suixin.vy.ui.HomeActivity;
 
 import cn.bmob.v3.datatype.BmobDate;
 
@@ -19,7 +20,7 @@ import android.graphics.Bitmap;
 
 public class MyApplication extends Application {
 	public static String headPath;
-	
+
 	public boolean isLogin() {
 		SharedPreferences sp = this.getSharedPreferences("AppConfig",
 				Context.MODE_PRIVATE);
@@ -39,6 +40,22 @@ public class MyApplication extends Application {
 				new Integer(0));
 	}
 
+	public void removeUserInfo() {
+		SharedPreferences sp = this.getSharedPreferences("AppConfig",
+				Context.MODE_PRIVATE);
+		Editor editor = sp.edit();
+		editor.remove("name");
+		editor.remove("pass");
+		editor.remove("sex");
+		editor.remove("birthday");
+		editor.remove("nick");
+		editor.remove("point");
+		editor.remove("declaration");
+		editor.remove("fans");
+		editor.remove("attention");
+		editor.commit();
+	}
+
 	public void setUserInfo(Long name, String pass, String sex,
 			BmobDate birthday, String nick, Integer point, Bitmap head,
 			String declaration, Integer attention, Integer fans) {
@@ -47,28 +64,44 @@ public class MyApplication extends Application {
 		Editor editor = sp.edit();
 		editor.putLong("name", name);
 		editor.putString("pass", pass);
-		editor.putString("sex", sex);
-		editor.putString("birthday", birthday.getDate());
-		editor.putString("nick", nick);
-		editor.putInt("point", point);
-		editor.putString("declaration", declaration);
-		editor.putInt("attention", attention);
-		editor.putInt("fans", fans);
+		if (sex != null) {
+			editor.putString("sex", sex);
+		}
+		if (birthday != null) {
+			editor.putString("birthday", birthday.getDate());
+		}
+		if (nick != null) {
+			editor.putString("nick", nick);
+		}
+		if (point != null) {
+			editor.putInt("point", point);
+		}
+		if (declaration != null) {
+			editor.putString("declaration", declaration);
+		}
+		if (attention != null) {
+			editor.putInt("attention", attention);
+		}
+		if (fans != null) {
+			editor.putInt("fans", fans);
+		}
 		editor.commit();
 	}
+
 	public UserModel getUserInfo() {
 		SharedPreferences sp = this.getSharedPreferences("AppConfig",
 				Context.MODE_PRIVATE);
 		UserModel user = new UserModel();
 		user.setName(sp.getLong("name", new Long(0)));
 		user.setPass(sp.getString("pass", ""));
-		user.setSex(sp.getString("sex",""));
-		user.setBirthday(BmobDate.createBmobDate("yyyy-MM-dd", sp.getString("birthday", "")));
+		user.setSex(sp.getString("sex", ""));
+		user.setBirthday(BmobDate.createBmobDate("yyyy-MM-dd",
+				sp.getString("birthday", "")));
 		user.setNick(sp.getString("nick", ""));
 		user.setPoint(sp.getInt("point", new Integer(0)));
 		user.setDeclaration(sp.getString("declaration", ""));
 		user.setAttention(sp.getInt("attention", new Integer(0)));
-		user.setFans(sp.getInt("fans",new Integer(0)));
+		user.setFans(sp.getInt("fans", new Integer(0)));
 		return user;
 	}
 }

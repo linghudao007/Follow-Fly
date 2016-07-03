@@ -19,8 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="身份认证"
-                android:textColor="#706B66"
-                android:textSize="30sp" />
+                android:textSize="18sp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
