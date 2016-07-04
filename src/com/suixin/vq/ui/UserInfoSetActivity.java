@@ -1,23 +1,14 @@
 package com.suixin.vq.ui;
 
-
-
-
-
 import com.suixin.vy.ui.R;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
 
-public class SecondActivity extends Activity {
-
+public class UserInfoSetActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity__1_vqmain);
+		setContentView(R.layout.item_3_vqmain);
 	}
-	
-}	
+}

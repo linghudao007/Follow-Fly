@@ -6,6 +6,8 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +34,10 @@ import com.suixin.vy.model.curr.CurrCityModel;
 import com.suixin.vy.model.curr.WeatherData;
 import com.suixin.vy.ui.R;
 
-public class CurrcityFragment extends Fragment implements OnClickListener {
+public class CurrcityFragment extends Fragment implements OnClickListener,
+		OnRefreshListener {
+	/** 刷新布局 */
+	private SwipeRefreshLayout reflayout;
 	/** 本地城市页整体布局 */
 	private View view;
 	/** 本地城市页ListView */
@@ -47,9 +52,9 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 
 	/** listview数据源 */
 	private List list_curr;
-	/**listtype*/
+	/** listtype */
 	private List<String> type;
-	/**适配器*/
+	/** 适配器 */
 	private HomeListAdapter currAdapter;
 	/** 获取到的JavaBean */
 	private CurrCityModel currCityModel;
@@ -69,6 +74,7 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 		super.onAttach(activity);
 		this.activity = activity;
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -77,7 +83,16 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 		this.view = view;
 		initData();
 		initCurrView(inflater, container);
-		getJson();
+		reflayout.setOnRefreshListener(this);
+		// 第一次进页面先刷新一次
+		reflayout.post(new Runnable() {
+			@Override
+			public void run() {
+				reflayout.setRefreshing(true);
+				// 网络请求数据
+				getJson();
+			}
+		});
 		return view;
 	}
 
@@ -88,11 +103,11 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 		params = new RequestParams();
 		http = new HttpUtils();
 		bitUtils = new BitmapUtils(getActivity());
-		currAdapter = new HomeListAdapter(list_curr,type,getActivity());
+		currAdapter = new HomeListAdapter(list_curr, type, getActivity());
 	}
 
 	private void getJson() {
-		if(!JudgeNET.isNetable(activity)){
+		if (!JudgeNET.isNetable(activity)) {
 			return;
 		}
 		// 这是cookie里的参数
@@ -105,11 +120,12 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 				new RequestCallBack<String>() {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
+						reflayout.setRefreshing(false);
 						currCityModel = JSON.parseObject(responseInfo.result,
 								CurrCityModel.class);
 						if (responseInfo == null) {
 							rl_hide.setVisibility(View.INVISIBLE);
-							
+
 							return;
 						}
 						// 判断是否获取成功
@@ -122,6 +138,7 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 
 					@Override
 					public void onFailure(HttpException error, String msg) {
+						reflayout.setRefreshing(false);
 						Log.e("ss", error.getExceptionCode() + ":" + msg);
 					}
 				});
@@ -138,11 +155,11 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 		}
 		rl_hide.setVisibility(View.VISIBLE);
 		WeatherData wData = currCityModel.getData().getWeatherData();
-		String weather ="";
-		if(wData.getDayName().equals("")){
-			weather= wData.getNightName();
-		}else{
-			weather= wData.getDayName();
+		String weather = "";
+		if (wData.getDayName().equals("")) {
+			weather = wData.getNightName();
+		} else {
+			weather = wData.getDayName();
 		}
 		tv_weather_str.setText(weather);
 		tv_temp.setText(wData.getT());
@@ -177,7 +194,7 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 		if (weather.contains("雪")) {
 			iv_weather.setImageResource(R.drawable.weather_15);
 		}
-		if (weather.contains("雪")&&weather.contains("雨")) {
+		if (weather.contains("雪") && weather.contains("雨")) {
 			iv_weather.setImageResource(R.drawable.weather_06);
 		}
 		if (weather.contains("雾")) {
@@ -190,7 +207,8 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 		list_curr.clear();
 		type.clear();
 		type.addAll(currCityModel.getData().getMixedList());
-		List<TourPicList> tourPicList = currCityModel.getData().getTourPicList();
+		List<TourPicList> tourPicList = currCityModel.getData()
+				.getTourPicList();
 		List<PlanList> planList = currCityModel.getData().getPlanList();
 		for (int i = 0, j = 0, k = 0; i < type.size(); i++) {
 			if (type.get(i).equals("0")) {
@@ -207,6 +225,9 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 
 	/** 实例化本地城市页面控件 */
 	private void initCurrView(LayoutInflater inflater, ViewGroup container) {
+		reflayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_ref);
+		reflayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2);
+		reflayout.setSize(SwipeRefreshLayout.LARGE);
 		lv_currcity = (ListView) view.findViewById(R.id.lv_currcity);
 		currCityheadview = inflater.inflate(R.layout.head_listview_currcity,
 				null);
@@ -226,5 +247,11 @@ public class CurrcityFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View arg0) {
 
+	}
+
+	@Override
+	public void onRefresh() {
+		reflayout.setRefreshing(true);
+		getJson();
 	}
 }

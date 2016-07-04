@@ -1,5 +1,8 @@
 package com.suixin.vy.fragment;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +56,7 @@ import com.suixin.vy.model.BannerList;
 import com.suixin.vy.model.PlanList;
 import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.UserList;
+import com.suixin.vy.model.rank.RandModel;
 import com.suixin.vy.ui.DetailsActivity;
 import com.suixin.vy.ui.R;
 import com.suixin.vy.ui.ThemeActionActivity;
@@ -114,10 +118,15 @@ public class PushFragment extends Fragment implements OnClickListener,
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
 		addListener();
-		// 网络请求数据
-		//getJson();
-		this.onRefresh();
-		reflayout.setRefreshing(true);
+		// 第一次进页面先刷新一次
+		reflayout.post(new Runnable() {
+			@Override
+			public void run() {
+				reflayout.setRefreshing(true);
+				// 网络请求数据
+				getJson();
+			}
+		});
 		// 适配列表
 		adapter = new HomeListAdapter(list_home, type, activity);
 		lv_home.setAdapter(adapter);
@@ -132,7 +141,6 @@ public class PushFragment extends Fragment implements OnClickListener,
 		ll_hottrip.setOnClickListener(this);
 		ll_online.setOnClickListener(this);
 		reflayout.setOnRefreshListener(this);
-
 		lv_home.setOnItemClickListener(this);
 	}
 
@@ -154,9 +162,8 @@ public class PushFragment extends Fragment implements OnClickListener,
 				.findViewById(R.id.ll_thisrecommend);
 		ll_hottrip = (LinearLayout) lv_home_head.findViewById(R.id.ll_hottrip);
 		ll_online = (LinearLayout) lv_home_head.findViewById(R.id.ll_online);
-		reflayout.setColorSchemeResources(R.color.refresh_1,
-				R.color.refresh_2);
-		reflayout.setSize(SwipeRefreshLayout.DEFAULT);
+		reflayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2);
+		reflayout.setSize(SwipeRefreshLayout.LARGE);
 	}
 
 	/** 通过接口解析JSON */
@@ -177,8 +184,12 @@ public class PushFragment extends Fragment implements OnClickListener,
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
 						reflayout.setRefreshing(false);
-						all = JSON.parseObject(responseInfo.result,
-								AllModel.class);
+						try {
+							all = JSON.parseObject(responseInfo.result,
+									AllModel.class);
+						} catch (Exception e) {
+
+						}
 						// 判断是否获取成功
 						if (all.getStatus() == 0
 								&& all.getMsg().equals("获取首页推荐列表成功")) {
@@ -421,6 +432,7 @@ public class PushFragment extends Fragment implements OnClickListener,
 
 	@Override
 	public void onRefresh() {
+		reflayout.setRefreshing(true);
 		getJson();
 	}
 }

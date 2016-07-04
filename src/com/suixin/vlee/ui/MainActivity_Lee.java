@@ -21,7 +21,7 @@ public class MainActivity_Lee extends Activity {
 		setContentView(R.layout.activity_one);
 
 		but_next = (Button) findViewById(R.id.but_next);
-		btn_1 = (Button) findViewById(R.id.btn_1);
+		//btn_1 = (Button) findViewById(R.id.btn_1);
 		btn_quxiao =(Button) findViewById(R.id.btn_quxiao);
 		but_next.setOnClickListener(new OnClickListener() {
 
