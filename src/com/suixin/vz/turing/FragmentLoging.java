@@ -106,7 +106,7 @@ public class FragmentLoging extends Fragment {
 
     private void initDatas() {
         mDatas = new ArrayList<ChatMessage>();
-        mDatas.add(new ChatMessage("您好", Type.INCOMING, new Date()));
+        mDatas.add(new ChatMessage("您好,我是小新", Type.INCOMING, new Date()));
         mAdapter = new ChatMessageAdapter(activity, mDatas);
         mMsgs.setAdapter(mAdapter);
     }
