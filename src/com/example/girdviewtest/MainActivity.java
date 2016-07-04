@@ -212,7 +212,7 @@ public class MainActivity extends Activity {
 		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				//设置你的操作事项
+				finish();
 			}
 		});
 

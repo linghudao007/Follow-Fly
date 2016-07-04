@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<selector xmlns:android="http://schemas.android.com/apk/res/android">  
+    <!--黑白字体颜色切换 默认是黑 点击之后是白-->  
+    <item android:color="#ffe100" android:state_pressed="false" android:state_enabled="true"/>  
+    <item android:color="#ffffff" android:state_pressed="true" android:state_enabled="true"/>  
+    <item android:color="#000000" android:state_enabled="false"/>"  
+</selector>  
