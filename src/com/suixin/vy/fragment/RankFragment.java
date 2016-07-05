@@ -1,20 +1,11 @@
 package com.suixin.vy.fragment;
 
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,10 +31,7 @@ import com.suixin.vy.model.rank.HotDuckrList;
 import com.suixin.vy.model.rank.RandModel;
 import com.suixin.vy.ui.R;
 
-public class RankFragment extends Fragment implements OnClickListener,
-		OnRefreshListener {
-	/** 刷新布局 */
-	private SwipeRefreshLayout reflayout;
+public class RankFragment extends Fragment implements OnClickListener {
 	/** 达人整体布局 */
 	private View view;
 	/** 达人列表listView */
@@ -82,7 +70,6 @@ public class RankFragment extends Fragment implements OnClickListener,
 		super.onAttach(activity);
 		this.activity = activity;
 	}
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -92,21 +79,12 @@ public class RankFragment extends Fragment implements OnClickListener,
 		initData();
 		initRankView(inflater, container);
 		addListener();
-
-		// 第一次进页面先刷新一次
-		reflayout.post(new Runnable() {
-			@Override
-			public void run() {
-				reflayout.setRefreshing(true);
-				// 网络请求数据
-				getJson();
-			}
-		});
+		//getJson();
 		return view;
 	}
 
 	private void addListener() {
-		reflayout.setOnRefreshListener(this);
+		
 	}
 
 	/** 初始化数据 */
@@ -115,11 +93,11 @@ public class RankFragment extends Fragment implements OnClickListener,
 		http = new HttpUtils();
 		bitUtils = new BitmapUtils(getActivity());
 		rankList = new ArrayList<HotDuckrList>();
-		rankAdapter = new RankListAdapter(getActivity(), rankList);
+		rankAdapter = new RankListAdapter(getActivity(),rankList);
 	}
 
 	private void getJson() {
-		if (!JudgeNET.isNetable(activity)) {
+		if(!JudgeNET.isNetable(activity)){
 			return;
 		}
 		// 这是cookie里的参数
@@ -132,27 +110,11 @@ public class RankFragment extends Fragment implements OnClickListener,
 				new RequestCallBack<String>() {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
-						reflayout.setRefreshing(false);
-						try {
-							randModel = JSON.parseObject(responseInfo.result,
-									RandModel.class);
-						} catch (Exception e) {
-							try {
-								InputStream is = activity.getResources()
-										.getAssets().open("rand.txt");
-								byte[] b = new byte[is.available()];
-								is.read(b);
-								String json = new String(b);
-								randModel = JSON.parseObject(json,
-										RandModel.class);
-							} catch (FileNotFoundException e1) {
-								e1.printStackTrace();
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-						}
+						randModel = JSON.parseObject(responseInfo.result,
+								RandModel.class);
+
 						// 判断是否获取成功
-						if (randModel != null && randModel.getStatus() == 0) {
+						if (randModel.getStatus() == 0) {
 							setHeadViewData();
 							getRankListViewData();
 						}
@@ -161,24 +123,22 @@ public class RankFragment extends Fragment implements OnClickListener,
 
 					@Override
 					public void onFailure(HttpException error, String msg) {
-						reflayout.setRefreshing(false);
 						Log.e("ss", error.getExceptionCode() + ":" + msg);
 					}
 				});
 	}
+	
+	
 
 	protected void setHeadViewData() {
 		List<DuckrBoradList> sixList = randModel.getData().getDuckrBoradList();
-		for (int i = 0; i < beforeSix.length; i++) {
-			bitUtils.display(beforeSix[i], sixList.get(i).getAvatarThumbUrl(),
-					MyBitmapConfig.getConfig(getActivity()));
+		for(int i = 0;i < beforeSix.length;i++){
+			bitUtils.display(beforeSix[i], sixList.get(i).getAvatarThumbUrl(),MyBitmapConfig.getConfig(getActivity()));
 			names[i].setText(sixList.get(i).getNick());
-			gocitynums[i].setText("去过" + sixList.get(i).getHaveGoNum() + "个城市");
+			gocitynums[i].setText("去过"+sixList.get(i).getHaveGoNum()+"个城市");
 		}
-		bitUtils.display(iv_online, randModel.getData().getOnlineDuckr()
-				.getCoverThumbUrl());
-		bitUtils.display(iv_samecity, randModel.getData().getCityDuckr()
-				.getCoverThumbUrl());
+		bitUtils.display(iv_online, randModel.getData().getOnlineDuckr().getCoverThumbUrl());
+		bitUtils.display(iv_samecity, randModel.getData().getCityDuckr().getCoverThumbUrl());
 	}
 
 	protected void getRankListViewData() {
@@ -189,9 +149,6 @@ public class RankFragment extends Fragment implements OnClickListener,
 
 	/** 实例化本地城市页面控件 */
 	private void initRankView(LayoutInflater inflater, ViewGroup container) {
-		reflayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_ref);
-		reflayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2);
-		reflayout.setSize(SwipeRefreshLayout.LARGE);
 		lv_rank = (ListView) view.findViewById(R.id.lv_rank);
 		rankHeadView = inflater.inflate(R.layout.head_listview_rank, null);
 		lv_rank.addHeaderView(rankHeadView);
@@ -234,11 +191,6 @@ public class RankFragment extends Fragment implements OnClickListener,
 		case R.id.tv_more:
 			break;
 		}
-	}
-
-	@Override
-	public void onRefresh() {
-		getJson();
 	}
 
 }
