@@ -27,19 +27,18 @@ public class ListViewLeeActivityThree extends Activity {
 		
 		lvData = (ListView) findViewById(R.id.list_view);
 		lvData.setAdapter(getAdapter());
-//		listview_lee_item_foot = (ListView) findViewById(R.id.but_next);
-//		
-//		listview_lee_item_foot.setOnItemClickListener(new OnItemClickListener(){
-//
-//			@Override
-//			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-//					long arg3) {
-//				if(arg0.getId() == R.layout.listview_lee_item_foot){
-//					Intent intent = new Intent(ListViewLeeActivityThree.this,ListViewLeeActivityTow.class);
-//				startActivity(intent);
-//				}
-//				}
-//			});
+		
+		listview_lee_item_foot.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				if(arg0.getId() == R.layout.listview_lee_item_foot){
+					Intent intent = new Intent(ListViewLeeActivityThree.this,ListViewLeeActivityTow.class);
+				startActivity(intent);
+				}
+				}
+			});
 		} 
  
 	private BaseAdapter getAdapter() {
@@ -74,7 +73,7 @@ public class ListViewLeeActivityThree extends Activity {
 			builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.dismiss();
-					finish();
+					//设置你的操作事项
 				}
 			});
 
@@ -86,5 +85,6 @@ public class ListViewLeeActivityThree extends Activity {
 					});
 
 			builder.create().show();
+
 		}
 }

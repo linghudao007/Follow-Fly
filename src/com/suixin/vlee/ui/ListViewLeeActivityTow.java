@@ -35,9 +35,6 @@ public class ListViewLeeActivityTow extends Activity {
 		msg = new Message();
 		msg.setType(MyAdapter.listvit_item_tow);
 		msgList.add(msg);
-		msg = new Message();
-		msg.setType(MyAdapter.listvit_item_tow);
-		msgList.add(msg);
 
 		msg = new Message();
 		msg.setType(MyAdapter.listvit_item_photo);

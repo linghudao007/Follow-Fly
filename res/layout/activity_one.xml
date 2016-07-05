@@ -26,13 +26,13 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:background="@android:color/white"
-            android:onClick="showAlertDialog"
             android:padding="10dp"
             android:text="@string/cancel"
+            android:onClick="showAlertDialog"
             android:textColor="#706b66"
             android:textSize="16sp" />
 
-        <ImageButton
+         <ImageButton
             android:id="@+id/one_btn_retreat"
             android:layout_width="40dp"
             android:layout_height="match_parent"
@@ -41,6 +41,7 @@
             android:background="@android:color/white"
             android:contentDescription="@string/action_settings"
             android:src="@drawable/header_return_drawable" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -83,39 +84,39 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tv_1"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/ambitus"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_2"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/Tibet"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_3"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/Southeast_Asia"
                     android:textSize="14sp" />
@@ -126,39 +127,39 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tv_4"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/Japan_Korea_Hongkong_Taiwan"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_5"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/western"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_6"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/inland"
                     android:textSize="14sp" />
@@ -169,38 +170,39 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tv_7"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/overseas"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_8"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@android:color/white"
+                    android:gravity="center"
                     android:text="@string/toddle"
                     android:textSize="14sp" />
 
-                <TextView
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:textSize="14sp" />
             </TableRow>
@@ -246,39 +248,39 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tv_9"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/exploring"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_10"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/sports"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_11"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/entertainment"
                     android:textSize="14sp" />
@@ -289,39 +291,39 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tv_12"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/beer_skittles"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_13"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/performance"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_14"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/movie"
                     android:textSize="14sp" />
@@ -332,38 +334,39 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/tv_15"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/grace"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/tv_16"
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:text="@string/Other_interests"
                     android:textSize="14sp" />
 
-                <TextView
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
                     android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/selector_highlight_button_lee"
+                    android:background="@android:color/white"
                     android:gravity="center"
                     android:textSize="14sp" />
             </TableRow>

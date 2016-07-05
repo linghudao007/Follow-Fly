@@ -77,10 +77,6 @@
         </activity>
         <activity android:name="com.suixin.vy.ui.DetailsActivity" >
         </activity>
-        <activity android:name="com.suixin.vlee.ui.ListViewLeeActivityThree" >
-        </activity>
-        <activity android:name="com.suixin.vlee.ui.ListViewLeeActivityTow" >
-        </activity>
         <activity
             android:name=".ActivityLoging"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"
@@ -132,10 +128,11 @@
             android:name="com.suixin.vy.ui.RegistActivity"
             android:theme="@style/Translucent_NoTitle" >
         </activity>
-        <activity android:name="com.suixin.vq.ui.SetActivity" >
+       <activity android:name="com.suixin.vq.ui.SetActivity" >
         </activity>
         <activity android:name="com.suixin.vq.ui.UserInfoSetActivity" >
         </activity>
+        
     </application>
 
 </manifest>
