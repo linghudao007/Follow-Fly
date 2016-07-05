@@ -87,8 +87,7 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 					getJson_y();
 				}
 			}
-		});
-		
+		});	
 	}
 
 	@Subscriber(tag = AppConfig.DetView, mode = ThreadMode.MAIN)
