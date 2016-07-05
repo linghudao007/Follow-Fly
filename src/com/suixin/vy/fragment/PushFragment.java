@@ -1,8 +1,5 @@
 package com.suixin.vy.fragment;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +53,6 @@ import com.suixin.vy.model.BannerList;
 import com.suixin.vy.model.PlanList;
 import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.UserList;
-import com.suixin.vy.model.rank.RandModel;
 import com.suixin.vy.ui.DetailsActivity;
 import com.suixin.vy.ui.R;
 import com.suixin.vy.ui.ThemeActionActivity;
@@ -118,22 +114,22 @@ public class PushFragment extends Fragment implements OnClickListener,
 		// 实例化推荐中的控件
 		initLv_home(inflater, container);
 		addListener();
-		// 第一次进页面先刷新一次
+		//第一次进页面先刷新一次
 		reflayout.post(new Runnable() {
-			@Override
-			public void run() {
-				reflayout.setRefreshing(true);
-				// 网络请求数据
-				getJson();
-			}
-		});
+            @Override
+            public void run() {
+            	reflayout.setRefreshing(true);
+            	// 网络请求数据
+            	getJson();
+            }
+        });
 		// 适配列表
 		adapter = new HomeListAdapter(list_home, type, activity);
 		lv_home.setAdapter(adapter);
 		return view;
 
 	}
-
+	
 	private void addListener() {
 		vp_home_head_loop.setOnClickListener(this);
 		ll_siftaction.setOnClickListener(this);
@@ -162,7 +158,9 @@ public class PushFragment extends Fragment implements OnClickListener,
 				.findViewById(R.id.ll_thisrecommend);
 		ll_hottrip = (LinearLayout) lv_home_head.findViewById(R.id.ll_hottrip);
 		ll_online = (LinearLayout) lv_home_head.findViewById(R.id.ll_online);
-		reflayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2);
+		reflayout.setColorSchemeResources(R.color.refresh_1,
+				R.color.refresh_2);
+		//reflayout.setProgressViewOffset(true, 0, 100);
 		reflayout.setSize(SwipeRefreshLayout.LARGE);
 	}
 
@@ -184,12 +182,8 @@ public class PushFragment extends Fragment implements OnClickListener,
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
 						reflayout.setRefreshing(false);
-						try {
-							all = JSON.parseObject(responseInfo.result,
-									AllModel.class);
-						} catch (Exception e) {
-
-						}
+						all = JSON.parseObject(responseInfo.result,
+								AllModel.class);
 						// 判断是否获取成功
 						if (all.getStatus() == 0
 								&& all.getMsg().equals("获取首页推荐列表成功")) {

@@ -9,8 +9,6 @@ import org.simple.eventbus.ThreadMode;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,11 +39,10 @@ import com.suixin.vy.model.theme.ThemeModel;
  * 详细信息展示 页面 intent需要三个参数 2.标题 3.请求参数planGuid 用EventBus传递进来View
  */
 @SuppressLint("SdCardPath")
-public class DetailsActivity extends BaseActivity implements OnRefreshListener{
+public class DetailsActivity extends BaseActivity {
 	private ImageView iv_back,iv_share;
 	private TextView tv_title;
-	/** 刷新布局 */
-	private SwipeRefreshLayout reflayout;
+	
 	/** 评论listView */
 	private ListView lv_comment;
 	/** 约伴评论的接口地址 PSOT */
@@ -74,21 +71,13 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 		this.setContentView(R.layout.activity_details);
 		initView();
 		addListener();
-		// 第一次进页面先刷新一次
-		reflayout.post(new Runnable() {
-			@Override
-			public void run() {
-				reflayout.setRefreshing(true);
-				if (what == 1) {
-					// 旅途
-					getJson();
-				} else if (what == 2) {
-					// 约伴
-					getJson_y();
-				}
-			}
-		});
-		
+		if (what == 1) {
+			// 旅途
+			getJson();
+		} else if (what == 2) {
+			// 约伴
+			getJson_y();
+		}
 	}
 
 	@Subscriber(tag = AppConfig.DetView, mode = ThreadMode.MAIN)
@@ -141,9 +130,6 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 
 	@Override
 	protected void initView() {
-		reflayout = (SwipeRefreshLayout) findViewById(R.id.swipe_ref);
-		reflayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2);
-		reflayout.setSize(SwipeRefreshLayout.LARGE);
 		iv_back = (ImageView) findViewById(R.id.iv_back);
 		iv_share=(ImageView)findViewById(R.id.iv_share);
 		tv_title = (TextView) findViewById(R.id.tv_title);
@@ -168,7 +154,6 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 
 	@Override
 	protected void addListener() {
-		reflayout.setOnRefreshListener(this);
 		iv_back.setOnClickListener(this);
 		iv_share.setOnClickListener(this);
 	}
@@ -188,7 +173,6 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 				new RequestCallBack<String>() {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
-						reflayout.setRefreshing(false);
 						if (responseInfo == null) {
 							return;
 						}
@@ -202,7 +186,6 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 
 					@Override
 					public void onFailure(HttpException arg0, String arg1) {
-						reflayout.setRefreshing(false);
 					}
 				});
 	}
@@ -227,7 +210,6 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 				new RequestCallBack<String>() {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
-						reflayout.setRefreshing(false);
 						if (responseInfo == null) {
 							return;
 						}
@@ -241,7 +223,6 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 
 					@Override
 					public void onFailure(HttpException arg0, String arg1) {
-						reflayout.setRefreshing(false);
 					}
 				});
 	}
@@ -252,18 +233,6 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 		if (detModel.getData().getTourPic().getCommentList() != null) {
 			commentList.addAll(detModel.getData().getTourPic().getCommentList());
 			detAdapter.notifyDataSetChanged();
-		}
-	}
-
-	@Override
-	public void onRefresh() {
-		reflayout.setRefreshing(true);
-		if (what == 1) {
-			// 旅途
-			getJson();
-		} else if (what == 2) {
-			// 约伴
-			getJson_y();
 		}
 	}
 }
