@@ -8,10 +8,8 @@ import org.simple.eventbus.Subscriber;
 import org.simple.eventbus.ThreadMode;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -27,7 +25,6 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.DetAdapter;
-import com.suixin.vy.adapter.ThemeAdapter;
 import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.BaseActivity;
 import com.suixin.vy.core.JudgeNET;
@@ -35,8 +32,6 @@ import com.suixin.vy.core.MyApplication;
 import com.suixin.vy.model.details.CommentList;
 import com.suixin.vy.model.details.DetModel;
 import com.suixin.vy.model.details.y.DetModel_y;
-import com.suixin.vy.model.theme.PlanList;
-import com.suixin.vy.model.theme.ThemeModel;
 
 /**
  * 详细信息展示 页面 intent需要三个参数 2.标题 3.请求参数planGuid 用EventBus传递进来View
@@ -47,6 +42,7 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 	private TextView tv_title;
 	/** 刷新布局 */
 	private SwipeRefreshLayout reflayout;
+
 	/** 评论listView */
 	private ListView lv_comment;
 	/** 约伴评论的接口地址 PSOT */
@@ -89,8 +85,8 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 				}
 			}
 		});
-		
 	}
+
 
 	@Subscriber(tag = AppConfig.DetView, mode = ThreadMode.MAIN)
 	private void getView(View view) {
@@ -137,7 +133,7 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 	    oks.setSite(getString(R.string.app_name));
 	    // siteUrl是分享此内容的网站地址，仅在QQ空间使用
 	    oks.setSiteUrl("http://suixinfly.bmob.cn/");
-	   // 启动分享GUI
+	    // 启动分享GUI
 	    oks.show(this);
 	    }
 
