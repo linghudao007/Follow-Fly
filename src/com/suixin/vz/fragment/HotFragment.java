@@ -23,6 +23,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +33,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class HotFragment extends Fragment implements OnItemClickListener {
+public class HotFragment extends Fragment
+        implements OnRefreshListener, OnItemClickListener {
 
     /** 获取来显示的数据 */
     private List<com.suixin.vz.model.TourPicList> list;
+
+    /** 刷新布局 */
+    private SwipeRefreshLayout reflayout;
 
     /** ListView */
     private ListView lv_vz_home;
@@ -65,19 +71,35 @@ public class HotFragment extends Fragment implements OnItemClickListener {
         list = new ArrayList<com.suixin.vz.model.TourPicList>();
         // 实例化热门中的控件
         initLv_hot(inflater, container);
+        addListener();
         getJson();
         adapter = new HotListAdapter(list, this.getActivity());
         lv_vz_home.setAdapter(adapter);
+        // 第一次进页面先刷新一次
+        reflayout.post(new Runnable() {
+            @Override
+            public void run() {
+                reflayout.setRefreshing(true);
+                getJson();
+            }
+        });
         return view;
     }
 
     private void addListener() {
+        reflayout.setOnRefreshListener(this);
         lv_vz_home.setOnItemClickListener(this);
     }
 
     /** 实例化热门中的控件 */
     private void initLv_hot(LayoutInflater inflater, ViewGroup container) {
         lv_vz_home = (ListView) view.findViewById(R.id.lv_vz_home);
+        reflayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_ref);
+        reflayout.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+        reflayout.setSize(SwipeRefreshLayout.LARGE);
     }
 
     // 解析热门
@@ -106,6 +128,7 @@ public class HotFragment extends Fragment implements OnItemClickListener {
 
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
+                        reflayout.setRefreshing(false);
                         hot = JSON.parseObject(responseInfo.result,
                                 HotModel.class);
                         // 判断是否获取成功
@@ -116,6 +139,7 @@ public class HotFragment extends Fragment implements OnItemClickListener {
 
                     @Override
                     public void onFailure(HttpException error, String msg) {
+                        reflayout.setRefreshing(false);
                     }
                 });
     }
@@ -132,13 +156,19 @@ public class HotFragment extends Fragment implements OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position,
             long id) {
         Intent intent = new Intent();
-        Log.e("onItemClick", intent+"------->");
         // 打开旅途详情页面
         EventBus.getDefault().postSticky(view, AppConfig.DetView);
         intent.setClass(activity, DetailsActivity.class);
         intent.putExtra(AppConfig.TITLE, "旅途详情");
         intent.putExtra("planGuid",
-                ((com.suixin.vz.model.TourPicList) lv_vz_home.getTag(position - 1)).getGuid());
+                ((com.suixin.vz.model.TourPicList) list.get(position))
+                        .getGuid());
         activity.startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        reflayout.setRefreshing(true);
+        getJson();
     }
 }

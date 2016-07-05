@@ -1,4 +1,4 @@
-package com.suixin.vy.ui;
+package com.suixin.vz.ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +37,13 @@ import com.suixin.vy.model.details.DetModel;
 import com.suixin.vy.model.details.y.DetModel_y;
 import com.suixin.vy.model.theme.PlanList;
 import com.suixin.vy.model.theme.ThemeModel;
+import com.suixin.vy.ui.R;
 
 /**
  * 详细信息展示 页面 intent需要三个参数 2.标题 3.请求参数planGuid 用EventBus传递进来View
  */
 @SuppressLint("SdCardPath")
-public class DetailsActivity extends BaseActivity implements OnRefreshListener{
+public class DetailsActivityTow extends BaseActivity implements OnRefreshListener{
 	private ImageView iv_back,iv_share;
 	private TextView tv_title;
 	/** 刷新布局 */
@@ -95,7 +96,7 @@ public class DetailsActivity extends BaseActivity implements OnRefreshListener{
 	@Subscriber(tag = AppConfig.DetView, mode = ThreadMode.MAIN)
 	private void getView(View view) {
 		if (lv_comment.getHeaderViewsCount() < 1) {
-			lv_comment.addHeaderView(view);
+			//lv_comment.addHeaderView(view);
 			lv_comment.setAdapter(detAdapter);
 		}
 		EventBus.getDefault().removeStickyEvent(view.getClass(),

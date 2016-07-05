@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.suixin.vy.ui.R;
+import com.suixin.vy.ui.SelectActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
@@ -41,6 +45,17 @@ public class TripFragment extends Fragment implements OnClickListener {
     private int screenWidth;
 
     private boolean isFrist = true;
+    
+    private ImageButton magnifier;
+    private Activity activity;
+    
+    
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.activity = activity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +83,7 @@ public class TripFragment extends Fragment implements OnClickListener {
 
     @SuppressWarnings("deprecation")
     private void addListener() {
+        magnifier.setOnClickListener(this);
         fragment_hot_listview_vz.setOnClickListener(this);
         fragment_listview_find_vz.setOnClickListener(this);
         fragment_attention_vz.setOnClickListener(this);
@@ -107,6 +123,7 @@ public class TripFragment extends Fragment implements OnClickListener {
 
     private void initView(View view, LayoutInflater inflater,
             ViewGroup container) {
+        magnifier=(ImageButton)view.findViewById(R.id.im_btn_magnifier);
         fragment_hot_listview_vz = (TextView) view.findViewById(R.id.tab1);
         fragment_listview_find_vz = (TextView) view.findViewById(R.id.tab2);
         fragment_attention_vz = (TextView) view.findViewById(R.id.tab3);
@@ -157,6 +174,10 @@ public class TripFragment extends Fragment implements OnClickListener {
             break;
         case R.id.tab3:
             pager.setCurrentItem(2);
+            break;
+        case R.id.im_btn_magnifier:
+            Intent intent = new Intent(activity,SelectActivity.class);
+            this.startActivity(intent);
             break;
         default:
             break;
