@@ -1,14 +1,10 @@
 package com.suixin.vy.core;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.suixin.vy.model.UserModel;
-import com.suixin.vy.ui.HomeActivity;
+import com.suixin.vy.ui.R;
 
 import cn.bmob.v3.datatype.BmobDate;
 
@@ -17,11 +13,42 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Environment;
 
 public class MyApplication extends Application {
 	public static String headPath;
+	public static String iconPath;
+	
+	@Override
+	public void onCreate() {
+	    super.onCreate();
+	    try {
+            savaIconToSDCard();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
+	private void savaIconToSDCard() throws Exception {
+	    if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+	        String path = Environment.getExternalStorageDirectory().getAbsolutePath()+"/icon";
+	        File file = new File(path);
+	        if(!file.exists())
+	            file.mkdir();
+	        BitmapDrawable bd = (BitmapDrawable) getResources().getDrawable(R.drawable.ic);
+	        Bitmap bm = bd.getBitmap();
+	        
+	        FileOutputStream fos = new FileOutputStream(path+"/icon.png");
+	        bm.compress(CompressFormat.PNG, 100, fos);
+	        iconPath = path+"/icon.png";
+	    }else {
+	        iconPath = null;
+	    }
+    }
 
-	public boolean isLogin() {
+    public boolean isLogin() {
 		SharedPreferences sp = this.getSharedPreferences("AppConfig",
 				Context.MODE_PRIVATE);
 		return sp.getBoolean("isLogin", false);

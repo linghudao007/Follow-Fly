@@ -77,6 +77,8 @@
         </activity>
         <activity android:name="com.suixin.vy.ui.DetailsActivity" >
         </activity>
+        <activity android:name="com.suixin.vz.ui.DetailsActivityTow" >
+        </activity>
         <activity
             android:name=".ActivityLoging"
             android:configChanges="keyboardHidden|orientation|screenSize|locale|layoutDirection"

@@ -226,7 +226,9 @@ public class CurrcityFragment extends Fragment implements OnClickListener,
 	/** 实例化本地城市页面控件 */
 	private void initCurrView(LayoutInflater inflater, ViewGroup container) {
 		reflayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_ref);
+
 		reflayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2);
+
 		reflayout.setSize(SwipeRefreshLayout.LARGE);
 		lv_currcity = (ListView) view.findViewById(R.id.lv_currcity);
 		currCityheadview = inflater.inflate(R.layout.head_listview_currcity,

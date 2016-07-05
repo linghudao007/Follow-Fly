@@ -3,6 +3,8 @@ package com.suixin.vz.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.simple.eventbus.EventBus;
+
 import com.alibaba.fastjson.JSON;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -10,11 +12,16 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.ui.R;
 import com.suixin.vz.strike.model.StrikeModel;
 import com.suixin.vz.strike.model.TourPicList;
+import com.suixin.vz.ui.DetailsActivityTow;
 import com.suixin.vz.ui.adapter.MRecyclerAdapter;
+import com.suixin.vz.ui.adapter.MRecyclerAdapter.OnRecyckerItemClickListener;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -26,8 +33,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class FindFragment extends Fragment implements OnRefreshListener{
+public class FindFragment extends Fragment implements OnRefreshListener,OnItemClickListener,OnRecyckerItemClickListener{
     /** RecyclerView */
     private RecyclerView rlv_find;
 
@@ -37,7 +46,7 @@ public class FindFragment extends Fragment implements OnRefreshListener{
     private List<TourPicList> list;
 
     private MRecyclerAdapter adapter;
-
+    
     /** 获取来的发现总数据 */
     private StrikeModel Strike;
 
@@ -60,8 +69,16 @@ public class FindFragment extends Fragment implements OnRefreshListener{
         this.view = view;
         // 实例化发现中的控件
         initLv_find(inflater, container);
-        swipe_refresh.setRefreshing(true);
+        addListener();
         getJson();
+     // 第一次进页面先刷新一次
+        swipe_refresh.post(new Runnable() {
+            @Override
+            public void run() {
+                swipe_refresh.setRefreshing(true);
+                getJson();
+            }
+        });
         return view;
     }
 
@@ -75,7 +92,7 @@ public class FindFragment extends Fragment implements OnRefreshListener{
         sg.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         rlv_find.setLayoutManager(sg);
         // 设置adapter
-        adapter = new MRecyclerAdapter(list, activity);
+        adapter = new MRecyclerAdapter(list, activity,this);
         rlv_find.setAdapter(adapter);
         rlv_find.addOnScrollListener(new OnScrollListener() {
             @Override
@@ -92,18 +109,22 @@ public class FindFragment extends Fragment implements OnRefreshListener{
                 DividerItemDecoration.VERTICAL_LIST));
         rlv_find.addItemDecoration(new DividerItemDecoration(activity,
                 DividerItemDecoration.HORIZONTAL_LIST));
-
         swipe_refresh = (SwipeRefreshLayout) view
                 .findViewById(R.id.refresh);
         swipe_refresh.setColorSchemeResources(android.R.color.holo_blue_light,
                 android.R.color.holo_red_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_green_light);
-        swipe_refresh.setProgressViewOffset(true,0, 100);
         swipe_refresh.setSize(SwipeRefreshLayout.LARGE);
         swipe_refresh.setOnRefreshListener(this);
         
     }
+
+    private void addListener() {
+        swipe_refresh.setOnRefreshListener(this);
+        
+    }
+    
 
     // 解析发现
     private void getJson() {
@@ -132,7 +153,6 @@ public class FindFragment extends Fragment implements OnRefreshListener{
                         // 判断是否获取成功
                         if (Strike.getStatus() == 0) {
                             getHotListViewData();
-                            //swipe_refresh.setRefreshing(false);
                         }
                     }
 
@@ -153,13 +173,37 @@ public class FindFragment extends Fragment implements OnRefreshListener{
             swipe_refresh.setRefreshing(false);
             swipe_refresh.invalidate();
         }
-           
-      
     }
 
     @Override
     public void onRefresh() {
-        getJson();        
+        swipe_refresh.setRefreshing(true);
+        getJson();  
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+            long id) {
+        // 每次都调用该方法 复用view
+       /* Intent intent = new Intent();
+        // 打开旅途详情页面
+        EventBus.getDefault().postSticky(view, AppConfig.DetView);
+        intent.setClass(activity, DetailsActivity.class);
+        intent.putExtra(AppConfig.TITLE, "旅途详情");
+        intent.putExtra("planGuid",
+                ((TourPicList) rlv_find.getTag(position)).getGuid());
+        activity.startActivity(intent);*/
+    }
+
+    @Override
+    public void onItemClick(View item, int position) {
+        Intent intent = new Intent();
+        // 打开旅途详情页面
+        EventBus.getDefault().postSticky(item, AppConfig.DetView);
+        intent.setClass(activity, DetailsActivityTow.class);
+        intent.putExtra(AppConfig.TITLE, "旅途详情");
+        intent.putExtra("planGuid", list.get(position).getGuid());
+        activity.startActivity(intent);
     }
 
 }
