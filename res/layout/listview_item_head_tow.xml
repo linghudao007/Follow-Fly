@@ -40,7 +40,7 @@
         android:id="@+id/tow_rlt4"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#f7f7f5" >
+        android:background="#ffffff" >
 
         <RelativeLayout
             android:id="@+id/tow_rlt5"
@@ -62,6 +62,8 @@
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
             android:layout_marginTop="1dp"
             android:layout_toRightOf="@id/tow_rlt5"
             android:ems="10"

@@ -16,9 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="@string/departure" />
+            android:text="填写出发日期" />
 
-        <Button
+        <EditText 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white" />
@@ -39,7 +39,7 @@
             android:layout_marginLeft="10dp"
             android:text="计划活动时长" />
 
-        <Button
+       <EditText 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white" />

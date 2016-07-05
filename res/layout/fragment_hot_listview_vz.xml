@@ -3,23 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_ref"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <ListView
-            
-            android:id="@+id/lv_vz_home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_listview_bg"
-            android:divider="@color/color_line"
-            android:dividerHeight="10dp"
-            android:scrollbars="none" 
-            android:clickable="true">
-        </ListView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+ 	<ListView 
+ 	    android:id="@+id/lv_vz_home"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="match_parent"
+ 	    android:divider="@color/color_line"
+ 	    android:dividerHeight="10dp"
+ 	    android:scrollbars="none"
+ 	    android:background="@color/color_listview_bg">
+ 	</ListView>
 
 </LinearLayout>

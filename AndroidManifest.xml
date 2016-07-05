@@ -134,7 +134,10 @@
         </activity>
         <activity android:name="com.suixin.vq.ui.UserInfoSetActivity" >
         </activity>
-        
+         <activity android:name="com.suixin.vlee.ui.ListViewLeeActivityThree" >
+        </activity>
+        <activity android:name="com.suixin.vlee.ui.ListViewLeeActivityTow" >
+        </activity>
     </application>
 
 </manifest>

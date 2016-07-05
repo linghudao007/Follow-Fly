@@ -20,8 +20,13 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginTop="13dp"
+        android:gravity="top"
+        android:paddingTop="14dp"
+        android:paddingLeft="14dp"
         android:background="#F7F5F3"
         android:hint="可以写下您的自我介绍，旅行计划，约伴要求等..."
+        android:textColorHint="#aba7a2"
+        android:textSize="14sp"
         android:inputType="textMultiLine" />
 <RelativeLayout 
 	    android:layout_width="match_parent"

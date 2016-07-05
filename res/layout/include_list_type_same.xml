@@ -5,7 +5,6 @@
     android:layout_margin="10dp"
     android:layout_weight="1"
     android:background="#fff"
-    android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal" >
 
     <com.suixin.vy.core.CircleImageView
@@ -59,13 +58,12 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/tv_size_min" />
 
-        <TextView
+        <Button
             android:id="@+id/btn_attention"
             android:layout_width="50dp"
             android:layout_height="27dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:gravity="center"
             android:background="@drawable/shape_tv_concern"
             android:text="@string/use_attention"
             android:textSize="@dimen/tv_size_m"

@@ -33,16 +33,6 @@
             android:textColor="#706b66"
             android:textSize="16sp" />
 
-        <ImageButton
-            android:id="@+id/btn_retreat"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:background="@android:color/white"
-            android:contentDescription="@string/action_settings"
-            android:src="@drawable/header_return_drawable" />
-
     </RelativeLayout>
 
     <ListView
