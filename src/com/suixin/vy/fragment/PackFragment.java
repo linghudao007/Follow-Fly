@@ -1,5 +1,8 @@
 package com.suixin.vy.fragment;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,6 +15,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -41,14 +46,15 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.suixin.vy.adapter.PackAdapter;
 import com.suixin.vy.core.AppConfig;
 import com.suixin.vy.core.JudgeNET;
-import com.suixin.vy.model.TourPicList;
 import com.suixin.vy.model.pack.PackModel;
 import com.suixin.vy.model.pack.PlanList;
 import com.suixin.vy.ui.DetailsActivity;
 import com.suixin.vy.ui.R;
 
 public class PackFragment extends Fragment implements OnClickListener,
-		OnKeyListener {
+		OnKeyListener, OnRefreshListener {
+	/** 刷新布局 */
+	private SwipeRefreshLayout reflayout;
 	/** 约伴整体布局 */
 	private View view;
 	/** 约伴页面的接口地址 */
@@ -99,7 +105,15 @@ public class PackFragment extends Fragment implements OnClickListener,
 		initPackView(inflater, container);
 		addListener();
 		listViewListener();
-		getJson();
+		// 第一次进页面先刷新一次
+		reflayout.post(new Runnable() {
+			@Override
+			public void run() {
+				reflayout.setRefreshing(true);
+				// 网络请求数据
+				getJson();
+			}
+		});
 		return view;
 	}
 
@@ -128,7 +142,7 @@ public class PackFragment extends Fragment implements OnClickListener,
 					int position, long id) {
 				Intent intent = new Intent();
 				long type = packList.get(position).getType();
-				if (type == 1||type == 2) {
+				if (type == 1 || type == 2) {
 					// 打开约伴详情页面
 					EventBus.getDefault().postSticky(view, AppConfig.DetView);
 					intent.setClass(activity, DetailsActivity.class);
@@ -142,6 +156,7 @@ public class PackFragment extends Fragment implements OnClickListener,
 	}
 
 	private void addListener() {
+		reflayout.setOnRefreshListener(this);
 		iv_unfold.setOnClickListener(this);
 		for (int i = 0; i < tv.length; i++) {
 			tv[i].setOnClickListener(this);
@@ -163,6 +178,9 @@ public class PackFragment extends Fragment implements OnClickListener,
 	}
 
 	private void initPackView(LayoutInflater inflater, ViewGroup container) {
+		reflayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_ref);
+		reflayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2);
+		reflayout.setSize(SwipeRefreshLayout.LARGE);
 		ll_selectable = (LinearLayout) view.findViewById(R.id.ll_selectable);
 		ll_selecttag = (LinearLayout) view.findViewById(R.id.ll_selecttag);
 		tv = new TextView[TVCOUNT];
@@ -204,6 +222,7 @@ public class PackFragment extends Fragment implements OnClickListener,
 				new RequestCallBack<String>() {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
+						reflayout.setRefreshing(false);
 						if (responseInfo == null) {
 							return;
 						}
@@ -211,7 +230,17 @@ public class PackFragment extends Fragment implements OnClickListener,
 							packModel = JSON.parseObject(responseInfo.result,
 									PackModel.class);
 						} catch (Exception e) {
-							Log.e("ss", e.getMessage());
+							try {
+								InputStream is = activity.getResources()
+										.getAssets().open("pack.txt");
+								byte[] b = new byte[is.available()];
+								is.read(b);
+								String json = new String(b);
+								packModel = JSON.parseObject(json,
+										PackModel.class);
+							} catch (Exception e1) {
+								e1.printStackTrace();
+							}
 						}
 						// 判断是否获取成功
 						if (packModel != null && packModel.getStatus() == 0) {
@@ -221,6 +250,7 @@ public class PackFragment extends Fragment implements OnClickListener,
 
 					@Override
 					public void onFailure(HttpException arg0, String arg1) {
+						reflayout.setRefreshing(false);
 					}
 				});
 	}
@@ -339,5 +369,10 @@ public class PackFragment extends Fragment implements OnClickListener,
 			getJson();
 		}
 		return true;
+	}
+
+	@Override
+	public void onRefresh() {
+		getJson();
 	}
 }

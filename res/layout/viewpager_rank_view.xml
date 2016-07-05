@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_ref"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-     <ListView
+
+    <ListView
         android:id="@+id/lv_rank"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/color_line"
         android:dividerHeight="1px"
-        android:scrollbars="none" 
-        />
+        android:scrollbars="none" />
 
-</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

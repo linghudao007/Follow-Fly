@@ -7,10 +7,11 @@ import java.util.List;
 
 import org.simple.eventbus.EventBus;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -42,7 +43,10 @@ import com.suixin.vy.model.select.SelectModel;
  * @author yxy
  * 
  */
-public class SelectActivity extends BaseActivity implements OnItemClickListener {
+public class SelectActivity extends BaseActivity implements
+		OnItemClickListener, OnRefreshListener {
+	/** 刷新布局 */
+	private SwipeRefreshLayout reflayout;
 	/** 返回按钮 */
 	private ImageView iv_back;
 	/** 用户输入的目的地，出发地 */
@@ -153,6 +157,7 @@ public class SelectActivity extends BaseActivity implements OnItemClickListener 
 				new RequestCallBack<String>() {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
+						reflayout.setRefreshing(false);
 						if (responseInfo == null) {
 							return;
 						}
@@ -172,7 +177,7 @@ public class SelectActivity extends BaseActivity implements OnItemClickListener 
 
 					@Override
 					public void onFailure(HttpException error, String msg) {
-						getJson();
+						reflayout.setRefreshing(false);
 					}
 				});
 	}
@@ -217,6 +222,9 @@ public class SelectActivity extends BaseActivity implements OnItemClickListener 
 
 	@Override
 	protected void initView() {
+		reflayout = (SwipeRefreshLayout) findViewById(R.id.swipe_ref);
+		reflayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2);
+		reflayout.setSize(SwipeRefreshLayout.LARGE);
 		selectemptyview = (LinearLayout) findViewById(R.id.ll_selectempty);
 		format = new SimpleDateFormat("yyyy-MM-dd");
 		http = new HttpUtils();
@@ -243,6 +251,7 @@ public class SelectActivity extends BaseActivity implements OnItemClickListener 
 
 	@Override
 	protected void addListener() {
+		reflayout.setOnRefreshListener(this);
 		iv_back.setOnClickListener(this);
 		tv_time[0].setOnClickListener(this);
 		tv_time[1].setOnClickListener(this);
@@ -266,5 +275,13 @@ public class SelectActivity extends BaseActivity implements OnItemClickListener 
 					(selectList.get(position)).getPlanGuid());
 			startActivity(intent);
 		}
+	}
+
+	@Override
+	public void onRefresh() {
+		destName = et_destName.getText().toString().trim();
+		departName = et_departName.getText().toString().trim();
+		setTime();
+		getJson();
 	}
 }
